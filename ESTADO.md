@@ -92,7 +92,7 @@ Ganchos de video/ads: 1) "¿Por qué Carlo Acutis decía que la Eucaristía era 
 - Sesión 8: Adquisición, lanzamiento y backoffice.
 
 ## Problemas conocidos ⚠️
-Ninguno todavía.
+- FICHA-MODELO pendiente: aún no se elige ni extrae la app modelo (01 — LA APP MODELO). Se hace formalmente al arrancar la Sesión 1 (que todavía no comenzó — se está esperando el OK del usuario al Plan Maestro). No es un olvido: es la próxima acción exacta.
 
 ## Pendientes del usuario (acciones que el usuario debe hacer)
 - [ ] Ninguno todavía — se irán agregando cuenta por cuenta cuando lleguemos a la fase de servicios externos (Sesión 6).
