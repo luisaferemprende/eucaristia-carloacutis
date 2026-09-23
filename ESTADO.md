@@ -73,6 +73,7 @@ Reto diario de 3 minutos con pensamientos de Carlo Acutis y grandes santos, diar
 
 ## Problemas conocidos ⚠️
 - Contenido doctrinal: como la biblioteca de pensamientos diarios se escribe una vez (no la genera IA en vivo), su calidad doctrinal depende de una buena curación inicial — al llegar a la Sesión 5 (app interna) hay que decidir con el usuario la fuente/autoría de esos ~365 textos (dominio público de los santos citados, o redactados y luego revisados) antes de darlos por buenos.
+- Tour de la app (vista-previa-app.html) pendiente: no se puede construir todavía porque depende de qué dirección (A/B/C o combinación) elija el usuario en direcciones-abc.html — se genera en el mismo momento en que el usuario responda esa pregunta, no antes.
 
 ## Pendientes del usuario (acciones que el usuario debe hacer)
 - [ ] Ninguno todavía — llegarán uno por uno en la fase de servicios externos (Sesión 6: cuentas de Supabase, Hotmart, dominio, Resend).
