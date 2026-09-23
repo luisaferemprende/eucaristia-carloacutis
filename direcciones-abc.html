@@ -7,8 +7,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..700&family=Mulish:wght@400..700&family=EB+Garamond:wght@400..700&family=Inter+Tight:wght@400..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=zodiak@400,700&f[]=switzer@400,600&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Figtree:wght@400..700&family=Chivo:wght@400..700&family=Hanken+Grotesk:wght@400..700&family=Spectral:wght@400..700&family=IBM+Plex+Sans:wght@400..700&display=swap" rel="stylesheet">
 
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -155,19 +154,22 @@
   }
   .hero-landing .hl-prueba { margin-top: 10px; font-size: 11.5px; color: var(--text-2); text-align: center; }
 
-  /* ============================== OPCIÓN A — Editorial cálida (54, dirección 1) ============================== */
+  /* ============================== OPCIÓN A — Terracota mediterránea (54, dirección 7) ============================== */
   .op-a {
-    --bg: #f6f1e8;
-    --surface: #fcf9f2;
-    --text-1: #2c2721;
-    --text-2: #6e6557;
-    --accent: #7a3e2e;
+    --bg: #f8f1e9;
+    --surface: #fdf8f1;
+    --text-1: #3a2e26;
+    --text-2: #7a6a5c;
+    --accent: #c0562f;
+    --oliva: #5f7248;
     --radius-card: 18px;
     --radius-btn: 12px;
-    --font-display: 'Newsreader', monospace;
-    --font-body: 'Mulish', monospace;
+    --font-display: 'Marcellus', monospace;
+    --font-body: 'Figtree', monospace;
     --shadow-tinta: 62 50 36;
   }
+  .op-a .pantalla { background-image: radial-gradient(color-mix(in oklab, var(--text-1) 6%, transparent) 1px, transparent 1px);
+                     background-size: 14px 14px; }
   .op-a .especimen .esp-display { font-family: var(--font-display); }
   .op-a .especimen .esp-body { font-family: var(--font-body); }
   .op-a .telefono { background: var(--bg); }
@@ -194,7 +196,7 @@
     line-height: 1.05; font-variant-numeric: tabular-nums;
   }
   .op-a .heroe .dato small { font-size: 15px; font-weight: 600; color: var(--text-2); }
-  .op-a .heroe .insight { margin-top: 4px; font-size: 12.5px; color: var(--accent); font-weight: 600; }
+  .op-a .heroe .insight { margin-top: 4px; font-size: 12.5px; color: var(--oliva); font-weight: 600; }
   .op-a .card {
     margin-top: 10px; background: var(--surface); border-radius: var(--radius-card);
     border: 1px solid color-mix(in oklab, var(--text-2) 22%, transparent);
@@ -213,18 +215,22 @@
     box-shadow: 0 8px 22px color-mix(in oklab, var(--accent) 30%, transparent);
   }
 
-  /* ============================== OPCIÓN B — Índigo profundo (54, dirección 12) ============================== */
+  /* ============================== OPCIÓN B — Nocturna de estudio (54, dirección 6) ============================== */
   .op-b {
-    --bg: #12142a;
-    --surface: #191c36;
-    --text-1: #e4e4f0;
-    --text-2: #9b9ab8;
-    --accent: #c8b27c;
+    --bg: #14121b;
+    --surface: #1c1926;
+    --text-1: #eae6f2;
+    --text-2: #a29bb3;
+    --accent: #e0b458;
     --radius-card: 14px;
     --radius-btn: 10px;
-    --font-display: 'Zodiak', monospace;
-    --font-body: 'Switzer', monospace;
-    --shadow-tinta: 6 6 18;
+    --font-display: 'Spectral', monospace;
+    --font-body: 'IBM Plex Sans', monospace;
+    --shadow-tinta: 10 8 16;
+  }
+  .op-b .anillo-wrap::before {
+    content: ''; position: absolute; inset: -30px; z-index: -1; border-radius: 50%;
+    background: radial-gradient(closest-side, color-mix(in oklab, var(--accent) 16%, transparent), transparent 72%);
   }
   .op-b .especimen .esp-display { font-family: var(--font-display); }
   .op-b .especimen .esp-body { font-family: var(--font-body); }
@@ -276,18 +282,24 @@
     box-shadow: 0 8px 24px color-mix(in oklab, var(--accent) 28%, transparent);
   }
 
-  /* ============================== OPCIÓN C — Papel y tinta (54, dirección 9) ============================== */
+  /* ============================== OPCIÓN C — Salvia técnica (54, dirección 10) ============================== */
   .op-c {
-    --bg: #f5f4f0;
-    --surface: #fcfbf8;
-    --text-1: #1e1d1a;
-    --text-2: #67645c;
-    --accent: #8c2f23;
+    --bg: #eff2ed;
+    --surface: #f9fbf7;
+    --text-1: #242b24;
+    --text-2: #64705f;
+    --accent: #3d6b4f;
     --radius-card: 10px;
     --radius-btn: 8px;
-    --font-display: 'EB Garamond', monospace;
-    --font-body: 'Inter Tight', monospace;
-    --shadow-tinta: 40 38 32;
+    --font-display: 'Chivo', monospace;
+    --font-body: 'Hanken Grotesk', monospace;
+    --shadow-tinta: 30 40 32;
+  }
+  .op-c .pantalla {
+    background-image:
+      linear-gradient(color-mix(in oklab, var(--text-1) 4%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in oklab, var(--text-1) 4%, transparent) 1px, transparent 1px);
+    background-size: 22px 22px;
   }
   .op-c .especimen .esp-display { font-family: var(--font-display); }
   .op-c .especimen .esp-body { font-family: var(--font-body); }
@@ -382,23 +394,23 @@
   <!-- ═══════════════════════ OPCIÓN A — Editorial cálida ═══════════════════════ -->
   <section class="opcion op-a" aria-label="Opción A">
     <div class="meta">
-      <h2><span class="letra">A</span> Editorial cálida</h2>
-      <p class="direccion">Cálida y cercana, como una página de un devocionario — tu racha en grande, con el pensamiento del día y tu novena debajo, en tonos de papel e óxido.</p>
+      <h2><span class="letra">A</span> Terracota mediterránea</h2>
+      <p class="direccion">Cálida y hospitalaria, como una sobremesa — barro cocido y aceituna, con textura de pan en el fondo. El mundo del trigo y el vino de la Eucaristía, sin ser literal.</p>
       <p class="hipotesis"><strong>Hipótesis de conversión:</strong>
-        <span class="slot">el calor y la cercanía bajan la guardia de quien ya "probó apps de oración y las abandonó" — se siente un cuaderno propio, no una app corporativa.</span>
+        <span class="slot">el calor mediterráneo se siente acogedor y humano — responde a "me siento sola en mi devoción" con una app que abraza, no que instruye.</span>
       </p>
       <ul class="tokens">
-        <li>--bg #F6F1E8 · --accent #7A3E2E</li>
+        <li>--bg #F8F1E9 · --accent #C0562F · 2ª nota #5F7248</li>
         <li>radius 18/12 · sombra tintada 62·50·36</li>
       </ul>
       <div class="paleta" aria-hidden="true">
-        <span style="background:#f6f1e8"></span><span style="background:#fcf9f2"></span>
-        <span style="background:#2c2721"></span><span style="background:#6e6557"></span>
-        <span style="background:#7a3e2e"></span>
+        <span style="background:#f8f1e9"></span><span style="background:#fdf8f1"></span>
+        <span style="background:#3a2e26"></span><span style="background:#c0562f"></span>
+        <span style="background:#5f7248"></span>
       </div>
       <div class="especimen">
-        <p class="esp-display">Newsreader — AaBbÑñ 0123</p>
-        <p class="esp-body">Mulish — El veloz murciélago hindú comía feliz cardillo y kiwi.</p>
+        <p class="esp-display">Marcellus — AaBbÑñ 0123</p>
+        <p class="esp-body">Figtree — El veloz murciélago hindú comía feliz cardillo y kiwi.</p>
       </div>
     </div>
 
@@ -424,7 +436,7 @@
 
         <div class="card">
           <span class="chip-icono" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7a3e2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-3 4-5 7-5 10a5 5 0 0 0 10 0c0-3-2-6-5-10Z"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c0562f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-3 4-5 7-5 10a5 5 0 0 0 10 0c0-3-2-6-5-10Z"/></svg>
           </span>
           <div>
             <h4>Pensamiento de hoy · Carlo Acutis</h4>
@@ -434,7 +446,7 @@
 
         <div class="card">
           <span class="chip-icono" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7a3e2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c0562f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
           </span>
           <div>
             <h4>Tu novena · Día 4 de 9</h4>
@@ -467,23 +479,23 @@
   <!-- ═══════════════════════ OPCIÓN B — Índigo profundo ═══════════════════════ -->
   <section class="opcion op-b" aria-label="Opción B">
     <div class="meta">
-      <h2><span class="letra">B</span> Índigo profundo</h2>
-      <p class="direccion">Íntima y nocturna, como una vigilia — fondo azul casi negro con luz de oro viejo, tu novena como un anillo que se llena y una comunidad orando contigo.</p>
+      <h2><span class="letra">B</span> Nocturna de estudio</h2>
+      <p class="direccion">Como un rincón de oración en penumbra, con una sola luz de lámpara — violeta casi negro MUY desaturado (nada de morado neón) y un cálido dorado de vela.</p>
       <p class="hipotesis"><strong>Hipótesis de conversión:</strong>
-        <span class="slot">el silencio y la luz dorada bajan la ansiedad de quien reza de noche, agotada — se siente un momento de calma, no una tarea más en el celular.</span>
+        <span class="slot">la penumbra íntima responde a "quiero vivir la misa de verdad, no ir por inercia" — un espacio de foco total, sin ruido visual, para la lectura de la noche.</span>
       </p>
       <ul class="tokens">
-        <li>--bg #12142A · --accent #C8B27C</li>
-        <li>radius 14/10 · sombra tintada 6·6·18</li>
+        <li>--bg #14121B · --accent #E0B458</li>
+        <li>radius 14/10 · sombra tintada 10·8·16</li>
       </ul>
       <div class="paleta" aria-hidden="true">
-        <span style="background:#12142a"></span><span style="background:#191c36"></span>
-        <span style="background:#e4e4f0"></span><span style="background:#9b9ab8"></span>
-        <span style="background:#c8b27c"></span>
+        <span style="background:#14121b"></span><span style="background:#1c1926"></span>
+        <span style="background:#eae6f2"></span><span style="background:#a29bb3"></span>
+        <span style="background:#e0b458"></span>
       </div>
       <div class="especimen">
-        <p class="esp-display">Zodiak — AaBbÑñ 0123</p>
-        <p class="esp-body">Switzer — El veloz murciélago hindú comía feliz cardillo y kiwi.</p>
+        <p class="esp-display">Spectral — AaBbÑñ 0123</p>
+        <p class="esp-body">IBM Plex Sans — El veloz murciélago hindú comía feliz cardillo y kiwi.</p>
       </div>
     </div>
 
@@ -505,8 +517,8 @@
 
         <div class="anillo-wrap">
           <svg width="132" height="132" viewBox="0 0 132 132" role="img" aria-label="Día 4 de 9 de tu novena">
-            <circle cx="66" cy="66" r="57" fill="none" stroke-width="11" stroke="rgba(200,178,124,0.14)"/>
-            <circle cx="66" cy="66" r="57" fill="none" stroke-width="11" stroke="#c8b27c" stroke-linecap="round"
+            <circle cx="66" cy="66" r="57" fill="none" stroke-width="11" stroke="rgba(224,180,88,0.14)"/>
+            <circle cx="66" cy="66" r="57" fill="none" stroke-width="11" stroke="#e0b458" stroke-linecap="round"
                     stroke-dasharray="358.1" stroke-dashoffset="199" transform="rotate(-90 66 66)"/>
           </svg>
           <div class="centro">
@@ -518,7 +530,7 @@
         <div class="grid2x2">
           <div class="tile destacada">
             <p class="t-label">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c8b27c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 2.6 6.9L22 9.3l-5.4 4.6 1.8 7.1L12 17l-6.4 4 1.8-7.1L2 9.3l7.4-.4Z"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#e0b458" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 2.6 6.9L22 9.3l-5.4 4.6 1.8 7.1L12 17l-6.4 4 1.8-7.1L2 9.3l7.4-.4Z"/></svg>
               Racha
             </p>
             <p class="t-dato">7<small> días</small></p>
@@ -573,23 +585,23 @@
   <!-- ═══════════════════════ OPCIÓN C — Papel y tinta ═══════════════════════ -->
   <section class="opcion op-c" aria-label="Opción C">
     <div class="meta">
-      <h2><span class="letra">C</span> Papel y tinta</h2>
-      <p class="direccion">Elegante y serena, como una carta sellada — tu Eucaristía del día contada en tres actos, con una capitular al estilo de los libros antiguos.</p>
+      <h2><span class="letra">C</span> Salvia técnica</h2>
+      <p class="direccion">Serena y clara, verde salvia (el color litúrgico del Tiempo Ordinario) sobre una rejilla suave — tu día contado con la precisión tranquila de quien ya no improvisa.</p>
       <p class="hipotesis"><strong>Hipótesis de conversión:</strong>
-        <span class="slot">la sobriedad y el cuidado editorial responden directo a "seguro es otra app fea o abandonada" — se ve cuidada antes de leer una palabra.</span>
+        <span class="slot">el verde calmado transmite constancia sin exigir nada — responde a "quiero un hábito, no otra obligación que se me olvida".</span>
       </p>
       <ul class="tokens">
-        <li>--bg #F5F4F0 · --accent #8C2F23</li>
-        <li>radius 10/8 · sombra tintada 40·38·32</li>
+        <li>--bg #EFF2ED · --accent #3D6B4F</li>
+        <li>radius 10/8 · sombra tintada 30·40·32</li>
       </ul>
       <div class="paleta" aria-hidden="true">
-        <span style="background:#f5f4f0"></span><span style="background:#fcfbf8"></span>
-        <span style="background:#1e1d1a"></span><span style="background:#67645c"></span>
-        <span style="background:#8c2f23"></span>
+        <span style="background:#eff2ed"></span><span style="background:#f9fbf7"></span>
+        <span style="background:#242b24"></span><span style="background:#64705f"></span>
+        <span style="background:#3d6b4f"></span>
       </div>
       <div class="especimen">
-        <p class="esp-display">EB Garamond — AaBbÑñ 0123</p>
-        <p class="esp-body">Inter Tight — El veloz murciélago hindú comía feliz cardillo y kiwi.</p>
+        <p class="esp-display">Chivo — AaBbÑñ 0123</p>
+        <p class="esp-body">Hanken Grotesk — El veloz murciélago hindú comía feliz cardillo y kiwi.</p>
       </div>
     </div>
 
@@ -638,7 +650,7 @@
 
         <div class="cierre-nota">
           <span class="chip-icono" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8c2f23" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3d6b4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
           </span>
           <p><b>Tu diario no se pierde.</b> Cada petición que escribes queda guardada, para siempre.</p>
         </div>

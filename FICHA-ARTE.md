@@ -19,10 +19,11 @@
 - Compilación (tabla del 11): spring suave (damping alto, sin overshoot fuerte) · duración base 280-350ms · exclamaciones máx 1/pantalla (esto no es una app "gritona") · celebración nivel medio (hitos reales: novena completa, racha) · radio tendencial 12-18px.
 
 ## Brand kit final
-- PENDIENTE — se completa con los valores EXACTOS de la opción que el usuario elija (o combine) entre las 3 de `direcciones-abc.html`. Los 3 candidatos completos:
-  - **A · Editorial cálida**: fondo #F6F1E8 · superficie #FCF9F2 · texto 1º #2C2721 · texto 2º #6E6557 · acento #7A3E2E · display Newsreader · body Mulish · radio 18/12 · dispositivo: subrayado marcador.
-  - **B · Índigo profundo**: fondo #12142A · superficie #191C36 · texto 1º #E4E4F0 · texto 2º #9B9AB8 · acento #C8B27C (oro viejo) · display Zodiak · body Switzer · radio 14/10 · dispositivo: velo de profundidad + hairline dorada.
-  - **C · Papel y tinta**: fondo #F5F4F0 · superficie #FCFBF8 · texto 1º #1E1D1A · texto 2º #67645C · acento #8C2F23 (lacre) · display EB Garamond · body Inter Tight · radio 10/8 · dispositivo: doble regla + capitular.
+- PENDIENTE — se completa con los valores EXACTOS de la opción que el usuario elija (o combine). El usuario pidió una SEGUNDA ronda (descartó la primera terna completa: Editorial cálida / Índigo profundo / Papel y tinta). Terna vigente en `direcciones-abc.html`:
+  - **A · Terracota mediterránea**: fondo #F8F1E9 · superficie #FDF8F1 · texto 1º #3A2E26 · texto 2º #7A6A5C · acento #C0562F (barro cocido) + 2ª nota oliva #5F7248 (solo estados positivos) · display Marcellus · body Figtree · radio 18/12 · dispositivo: textura de puntos (pan/arena).
+  - **B · Nocturna de estudio**: fondo #14121B · superficie #1C1926 · texto 1º #EAE6F2 · texto 2º #A29BB3 · acento #E0B458 (luz de lámpara) · display Spectral · body IBM Plex Sans · radio 14/10 · dispositivo: halo de luz + grano.
+  - **C · Salvia técnica**: fondo #EFF2ED · superficie #F9FBF7 · texto 1º #242B24 · texto 2º #64705F · acento #3D6B4F (verde litúrgico) · display Chivo · body Hanken Grotesk · radio 10/8 · dispositivo: rejilla técnica sutil.
+- Primera terna descartada (registrada para no repetir si se pide una tercera ronda): Editorial cálida (Newsreader/Mulish, óxido #7A3E2E) · Índigo profundo (Zodiak/Switzer, oro viejo #C8B27C) · Papel y tinta (EB Garamond/Inter Tight, lacre #8C2F23).
 
 ## Trazabilidad y vetos
 - Ruta de diseño (PREGUNTA DE REFERENCIA del 54): propuesta propia.
