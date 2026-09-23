@@ -1,102 +1,83 @@
 # ESTADO — EucaristíaViva
 Última actualización: 2026-09-22 | Sesión actual: 1
 
-⏸️ CHECKPOINT — Última acción completada: Sistema instalado, idea validada recibida (RESUMEN FINAL del usuario) y guardada en ESTADO.md / Siguiente acción exacta: Presentar Plan Maestro (saltando B0-B2, la validación ya viene hecha) y, tras su OK, arrancar Sesión 1 (Constitución del Producto + AVATAR + monetización + arquitectura).
+⏸️ CHECKPOINT — Última acción completada: Sesión 1 completa (FICHA-MODELO.md y FICHA-AVATAR.md creadas y aprobadas por criterio del agente con evidencia citada, modelo de monetización decidido, arquitectura técnica decidida) / Siguiente acción exacta: presentar el cierre de Sesión 1 al usuario en simple (avatar + modelo elegido + precio) y, con su OK, arrancar Sesión 2 (identidad visual) empezando por LA PREGUNTA DE REFERENCIA (PASO 0 del 54).
 
 ## Qué es esta app (3 líneas máximo)
-Reto diario de 3 minutos con pensamientos de Carlo Acutis y grandes santos, diario espiritual privado y retos de novenas en grupo (asíncronos, solo lectura). Para católicos practicantes ocupados que quieren constancia en su fe sin pagar precios abusivos. Monetización: suscripción $3.99/mes o $29.99/año, con 7 días de prueba gratis.
+Reto diario de 3 minutos con pensamientos de Carlo Acutis y grandes santos, diario espiritual privado y retos de novenas en grupo (asíncronos, solo lectura). Para católicas practicantes ocupadas (avatar: Carmen Rosa) que quieren constancia en su fe sin pagar precios abusivos. Monetización: suscripción $3.99/mes o $29.99/año, con 7 días de prueba gratis.
 
 ## Promesa central
-"Ayudo a creyentes devotos a transformar su vida espiritual con hábitos diarios de 3 minutos sin pagar los $70 al año que cobran las apps masivas." (Versión 2 de la propuesta de valor — la recomendada en la investigación del usuario, gana porque ataca de frente la objeción de precio de la competencia líder).
+"Ayudo a creyentes devotos a transformar su vida espiritual con hábitos diarios de 3 minutos sin pagar los $70 al año que cobran las apps masivas."
 
-## Reporte de validación (recibido ya hecho por el usuario — NO re-validar)
-- Veredicto: Idea validada para construir (investigación de mercado + cliente ideal + propuesta de valor ya hechas por el usuario con su propio prompt de ideación).
-- Competidores (3): Hallow (queja #1: cara y dispersa, $70/año) · St Carlo Miracles (queja #1: catálogo estático, no da hábitos) · Echo Prayer (queja #1: demasiado básica).
-- Competencia total contada: 14 apps parecidas.
-- Lo que odian de la competencia (nuestra oportunidad): precio abusivo ($70/año), contenido disperso no enfocado en la Eucaristía, catálogos estáticos sin hábito diario, apps básicas sin seguimiento devocional.
-- Brecha LATAM/español: confirmada — nicho 100% enfocado en Eucaristía + hábito diario de 3 min a precio justo, sin competidor directo con ese enfoque.
-- Precio de referencia del mercado: Hallow $70/año — nuestro precio: $3.99/mes o $29.99/año.
-- Costo operativo estimado: ~$0.30/usuario activo/mes (texto/IA básica + servidor). Margen neto >85%.
-- Fuentes citadas por el usuario: help.hallow.com (costo suscripción), Facebook (quejas reales de usuarios), App Store (St Carlo Eucharistic Miracles).
+## Reporte de validación (Sesión 1)
+- Veredicto: Excelente oportunidad — idea validada por el usuario antes de llegar (investigación de mercado + avatar + propuesta de valor) y confirmada con la ficha de la app modelo (Hallow).
+- App modelo (FICHA-MODELO.md — APROBADA): Hallow — Prayer & Meditation. 3 señales de revenue independientes: ~$40M revenue neto 2025 (Appfigures, feb-2026) · $50M Serie C / ~$105-157M total (PR Newswire/Tracxn) · #1 entre apps de oración en App Store tras su comercial del Super Bowl (Axios, feb-2024).
+- Apps de referencia: Hallow (10M descargas, 4.8★ aprox, pero quejas de precio y "locked out") · St Carlo Miracles (catálogo estático) · Echo Prayer (básica).
+- Lo que los usuarios odian de la competencia (nuestra oportunidad): precio de $69.99-70/año, te deja sin acceso a mitad del trial, onboarding confuso, dispersión de contenido sin foco.
+- Brecha confirmada: nadie bautizó un mecanismo enfocado 100% en la Eucaristía + Carlo Acutis a precio bajo — la categoría amplia de apps de oración está saturada, pero este nicho específico no.
+- Precio de referencia del mercado: Hallow $9.99/mes o $69.99/año. Nuestro precio: $3.99/mes o $29.99/año (más barato incluso que su plan mensual anualizado).
+- Gate de unidad económica (40 — PASA): con Hotmart (9.9%+fee) y COGS estimado de $0.30/usuario/mes (sin IA en vivo — ver Decisiones técnicas), el margen bruto en venta directa es ≈91% (mensual) y ≈86% (anual); en venta por afiliado (40% comisión) el margen baja a ≈45% pero sigue sano. LTV estimado (churn 15%/mes) ≈$21/usuario en el plan mensual — sobra margen para pagar adquisición.
 
-## Cliente ideal / Avatar (recibido del usuario — base para TODO el copy, no re-validar)
-- Nombre: Carmen Rosa, 38 años. Católica practicante, clase media, va a misa dominical (a veces entre semana), trabaja y tiene hijos.
-- Dolor #1 (el que más pesa): frustración crónica de empezar novenas/propósitos con ilusión y abandonarlos a los pocos días (ej. "al cuarto día se me olvida"), con culpa de darle a Dios "las obras cansadas del día".
-- Deseo profundo: sentir una relación íntima y viva con la Eucaristía, con paz mental, sin culpa por falta de tiempo.
-- Soluciones que ya probó y odia: libretas de papel (las pierde), apps genéricas/carísimas como Hallow, cadenas de oración de WhatsApp (spam, audios largos).
-- Objeciones principales: "seguro es otra app fea/abandonada", "me van a cobrar de más o esconder funciones", "puedo rezar gratis", "no tengo tiempo para otra app".
-- Nivel de consciencia: sabe que le falta disciplina espiritual (consciente del problema y de que las soluciones actuales no funcionan) — consciente de la solución en términos generales, escéptica de las apps del mercado por precio y superficialidad.
-- Frases literales para copy: "Se me olvidó a mitad de la novena", "No tengo tiempo para leer oraciones tan largas", "Siento que le doy las obras cansadas del día a Dios", "Las apps de oración son carísimas, parecen una estafa", "Necesito algo rápido pero que sí me toque el alma".
-- Las 3 razones de compra dominantes (Jim Edwards): 1) Escapar del dolor mental/culpa espiritual, 2) Ahorrar dinero vs. competencia, 3) Evitar esfuerzo/desorganización (sistema guiado).
+## Dirección de Arte (Sesión 2 — pendiente, NO iniciada)
+- FICHA-ARTE.md: NO existe todavía.
+- ¿Hubo referencia visual del usuario?: aún no se le preguntó (LA PREGUNTA DE REFERENCIA del 54 es el primer paso de la Sesión 2).
 
-## Funciones núcleo MVP (definidas por el usuario — no reabrir sin justificación)
-1. Reto diario de 3 minutos: pensamiento del día (Carlo Acutis, San Pío, otros santos) + micro-preparación para la comunión/misa.
-2. Diario espiritual privado: peticiones, comuniones ofrecidas, "milagros cotidianos" (ancla de retención — genera data personal que el usuario no quiere perder).
-3. Retos de novenas en grupo (asíncronos): contador global de usuarios rezando el mismo día, unión simbólica de intenciones, muro de oración de solo lectura.
-4. (Implícito de "contador de racha") Sistema de racha diaria ligado al reto de 3 minutos.
+## Avatar y venta (Sesión 1 — cosa juzgada, NO cambiar sin validar con el usuario)
+- FICHA-AVATAR.md: existe y APROBADA (12 frases VoC con fuente — sep-2026).
+- Resumen: avatar Carmen Rosa, 38 años, católica practicante ocupada · dolor #1: empieza novenas con fe y las abandona al cuarto día, con culpa · deseo #1: terminar una novena completa sin fallar · nivel de consciencia dominante 3-4 (ya probó y abandonó soluciones, incluye Hallow) · sofisticación doble: categoría amplia (apps de oración) en etapa 4-5, nuestro nicho específico (Eucaristía+Carlo Acutis) en etapa 2-3 → entramos con mecanismo bautizado, no solo identificación.
+- Landing: pendiente (Sesión 3) — sigue la estructura canónica de 10 secciones del 19.
 
-## Qué NO construir todavía (restricción explícita del usuario)
-Chats en vivo entre usuarios, videollamadas, mapas GPS complejos, redes sociales abiertas / mercados físicos.
+## Estrategia de monetización (Sesión 1 — cosa juzgada, NO cambiar sin validar)
+- Modelo: Modelo 2 — Onboarding + Paywall de prueba, variante "preview anónimo → paywall → login/auth" (no requiere cuenta para sentir el primer valor).
+- Justificación: nicho "Bienestar espiritual" en la MATRIZ ESTRATÉGICA de 02C → primera victoria = sesión corta, onboarding suave/emocional, paywall tras la mini-experiencia, retención por rutina diaria. Frecuencia diaria = hábito → confirma Modelo 2 sobre hard paywall.
+- Diseño del paywall: aparece después de que el usuario vive su primer reto de 3 minutos (pensamiento + micro-oración) en el onboarding, en el momento de mayor inversión emocional — no antes.
+- Trial: 7 días en ambos planes (mensual y anual) — el "aha" es inmediato (3 minutos), así que 5-7 días es el tramo correcto según la regla de tiempo-a-valor de 02C (no 14+, que es para valor que tarda en acumularse).
+- Pricing: $3.99/mes · $29.99/año (mostrado como ~$2.50/mes, "casi 2 meses gratis") — bien por debajo del ancla de Hallow ($9.99/mes · $69.99/año), que es justo la objeción #1 del mercado.
 
-## Estrategia de monetización (propuesta por el usuario, a confirmar en Sesión 1)
-- Modelo: Suscripción mensual $3.99 o anual $29.99, con 7 días de prueba gratis.
-- Conexiones externas necesarias: pasarela de pagos (Stripe/RevenueCat) + notificaciones push.
-- Nivel de simplicidad técnica: 🟢 app monousuario (sin backend social complejo).
-
-## Ángulo de venta (del usuario — base para landing y ads)
-"La fe sin hábito se queda en buenas intenciones. Transforma tu relación con la Eucaristía en solo 3 minutos al día —inspirado en Carlo Acutis— sin gastar una fortuna ni aburrirte en el intento."
-Diferenciador: única app que combina hábitos eucarísticos diarios de 3 minutos + retos de novenas en grupo + diario espiritual personal, inspirada en Carlo Acutis y los santos.
-Ganchos de video/ads: 1) "¿Por qué Carlo Acutis decía que la Eucaristía era su autopista al cielo?" 2) "¿Cansado de empezar novenas y dejarlas a la mitad?" 3) "La app católica que no te cuesta un sueldo al año." 4) "3 minutos al día para transformar tu forma de vivir la Misa." 5) "Crea tu diario privado de milagros y peticiones respondidas."
-
-## Riesgos identificados por el usuario
-1. Baja retención inicial → mitigado por el diario espiritual (guarda historial, ancla al usuario).
-2. Competencia de gigantes (Hallow) → mitigado por precio hiper-competitivo + nicho puro en Eucaristía.
-3. Falta de presupuesto publicitario → mitigado por crecimiento orgánico en TikTok/Reels.
+## Gamificación y retención (loop documentado en Sesión 1, se construye en Sesión 5)
+- Loop del hábito (Hooked): Gatillo (notificación diaria a la hora que la usuaria suele rezar) → Acción (abrir la app y completar el reto de 3 min: pensamiento del santo + micro-preparación) → Recompensa (racha +1, ver el contador global de la novena en curso) → Inversión (su diario espiritual privado acumula peticiones/milagros — cuanto más escribe, más le cuesta irse).
+- Mecánicas elegidas: racha diaria (streak) + contador de novena en grupo (asíncrono, solo lectura) + diario privado como ancla de datos personales.
+- Primera victoria que celebra el onboarding (<5 min): ver su primer pensamiento del día y completar el primer micro-reto de preparación para la comunión.
+- Notificaciones de re-enganche: D1/D3/D7, en la mañana (antes de su rutina) — tope 1/día.
 
 ## Secuencia maestra de construcción (NO saltar)
-- Estado de la secuencia: Ninguna etapa iniciada aún.
-- Ruta aprobada (a confirmar en Sesión 1): `/` → `/onboarding` → `/paywall` → `/login` → `/app`
-- Landing: pendiente
-- Onboarding: pendiente
-- Paywall: pendiente
-- Login/Auth: pendiente
-- App interna: pendiente
-- Servicios externos: pendiente (GitHub/Supabase/IA/Vercel/Resend/dominio/Hotmart)
+- Estado de la secuencia: ninguna etapa construida aún — Sesión 1 (decisiones) completa, Sesión 2 (identidad visual) es la siguiente.
+- Ruta aprobada: `/` → `/onboarding` → `/paywall` → `/login` → `/app`
+- Landing: pendiente — Onboarding: pendiente — Paywall: pendiente — Login/Auth: pendiente — App interna: pendiente — Servicios externos: pendiente.
 
 ## Puertas de etapa (aprobación antes de avanzar)
-- Landing: no iniciada
-- Onboarding: no iniciada
-- Paywall: no iniciada
-- Login/Auth: no iniciada
-- App interna: no iniciada
-- Servicios externos: bloqueados
+- Landing / Onboarding / Paywall / Login-Auth / App interna: no iniciadas.
+- Servicios externos: bloqueados hasta que las anteriores estén aprobadas.
 
-## Decisiones técnicas
-- Framework: por decidir en Sesión 1 (regla del stack — 04-ARQUITECTURA.md)
-- Pendiente: modelo de datos, RLS, método de auth, arquitectura sync/async de IA (si aplica a la generación de pensamientos diarios).
+## Decisiones técnicas (NO re-discutir sin pedirlo el usuario)
+- Framework: Next.js (App Router) — decidido 2026-09-22. Motivo: la app necesita landing con SEO/adquisición orgánica (TikTok → página) además de la app tras login → regla del stack de CLAUDE.md resuelve a Next.js en caso de duda, y aquí no hay duda (sí hay landing).
+- Auth: magic link/OTP por email, Hotmart-first (el webhook crea el usuario passwordless; el correo de bienvenida trae enlace + código de 6 dígitos). Passkey se ofrece recién tras la primera semana (D7), nunca en el primer login. Sin contraseñas.
+- Modelo de IA: NINGUNA generación de IA en vivo para el contenido central. El "pensamiento del día" y la guía de 3 minutos son contenido CURADO Y ESCRITO UNA VEZ (biblioteca de ~365 entradas ligadas a un ciclo/calendario), revisado doctrinalmente antes de publicar — elimina el riesgo de un error doctrinal generado en vivo y el costo de IA baja a ~$0. (Esto es una decisión técnica que MEJORA el estimado de costo que trajo el usuario, no lo empeora — se avisa igual porque cambia lo que él esperaba pagar.) V2 podría evaluar IA solo para personalización opcional, no para el contenido devocional en sí.
+- Modelo de datos (esquema, sin exponerlo al usuario): `profiles` (datos de la cuenta) · `daily_content` (biblioteca curada de pensamientos/retos por día de ciclo) · `user_progress` (racha, día actual, última sesión) · `diary_entries` (peticiones/milagros privados, RLS estricta por `auth.uid()`) · `novenas` (definición de cada novena/reto de temporada) · `novena_participation` (una fila por usuario-novena, RLS: cada usuario solo ve/crea la suya; el contador global se sirve desde una vista agregada sin datos personales) · `subscriptions` (estado de plan, alimentado por el webhook de Hotmart).
+- Idioma de UI: mono-idioma, español latino neutro (sin i18n en el MVP).
 
 ## Sesiones completadas ✅
-(ninguna aún)
+(ninguna cerrada del todo — Sesión 1 con sus decisiones tomadas, pendiente el cierre formal con el usuario)
 
 ## Sesión en progreso 🔧
-- Sesión 1 — pendiente de arrancar: Validación (ya recibida) + AVATAR (ya recibido, falta formalizar en FICHA-AVATAR.md) + monetización + arquitectura.
+- Sesión 1 — decisiones de validación, avatar, monetización y arquitectura tomadas y documentadas; falta presentarle el resumen simple al usuario y su OK para pasar a la Sesión 2.
 
 ## Próximas sesiones 📋
-- Sesión 1: Constitución del producto, FICHA-MODELO, FICHA-AVATAR formal, pricing final, arquitectura, modelo de datos, auth.
-- Sesión 2: Identidad visual y sistema de diseño.
+- Sesión 2: Identidad visual — empieza con LA PREGUNTA DE REFERENCIA (54, PASO 0).
 - Sesión 3: Página de ventas.
 - Sesión 4: Onboarding, paywall y login.
-- Sesión 5: App interna simplificada.
-- Sesión 6: Integraciones reales y seguridad.
+- Sesión 5: App interna (reto diario, diario espiritual, novenas en grupo).
+- Sesión 6: Integraciones reales y seguridad (Supabase, Hotmart, dominio).
 - Sesión 7: Testing, pulido y rigor de entrega.
 - Sesión 8: Adquisición, lanzamiento y backoffice.
 
 ## Problemas conocidos ⚠️
-- FICHA-MODELO pendiente: aún no se elige ni extrae la app modelo (01 — LA APP MODELO). Se hace formalmente al arrancar la Sesión 1 (que todavía no comenzó — se está esperando el OK del usuario al Plan Maestro). No es un olvido: es la próxima acción exacta.
+- Contenido doctrinal: como la biblioteca de pensamientos diarios se escribe una vez (no la genera IA en vivo), su calidad doctrinal depende de una buena curación inicial — al llegar a la Sesión 5 (app interna) hay que decidir con el usuario la fuente/autoría de esos ~365 textos (dominio público de los santos citados, o redactados y luego revisados) antes de darlos por buenos.
 
 ## Pendientes del usuario (acciones que el usuario debe hacer)
-- [ ] Ninguno todavía — se irán agregando cuenta por cuenta cuando lleguemos a la fase de servicios externos (Sesión 6).
+- [ ] Ninguno todavía — llegarán uno por uno en la fase de servicios externos (Sesión 6: cuentas de Supabase, Hotmart, dominio, Resend).
 
 ## Notas para la próxima sesión
-- El usuario llegó con la idea YA VALIDADA (bloque "RESUMEN FINAL — IDEA VALIDADA PARA CONSTRUIR" + avatar + propuesta de valor, generados con su propio prompt de ideación). No se debe re-investigar el mercado ni cuestionar la elección de nicho — se procede directo a la Constitución del Producto y el Plan Maestro.
-- Contenido sensible: la app maneja temas religiosos católicos específicos (Carlo Acutis, santos, Eucaristía, novenas). El copy y el contenido religioso deben ser respetuosos y doctrinalmente cuidadosos — si se generan pensamientos/contenido con IA, revisar que no haya errores doctrinales antes de publicar (posible gate adicional de calidad de contenido, más allá del gate de seguridad estándar).
+- La app modela a Hallow (FICHA-MODELO.md) pero con un solo eje distinto: foco 100% en la Eucaristía/Carlo Acutis a precio bajo — conservar su estructura de onboarding→paywall y su arquitectura de pricing; no diluir el mecanismo con más de una app modelo.
+- El copy de venta (landing, onboarding, paywall) se deriva de FICHA-AVATAR.md — nunca inventarlo. El ángulo del hero entra por mecanismo bautizado (etapa 2-3 del nicho específico), apoyado con anti-culpa/identificación (por la etapa 4-5 de la categoría amplia).
+- Antes de proponer cualquier estilo visual en la Sesión 2: preguntar si el usuario tiene una referencia visual propia (Pinterest, otra app, capturas) — si la da, es CONTRATO y manda sobre todo lo demás.
