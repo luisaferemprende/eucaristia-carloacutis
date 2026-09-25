@@ -31,7 +31,7 @@
 - Display (títulos y frases de los santos): Zodiak (pesos 400/700) · Body (textos de la app, botones, diario): DM Sans (pesos 400/600/800) — elegido por el usuario tras comparar 3 opciones lado a lado.
 - Radio: 16px cards / 12px botones (continúa la familia de "Índigo profundo").
 - Dispositivo ownable: hairline dorada como separador en pantallas nocturnas (paywall); bordes finos grises en pantallas diurnas (tal como pidió el usuario).
-- Tour de la app: `vista-previa-app.html` (5 vistas: Inicio/M0 y Onboarding en modo día, Planes/Mecanismo en modo noche, Diario en modo día) — construido y pendiente de tu aprobación (¿me encanta / ajustamos un detalle / repensamos?).
+- Tour de la app: `vista-previa-app.html` (5 vistas: Inicio/M0 y Onboarding en modo día, Planes/Mecanismo en modo noche, Diario en modo día) — con 3 micro-ajustes del usuario ya aplicados: badge "Ahorra 37%" + etiqueta "el favorito" en el plan anual, ícono activo de la barra inferior con chip de fondo (contraste), punto teal animado junto al contador de la novena.
 - Rondas previas descartadas (registradas para no repetir si se pide otra ronda en el futuro): Ronda 1 — Editorial cálida (#7A3E2E) · Papel y tinta (#8C2F23). Ronda 2 — Terracota mediterránea (#C0562F) · Nocturna de estudio (#E0B458) · Salvia técnica (#3D6B4F). Ronda 3 — Cielo en calma / Calm (#1A3E6F) descartada como paleta única, aunque su espíritu ("azul sereno") sobrevive en el contrato final del usuario.
 
 ## Trazabilidad y vetos
