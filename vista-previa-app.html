@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="es" data-kit="abc-v2">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El tour de EucaristíaViva — modo día y modo noche</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=zodiak@400,700&f[]=switzer@400,500,600&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..700&family=Mulish:wght@400..700&family=EB+Garamond:wght@400..700&family=Inter+Tight:wght@400..700&family=Sora:wght@400..800&display=swap" rel="stylesheet">
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background:
+      radial-gradient(1100px 520px at 12% -6%, #f7f7f9, transparent 62%),
+      radial-gradient(900px 460px at 92% 4%, #e2e2e9, transparent 58%),
+      linear-gradient(180deg, #ededf0, #e4e4e9);
+    color: #1c1c1f;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    padding: 32px 20px 64px;
+  }
+  .cabecera { max-width: 1180px; margin: 0 auto 28px; }
+  .cabecera h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; }
+  .cabecera p.sub { margin-top: 6px; font-size: 14px; color: #55555c; max-width: 70ch; }
+  .cabecera p.paleta-nota { margin-top: 10px; font-size: 12.5px; color: #6a6a72; }
+
+  .grupo { max-width: 1180px; margin: 0 auto 48px; }
+  .grupo h2 { font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+              color: #55555c; margin-bottom: 16px; }
+  .vistas { display: grid; gap: 28px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .vista { display: flex; flex-direction: column; gap: 10px; }
+  .vista .etiqueta { font-size: 13px; font-weight: 700; color: #2c2c31; }
+
+  :root {
+    --dia-bg: #F8F9FA; --dia-surface: #FFFFFF; --dia-borde: #E3E6EA;
+    --dia-text-1: #111827; --dia-text-2: #667085;
+    --noche-bg: #11162A; --noche-surface: #1C2541; --noche-borde: #2B3358;
+    --noche-text-1: #F0F2F5; --noche-text-2: #A6ADC4;
+    --oro: #D4AF37; --teal: #0F766E;
+    --font-display: 'Zodiak', monospace;
+    --font-body: 'Switzer', monospace;
+  }
+
+  .telefono {
+    width: 300px; margin: 0 auto;
+    aspect-ratio: 9 / 19.5;
+    border: 10px solid #101014;
+    border-radius: 44px;
+    box-shadow: 0 24px 60px rgb(20 18 24 / 0.28);
+    overflow: hidden;
+    position: relative;
+    display: flex; flex-direction: column;
+    font-family: var(--font-body);
+  }
+  .statusbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 20px 4px; font-size: 12.5px; font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .home-indicator {
+    position: absolute; bottom: 7px; left: 50%; transform: translateX(-50%);
+    width: 112px; height: 5px; border-radius: 999px; opacity: 0.85;
+  }
+  .pantalla { flex: 1; display: flex; flex-direction: column; overflow: hidden; padding: 0 16px; }
+
+  /* ── MODO DÍA ── */
+  .dia { background: var(--dia-bg); color: var(--dia-text-1); }
+  .dia .statusbar { color: var(--dia-text-1); }
+  .dia .home-indicator { background: var(--dia-text-1); }
+  .dia .card {
+    background: var(--dia-surface); border: 1px solid var(--dia-borde);
+    border-radius: 16px; padding: 14px; margin-top: 10px;
+  }
+  .dia .muted { color: var(--dia-text-2); }
+
+  /* ── MODO NOCHE ── */
+  .noche { background: var(--noche-bg); color: var(--noche-text-1); }
+  .noche .statusbar { color: var(--noche-text-1); }
+  .noche .home-indicator { background: var(--noche-text-1); }
+  .noche .card {
+    background: var(--noche-surface); border: 1px solid var(--noche-borde);
+    border-radius: 16px; padding: 14px; margin-top: 10px;
+  }
+  .noche .muted { color: var(--noche-text-2); }
+  .noche .hairline-oro { border: 0; height: 1px; margin: 14px 0;
+    background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--oro) 55%, transparent), transparent); }
+
+  /* ── Elementos compartidos ── */
+  .saludo { margin-top: 8px; font-size: 11.5px; font-weight: 600; }
+  .titulo { font-family: var(--font-display); font-size: 23px; font-weight: 700; line-height: 1.15; margin-top: 2px; }
+  .heroe-dato .label { font-size: 11px; font-weight: 600; }
+  .heroe-dato .dato { font-family: var(--font-display); font-size: 38px; font-weight: 700; line-height: 1.05; }
+  .heroe-dato .dato small { font-size: 14px; font-weight: 600; }
+  .heroe-dato .insight { margin-top: 4px; font-size: 12px; font-weight: 700; color: var(--teal); }
+  .card-fila { display: flex; gap: 10px; align-items: flex-start; }
+  .chip { width: 34px; height: 34px; border-radius: 10px; flex-shrink: 0;
+          display: flex; align-items: center; justify-content: center;
+          background: color-mix(in oklab, var(--oro) 16%, transparent); }
+  .card h4 { font-size: 13.5px; font-weight: 700; }
+  .card p { margin-top: 2px; font-size: 12px; line-height: 1.4; }
+  .cta-oro {
+    margin-top: auto; margin-bottom: 14px; height: 46px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; color: #241d05;
+    background: linear-gradient(180deg, color-mix(in oklab, var(--oro) 86%, white), var(--oro));
+    box-shadow: 0 10px 22px -6px color-mix(in oklab, var(--oro) 45%, transparent);
+  }
+  .pill { display: inline-flex; align-items: center; gap: 5px; font-size: 10.5px; font-weight: 700;
+          padding: 4px 9px; border-radius: 999px; background: color-mix(in oklab, var(--teal) 16%, transparent);
+          color: var(--teal); }
+  .tabbar { display: flex; justify-content: space-around; margin: auto -16px 0; padding: 8px 0 14px; }
+  .dia .tabbar { border-top: 1px solid var(--dia-borde); }
+  .noche .tabbar { border-top: 1px solid var(--noche-borde); }
+  .tabbar a { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 9px; font-weight: 600; text-decoration: none; }
+  .dia .tabbar a { color: var(--dia-text-2); }
+  .noche .tabbar a { color: var(--noche-text-2); }
+  .tabbar a.activa { color: var(--oro); }
+
+  /* Onboarding chips */
+  .opcion-chip {
+    display: flex; align-items: center; gap: 10px; padding: 13px 14px; border-radius: 14px;
+    margin-top: 10px; font-size: 13.5px; font-weight: 600;
+  }
+  .dia .opcion-chip { background: var(--dia-surface); border: 1.5px solid var(--dia-borde); }
+  .dia .opcion-chip.activa { border-color: var(--oro); background: color-mix(in oklab, var(--oro) 8%, white); }
+  .puntos-progreso { display: flex; gap: 5px; margin-top: 10px; }
+  .puntos-progreso span { width: 22px; height: 4px; border-radius: 999px; background: var(--dia-borde); }
+  .puntos-progreso span.activo { background: var(--oro); }
+
+  /* Paywall */
+  .plan-card { border-radius: 16px; padding: 14px; margin-top: 10px; position: relative; }
+  .noche .plan-card { background: var(--noche-surface); border: 1.5px solid var(--noche-borde); }
+  .noche .plan-card.destacado { border-color: var(--oro); background: color-mix(in oklab, var(--oro) 7%, var(--noche-surface)); }
+  .badge-ahorro { position: absolute; top: -10px; right: 12px; background: var(--oro); color: #241d05;
+                  font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 999px; }
+  .plan-precio { font-family: var(--font-display); font-size: 21px; font-weight: 700; margin-top: 4px; }
+  .check-teal { display: flex; align-items: center; gap: 8px; font-size: 12px; margin-top: 8px; }
+
+  /* Mecanismo */
+  .paso-indicador { display: flex; gap: 6px; margin-top: 10px; }
+  .paso-indicador span { flex: 1; height: 4px; border-radius: 999px; background: var(--noche-borde); }
+  .paso-indicador span.hecho { background: var(--teal); }
+  .paso-indicador span.actual { background: var(--oro); }
+  .cita-grande { font-family: var(--font-display); font-size: 21px; font-weight: 700; line-height: 1.3; margin-top: 20px; }
+
+  /* Diario */
+  .entrada-diario { display: flex; gap: 10px; align-items: flex-start; padding: 12px 0;
+                     border-bottom: 1px solid var(--dia-borde); }
+  .entrada-diario .fecha { font-size: 10.5px; font-weight: 600; }
+
+  .pie {
+    max-width: 1180px; margin: 40px auto 0; font-size: 12.5px; color: #6a6a72;
+    border-top: 1px solid #d0d0d6; padding-top: 14px; line-height: 1.6;
+  }
+  /* ── Comparación de tipografía ── */
+  .tipos { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: 1180px; margin: 0 auto; }
+  .tipo-card {
+    background: var(--dia-surface); border: 1px solid var(--dia-borde); border-radius: 18px;
+    padding: 22px 20px; color: var(--dia-text-1);
+  }
+  .tipo-card .letra {
+    display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px;
+    border-radius: 7px; background: #1c1c1f; color: #fff; font-weight: 800; font-size: 13px; margin-bottom: 10px;
+  }
+  .tipo-card .nombre-fuente { font-size: 12px; font-weight: 700; color: #6a6a72; margin-bottom: 4px; }
+  .tipo-card h4.muestra-h { font-size: 24px; font-weight: 700; line-height: 1.2; margin-top: 2px; }
+  .tipo-card p.muestra-body { margin-top: 8px; font-size: 13.5px; color: var(--dia-text-2); line-height: 1.5; }
+  .tipo-card .muestra-boton {
+    margin-top: 14px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-size: 13.5px; font-weight: 700; color: #241d05;
+    background: linear-gradient(180deg, color-mix(in oklab, var(--oro) 86%, white), var(--oro));
+  }
+  .tipo-a h4.muestra-h, .tipo-a .muestra-boton { font-family: 'Newsreader', monospace; }
+  .tipo-a p.muestra-body { font-family: 'Mulish', monospace; }
+  .tipo-b h4.muestra-h, .tipo-b .muestra-boton { font-family: 'EB Garamond', monospace; }
+  .tipo-b p.muestra-body { font-family: 'Inter Tight', monospace; }
+  .tipo-c h4.muestra-h, .tipo-c p.muestra-body, .tipo-c .muestra-boton { font-family: 'Sora', monospace; }
+  .ico { display: inline-flex; width: 16px; height: 16px; vertical-align: -3px; }
+  .tabbar .ico { width: 17px; height: 17px; vertical-align: -4px; margin-bottom: 2px; display: block; margin-inline: auto; }
+  .chip svg { width: 17px; height: 17px; }
+  .status-icos { display: flex; align-items: center; gap: 5px; }
+  .status-icos svg { width: 16px; height: 11px; display: block; }
+  .check-teal svg { width: 13px; height: 13px; flex-shrink: 0; }
+</style>
+</head>
+<body>
+
+<header class="cabecera">
+  <h1>El tour de EucaristíaViva</h1>
+  <p class="sub">Tu app por dentro, en el estilo que elegiste: la paleta con doble modo (día/noche) que
+  nos diste, con el toque de oro litúrgico y el teal como color de "completado".</p>
+  <p class="paleta-nota">Modo día — fondo #F8F9FA, texto #111827 · Modo noche — fondo #11162A, tarjetas #1C2541, texto #F0F2F5 · Acentos: oro #D4AF37 (acción/racha) · teal #0F766E (éxito/completado)</p>
+</header>
+
+<div class="grupo">
+  <h2>Elige la letra — mismo contenido, 3 personalidades distintas</h2>
+  <div class="tipos">
+    <div class="tipo-card tipo-a">
+      <span class="letra">A</span>
+      <p class="nombre-fuente">Newsreader + Mulish — cálida y editorial</p>
+      <h4 class="muestra-h">Termina tu novena sin fallar ni un día</h4>
+      <p class="muestra-body">Un hábito eucarístico diario, inspirado en Carlo Acutis. 312 personas orando esto contigo hoy.</p>
+      <div class="muestra-boton">Vivir mi reto de 3 minutos</div>
+    </div>
+    <div class="tipo-card tipo-b">
+      <span class="letra">B</span>
+      <p class="nombre-fuente">EB Garamond + Inter Tight — clásica y reverente</p>
+      <h4 class="muestra-h">Termina tu novena sin fallar ni un día</h4>
+      <p class="muestra-body">Un hábito eucarístico diario, inspirado en Carlo Acutis. 312 personas orando esto contigo hoy.</p>
+      <div class="muestra-boton">Vivir mi reto de 3 minutos</div>
+    </div>
+    <div class="tipo-card tipo-c">
+      <span class="letra">C</span>
+      <p class="nombre-fuente">Sora (una sola familia) — moderna y limpia</p>
+      <h4 class="muestra-h">Termina tu novena sin fallar ni un día</h4>
+      <p class="muestra-body">Un hábito eucarístico diario, inspirado en Carlo Acutis. 312 personas orando esto contigo hoy.</p>
+      <div class="muestra-boton">Vivir mi reto de 3 minutos</div>
+    </div>
+  </div>
+</div>
+
+<div class="grupo">
+  <h2>Así se ve de día</h2>
+  <div class="vistas">
+
+    <div class="vista">
+      <p class="etiqueta">1 · Inicio (la pantalla que más vas a ver)</p>
+      <div class="telefono dia">
+        <div class="statusbar"><span>9:41</span><span class="status-icos">
+          <svg viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="0.8"/><rect x="4.5" y="5" width="3" height="6" rx="0.8"/><rect x="9" y="3" width="3" height="8" rx="0.8"/><rect x="13.5" y="0.5" width="3" height="10.5" rx="0.8"/></svg>
+          <svg viewBox="0 0 25 12"><rect x="0.5" y="0.5" width="21" height="11" rx="3" fill="none" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="15" height="8" rx="1.6" fill="currentColor"/></svg>
+        </span></div>
+        <div class="pantalla">
+          <p class="saludo muted">Miércoles 24 de septiembre</p>
+          <h3 class="titulo">Hola, María</h3>
+          <div class="card heroe-dato">
+            <p class="label muted">Tu racha viva</p>
+            <p class="dato">7 <small class="muted">días</small></p>
+            <p class="insight">↑ vas por tu segunda novena completa</p>
+          </div>
+          <div class="card card-fila">
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="var(--oro)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-3 4-5 7-5 10a5 5 0 0 0 10 0c0-3-2-6-5-10Z"/></svg></span>
+            <div>
+              <h4>Pensamiento de hoy · Carlo Acutis</h4>
+              <p class="muted">"La Eucaristía es mi autopista al cielo."</p>
+            </div>
+          </div>
+          <div class="card card-fila">
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="var(--oro)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <div>
+              <h4>Tu novena · Día 4 de 9</h4>
+              <p class="muted">312 personas están orando esto contigo hoy</p>
+            </div>
+          </div>
+          <div class="cta-oro">Vivir mi reto de 3 minutos</div>
+          <nav class="tabbar">
+            <a class="activa"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg>Hoy</a>
+            <a><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Novena</a>
+            <a><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>Diario</a>
+            <a><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>Perfil</a>
+          </nav>
+        </div>
+        <div class="home-indicator"></div>
+      </div>
+    </div>
+
+    <div class="vista">
+      <p class="etiqueta">2 · Onboarding — tu primera pregunta</p>
+      <div class="telefono dia">
+        <div class="statusbar"><span>9:41</span><span class="status-icos">
+          <svg viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="0.8"/><rect x="4.5" y="5" width="3" height="6" rx="0.8"/><rect x="9" y="3" width="3" height="8" rx="0.8"/><rect x="13.5" y="0.5" width="3" height="10.5" rx="0.8"/></svg>
+          <svg viewBox="0 0 25 12"><rect x="0.5" y="0.5" width="21" height="11" rx="3" fill="none" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="15" height="8" rx="1.6" fill="currentColor"/></svg>
+        </span></div>
+        <div class="pantalla">
+          <p class="saludo muted" style="margin-top:16px">Paso 2 de 5</p>
+          <div class="puntos-progreso">
+            <span class="activo"></span><span class="activo"></span><span></span><span></span><span></span>
+          </div>
+          <h3 class="titulo" style="margin-top:18px">¿Qué te gustaría lograr con esta novena?</h3>
+          <div class="opcion-chip activa">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="var(--oro)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-3 4-5 7-5 10a5 5 0 0 0 10 0c0-3-2-6-5-10Z"/></svg>
+            Terminarla sin fallar ni un día
+          </div>
+          <div class="opcion-chip">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.6Z"/></svg>
+            Sentir paz real al comulgar
+          </div>
+          <div class="opcion-chip">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M17 3.13a4 4 0 0 1 0 7.75"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/></svg>
+            No sentirme sola en mi fe
+          </div>
+          <div class="cta-oro">Continuar</div>
+        </div>
+        <div class="home-indicator"></div>
+      </div>
+    </div>
+
+    <div class="vista">
+      <p class="etiqueta">5 · Tu diario privado</p>
+      <div class="telefono dia">
+        <div class="statusbar"><span>9:41</span><span class="status-icos">
+          <svg viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="0.8"/><rect x="4.5" y="5" width="3" height="6" rx="0.8"/><rect x="9" y="3" width="3" height="8" rx="0.8"/><rect x="13.5" y="0.5" width="3" height="10.5" rx="0.8"/></svg>
+          <svg viewBox="0 0 25 12"><rect x="0.5" y="0.5" width="21" height="11" rx="3" fill="none" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="15" height="8" rx="1.6" fill="currentColor"/></svg>
+        </span></div>
+        <div class="pantalla">
+          <p class="saludo muted">Tu diario</p>
+          <h3 class="titulo">Peticiones y milagros</h3>
+          <div class="entrada-diario">
+            <span class="chip" style="width:30px;height:30px;border-radius:8px"><svg viewBox="0 0 24 24" fill="none" stroke="var(--oro)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.6Z"/></svg></span>
+            <div>
+              <p class="fecha muted">18 sep</p>
+              <p>Por la salud de mi mamá</p>
+              <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Respondida</span>
+            </div>
+          </div>
+          <div class="entrada-diario">
+            <span class="chip" style="width:30px;height:30px;border-radius:8px"><svg viewBox="0 0 24 24" fill="none" stroke="var(--oro)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-3 4-5 7-5 10a5 5 0 0 0 10 0c0-3-2-6-5-10Z"/></svg></span>
+            <div>
+              <p class="fecha muted">12 sep</p>
+              <p>Fuerza para no gritarles a mis hijos</p>
+            </div>
+          </div>
+          <div class="cta-oro" style="margin-top:16px">+ Nueva petición</div>
+          <nav class="tabbar">
+            <a><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg>Hoy</a>
+            <a><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Novena</a>
+            <a class="activa"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>Diario</a>
+            <a><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>Perfil</a>
+          </nav>
+        </div>
+        <div class="home-indicator"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="grupo">
+  <h2>Así se ve de noche</h2>
+  <div class="vistas">
+
+    <div class="vista">
+      <p class="etiqueta">3 · La pantalla de planes</p>
+      <div class="telefono noche">
+        <div class="statusbar"><span>9:41</span><span class="status-icos">
+          <svg viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="0.8"/><rect x="4.5" y="5" width="3" height="6" rx="0.8"/><rect x="9" y="3" width="3" height="8" rx="0.8"/><rect x="13.5" y="0.5" width="3" height="10.5" rx="0.8"/></svg>
+          <svg viewBox="0 0 25 12"><rect x="0.5" y="0.5" width="21" height="11" rx="3" fill="none" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="15" height="8" rx="1.6" fill="currentColor"/></svg>
+        </span></div>
+        <div class="pantalla">
+          <p class="saludo muted" style="margin-top:16px">Tu prueba gratis de 7 días</p>
+          <h3 class="titulo">Termina tu novena sin gastar una fortuna</h3>
+          <div class="plan-card destacado">
+            <span class="badge-ahorro">2 meses gratis</span>
+            <p class="muted" style="font-size:11.5px;font-weight:700">Anual</p>
+            <p class="plan-precio">$2.50<small class="muted" style="font-size:12px">/mes</small></p>
+            <div class="check-teal"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Se cobra $29.99 al año</div>
+          </div>
+          <div class="plan-card">
+            <p class="muted" style="font-size:11.5px;font-weight:700">Mensual</p>
+            <p class="plan-precio">$3.99<small class="muted" style="font-size:12px">/mes</small></p>
+          </div>
+          <hr class="hairline-oro">
+          <div class="cta-oro">Empezar mi prueba gratis</div>
+          <p class="muted" style="text-align:center;font-size:11px;margin-bottom:14px">Cancela cuando quieras · sin compromiso</p>
+        </div>
+        <div class="home-indicator"></div>
+      </div>
+    </div>
+
+    <div class="vista">
+      <p class="etiqueta">4 · El reto de 3 minutos, en curso</p>
+      <div class="telefono noche">
+        <div class="statusbar"><span>9:41</span><span class="status-icos">
+          <svg viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="0.8"/><rect x="4.5" y="5" width="3" height="6" rx="0.8"/><rect x="9" y="3" width="3" height="8" rx="0.8"/><rect x="13.5" y="0.5" width="3" height="10.5" rx="0.8"/></svg>
+          <svg viewBox="0 0 25 12"><rect x="0.5" y="0.5" width="21" height="11" rx="3" fill="none" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="15" height="8" rx="1.6" fill="currentColor"/></svg>
+        </span></div>
+        <div class="pantalla">
+          <p class="saludo muted" style="margin-top:16px">Paso 1 de 3 · Pensamiento</p>
+          <div class="paso-indicador"><span class="actual"></span><span></span><span></span></div>
+          <p class="cita-grande">"La Eucaristía es mi autopista al cielo."</p>
+          <p class="muted" style="margin-top:10px;font-size:12.5px">— San Carlo Acutis</p>
+          <div class="cta-oro">Siguiente</div>
+        </div>
+        <div class="home-indicator"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="pie">
+  Tour construido a partir del frame ya tematizado de <code>direcciones-abc.html</code> (marcador
+  data-kit="abc-v2" conservado). Paleta: contrato textual del usuario (día #F8F9FA/#111827 · noche
+  #11162A/#1C2541/#F0F2F5 · oro #D4AF37 · teal #0F766E) — tomada tal cual, sin perturbar el hue.
+  Tipografía: Zodiak + Switzer (continúa la familia ya usada en la dirección "Índigo profundo",
+  la más cercana al pedido del usuario). Pendiente: la aprobación del usuario (me encanta / ajustar
+  un detalle / repensar el estilo).
+</footer>
+
+</body>
+</html>
