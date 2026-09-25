@@ -1,7 +1,7 @@
 # ESTADO — EucaristíaViva
 Última actualización: 2026-09-22 | Sesión actual: 1
 
-⏸️ CHECKPOINT — Última acción completada: Sesión 1 completa (FICHA-MODELO.md y FICHA-AVATAR.md creadas y aprobadas por criterio del agente con evidencia citada, modelo de monetización decidido, arquitectura técnica decidida) / Siguiente acción exacta: presentar el cierre de Sesión 1 al usuario en simple (avatar + modelo elegido + precio) y, con su OK, arrancar Sesión 2 (identidad visual) empezando por LA PREGUNTA DE REFERENCIA (PASO 0 del 54).
+⏸️ CHECKPOINT — Última acción completada: Sesión 2 (identidad visual) — paleta día/noche + oro litúrgico + teal (contrato del usuario) y tipografía final (Zodiak en títulos/frases de santos + DM Sans en el resto) ya aplicadas en vista-previa-app.html. / Siguiente acción exacta: preguntar "me encanta / ajusto un detalle / repienso el estilo" sobre el tour completo; con su OK, cerrar FICHA-ARTE.md como aprobada y arrancar Sesión 3 (página de ventas).
 
 ## Qué es esta app (3 líneas máximo)
 Reto diario de 3 minutos con pensamientos de Carlo Acutis y grandes santos, diario espiritual privado y retos de novenas en grupo (asíncronos, solo lectura). Para católicas practicantes ocupadas (avatar: Carmen Rosa) que quieren constancia en su fe sin pagar precios abusivos. Monetización: suscripción $3.99/mes o $29.99/año, con 7 días de prueba gratis.
@@ -18,9 +18,9 @@ Reto diario de 3 minutos con pensamientos de Carlo Acutis y grandes santos, diar
 - Precio de referencia del mercado: Hallow $9.99/mes o $69.99/año. Nuestro precio: $3.99/mes o $29.99/año (más barato incluso que su plan mensual anualizado).
 - Gate de unidad económica (40 — PASA): con Hotmart (9.9%+fee) y COGS estimado de $0.30/usuario/mes (sin IA en vivo — ver Decisiones técnicas), el margen bruto en venta directa es ≈91% (mensual) y ≈86% (anual); en venta por afiliado (40% comisión) el margen baja a ≈45% pero sigue sano. LTV estimado (churn 15%/mes) ≈$21/usuario en el plan mensual — sobra margen para pagar adquisición.
 
-## Dirección de Arte (Sesión 2 — pendiente, NO iniciada)
-- FICHA-ARTE.md: NO existe todavía.
-- ¿Hubo referencia visual del usuario?: aún no se le preguntó (LA PREGUNTA DE REFERENCIA del 54 es el primer paso de la Sesión 2).
+## Dirección de Arte (Sesión 2 — cosa juzgada, NO cambiar sin validar)
+- FICHA-ARTE.md: existe. Brand kit APROBADO por contrato textual del usuario; falta solo su OK final sobre el tour (vista-previa-app.html).
+- Resumen: modo DOBLE (día #F8F9FA/#111827 · noche #11162A/#1C2541/#F0F2F5) · acento oro litúrgico #D4AF37 (acción) · acento teal #0F766E (éxito) · Display Zodiak (títulos/frases de santos) · Body DM Sans (resto de la app) · radio 16/12.
 
 ## Avatar y venta (Sesión 1 — cosa juzgada, NO cambiar sin validar con el usuario)
 - FICHA-AVATAR.md: existe y APROBADA (12 frases VoC con fuente — sep-2026).
@@ -73,7 +73,6 @@ Reto diario de 3 minutos con pensamientos de Carlo Acutis y grandes santos, diar
 
 ## Problemas conocidos ⚠️
 - Contenido doctrinal: como la biblioteca de pensamientos diarios se escribe una vez (no la genera IA en vivo), su calidad doctrinal depende de una buena curación inicial — al llegar a la Sesión 5 (app interna) hay que decidir con el usuario la fuente/autoría de esos ~365 textos (dominio público de los santos citados, o redactados y luego revisados) antes de darlos por buenos.
-- Tour de la app (vista-previa-app.html) pendiente: no se puede construir todavía porque depende de qué dirección (A/B/C o combinación) elija el usuario en direcciones-abc.html — se genera en el mismo momento en que el usuario responda esa pregunta, no antes.
 
 ## Pendientes del usuario (acciones que el usuario debe hacer)
 - [ ] Ninguno todavía — llegarán uno por uno en la fase de servicios externos (Sesión 6: cuentas de Supabase, Hotmart, dominio, Resend).

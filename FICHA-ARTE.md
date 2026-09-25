@@ -1,7 +1,12 @@
 # FICHA DE DIRECCIÓN DE ARTE — EucaristíaViva
 
 ## Referencia del usuario (CONTRATO — ver 16, protocolo obligatorio)
-- ¿Hay imagen(es) de referencia del usuario?: NO — el usuario eligió la Ruta 1 (propuesta propia) en LA PREGUNTA DE REFERENCIA del 54.
+- ¿Hay imagen(es) de referencia del usuario?: NO hubo imagen, pero SÍ hubo un CONTRATO TEXTUAL — el usuario, tras ver 3 rondas de opciones (9 direcciones en total), especificó su propia paleta completa por escrito (hex exactos para modo día, modo noche y 2 acentos). Se trata con el mismo peso que una referencia visual: se toma TAL CUAL, sin "mejorarla".
+- Paleta del contrato (día): fondo #F8F9FA · superficie #FFFFFF con borde fino #E3E6EA · texto #111827.
+- Paleta del contrato (noche): fondo #11162A · superficie #1C2541 · texto #F0F2F5.
+- Acentos (ambos modos): oro litúrgico #D4AF37 (acción/racha/CTA) · teal #0F766E (éxito/completado — mismo valor que ya usábamos en la opción "Clínica humana", así que no es nuevo para el proyecto).
+- Modo: DOBLE — la app cambia de paleta día/noche (no es una elección única de modo claro u oscuro, sino las dos, derivado explícitamente por el usuario).
+- Tipografía: especificada por el usuario tras ver una comparación de 3 opciones → **Zodiak para títulos y frases de los santos** (el toque solemne/devocional) + **DM Sans para el resto** (textos de la app, botones, diario — máxima comodidad de lectura). Combinación válida: display con carácter + body sans neutra (regla (b) de 29).
 
 ## Identidad derivada (FUSIÓN de líderes — 16 PASO 0.2bis — + banco del 54 para el dispositivo)
 - TABLA DE LÍDERES:
@@ -18,18 +23,22 @@
 - 3 adjetivos de personalidad: cálida, serena, constante.
 - Compilación (tabla del 11): spring suave (damping alto, sin overshoot fuerte) · duración base 280-350ms · exclamaciones máx 1/pantalla (esto no es una app "gritona") · celebración nivel medio (hitos reales: novena completa, racha) · radio tendencial 12-18px.
 
-## Brand kit final
-- PENDIENTE — se completa con los valores EXACTOS de la opción que el usuario elija (o combine). El usuario pidió una TERCERA ronda, esta vez con un pedido concreto: tonos azules. Terna vigente en `direcciones-abc.html`:
-  - **A · Clínica humana**: fondo #F4F7F6 · superficie #FDFEFD · texto 1º #22302C · texto 2º #5C6B65 · acento #0F766E (teal de confianza) · display Gantari · body Atkinson Hyperlegible · radio 18/12 · dispositivo: duotone de marca.
-  - **B · Índigo profundo**: fondo #12142A · superficie #191C36 · texto 1º #E4E4F0 · texto 2º #9B9AB8 · acento #C8B27C (oro viejo) · display Zodiak · body Switzer · radio 14/10 · dispositivo: velo de profundidad + hairline dorada. (Es azul de FONDO con un toque dorado — la única dirección oscura del banco que cae en "tonos azules".)
-  - **C · Cielo en calma**: fondo #F4F7FA · superficie #FBFCFE · texto 1º #16233A · texto 2º #5B6B80 · acento #1A3E6F · display+body DM Sans (una sola familia) · radio 10/8 · dispositivo: degradé tonal azul (la misma técnica de Calm, citada en 29). Paleta NO sale del banco 54 sino del líder real: verificada en vivo en calm.com (sep-2026), tomada tal cual (doctrina ago-2026 de 29 — líder admirado, no banco).
-- Rondas descartadas (registradas para no repetir si se pide una cuarta): Ronda 1 — Editorial cálida (Newsreader/Mulish, #7A3E2E) · Índigo profundo (mismo B, ya en esta ronda) · Papel y tinta (EB Garamond/Inter Tight, #8C2F23). Ronda 2 — Terracota mediterránea (Marcellus/Figtree, #C0562F) · Nocturna de estudio (Spectral/IBM Plex Sans, #E0B458) · Salvia técnica (Chivo/Hanken Grotesk, #3D6B4F).
+## Brand kit final — APROBADO (contrato textual del usuario, ver arriba)
+- Modo día: fondo #F8F9FA · superficie #FFFFFF · borde #E3E6EA · texto 1º #111827 · texto 2º #667085 (derivado, no dado por el usuario).
+- Modo noche: fondo #11162A · superficie #1C2541 · borde #2B3358 (derivado) · texto 1º #F0F2F5 · texto 2º #A6ADC4 (derivado).
+- Acento primario (ambos modos): #D4AF37 (oro litúrgico) — SOLO en CTAs, racha, y momentos de acción.
+- Acento secundario (ambos modos): #0F766E (teal) — SOLO en estados de éxito/completado (checks, "Respondida").
+- Display (títulos y frases de los santos): Zodiak (pesos 400/700) · Body (textos de la app, botones, diario): DM Sans (pesos 400/600/800) — elegido por el usuario tras comparar 3 opciones lado a lado.
+- Radio: 16px cards / 12px botones (continúa la familia de "Índigo profundo").
+- Dispositivo ownable: hairline dorada como separador en pantallas nocturnas (paywall); bordes finos grises en pantallas diurnas (tal como pidió el usuario).
+- Tour de la app: `vista-previa-app.html` (5 vistas: Inicio/M0 y Onboarding en modo día, Planes/Mecanismo en modo noche, Diario en modo día) — construido y pendiente de tu aprobación (¿me encanta / ajustamos un detalle / repensamos?).
+- Rondas previas descartadas (registradas para no repetir si se pide otra ronda en el futuro): Ronda 1 — Editorial cálida (#7A3E2E) · Papel y tinta (#8C2F23). Ronda 2 — Terracota mediterránea (#C0562F) · Nocturna de estudio (#E0B458) · Salvia técnica (#3D6B4F). Ronda 3 — Cielo en calma / Calm (#1A3E6F) descartada como paleta única, aunque su espíritu ("azul sereno") sobrevive en el contrato final del usuario.
 
 ## Trazabilidad y vetos
-- Ruta de diseño (PREGUNTA DE REFERENCIA del 54): propuesta propia.
-- Protocolo A/B/C: 3 fusiones de líderes divergentes en paleta, dispositivo ownable y composición (layouts estructuralmente distintos: hero-dato+cards / anillo+grid2x2 / timeline editorial). Página comparativa: `direcciones-abc.html` (raíz del proyecto). Opción elegida: PENDIENTE de la respuesta del usuario.
-- Tour de la app: PENDIENTE — se genera `vista-previa-app.html` en cuanto se elija/combine una dirección.
-- Registro anti-repetición: se anota al cerrar (primer proyecto del SO en esta carpeta, sin proyecto anterior que vetar).
-- Modo (claro/oscuro): las opciones A y C son claras (derivado del mundo del sujeto: lino, hostia, luz de vela cálida); la opción B es oscura (derivado de la escena de vigilia/oración nocturna) — el modo final lo deriva la elección del usuario, no se asume.
+- Ruta de diseño (PREGUNTA DE REFERENCIA del 54): propuesta propia → evolucionó a contrato textual del usuario tras 3 rondas de A/B/C (9 direcciones exploradas).
+- Protocolo A/B/C: 3 rondas en `direcciones-abc.html` (raíz del proyecto), la 3ª a pedido explícito de "tonos azules". El usuario no eligió una letra: combinó ideas de la Ronda 3 (teal ya usado en A, familia índigo/oro de B) y agregó su propio acento dorado litúrgico por escrito — eso se trata como el CONTRATO final.
+- Tour de la app: `vista-previa-app.html` — construido (5 vistas, modo día + modo noche), pendiente aprobación del usuario.
+- Registro anti-repetición: paleta día #F8F9FA/#111827 + noche #11162A/#1C2541 + oro #D4AF37 + teal #0F766E quedan vetados para el próximo proyecto del SO en esta cuenta.
+- Modo (claro/oscuro): DERIVADO como DOBLE por pedido explícito del usuario — la app se adapta a la hora del día.
 
-## Idioma UI: español latino neutro · Fecha de cierre de la ficha: PENDIENTE · Aprobada por el usuario: NO (esperando elección A/B/C)
+## Idioma UI: español latino neutro · Fecha de cierre de la ficha: 2026-09-22 · Aprobada por el usuario: pendiente (se le muestra el tour para su OK final)
