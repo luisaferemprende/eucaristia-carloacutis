@@ -32,7 +32,9 @@ Reto diario de 3 minutos con pensamientos de Carlo Acutis y grandes santos, diar
 - Justificación: nicho "Bienestar espiritual" en la MATRIZ ESTRATÉGICA de 02C → primera victoria = sesión corta, onboarding suave/emocional, paywall tras la mini-experiencia, retención por rutina diaria. Frecuencia diaria = hábito → confirma Modelo 2 sobre hard paywall.
 - Diseño del paywall: aparece después de que el usuario vive su primer reto de 3 minutos (pensamiento + micro-oración) en el onboarding, en el momento de mayor inversión emocional — no antes.
 - Trial: 7 días en ambos planes (mensual y anual) — el "aha" es inmediato (3 minutos), así que 5-7 días es el tramo correcto según la regla de tiempo-a-valor de 02C (no 14+, que es para valor que tarda en acumularse).
-- Pricing: $3.99/mes · $29.99/año (mostrado como ~$2.50/mes, "casi 2 meses gratis") — bien por debajo del ancla de Hallow ($9.99/mes · $69.99/año), que es justo la objeción #1 del mercado.
+- Garantía (FICHA-MERCADO.md §4 — verificado contra Hotmart real): 15 días (Hotmart admite 7/15/21/30) — pasa la regla dura garantía > prueba (15 > 7).
+- Pricing: $3.99/mes · $29.99/año (mostrado como $2.50/mes, "Ahorra 37%") — bien por debajo del ancla de Hallow ($9.99/mes · $69.99/año), que es justo la objeción #1 del mercado.
+- Mecanismo bautizado (Constitución 4b de 01): **"La Autopista de 3 Minutos"** — nombre tomado literalmente de la cita de Carlo Acutis ya central en todo el copy ("la Eucaristía es mi autopista al cielo"), lo que da cohesión total entre el nombre del mecanismo y el gancho emocional de toda la marca. 3 pasos: pensamiento del santo → micro-preparación → intención/novena.
 
 ## Gamificación y retención (loop documentado en Sesión 1, se construye en Sesión 5)
 - Loop del hábito (Hooked): Gatillo (notificación diaria a la hora que la usuaria suele rezar) → Acción (abrir la app y completar el reto de 3 min: pensamiento del santo + micro-preparación) → Recompensa (racha +1, ver el contador global de la novena en curso) → Inversión (su diario espiritual privado acumula peticiones/milagros — cuanto más escribe, más le cuesta irse).
