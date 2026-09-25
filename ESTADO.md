@@ -1,7 +1,7 @@
 # ESTADO — EucaristíaViva
-Última actualización: 2026-09-25 | Sesión actual: 3
+Última actualización: 2026-09-25 | Sesión actual: 4
 
-⏸️ CHECKPOINT — Última acción completada: Sesión 3 (página de ventas) construida con Next.js + el kit canónico de landing, tematizada con FICHA-ARTE, copy derivado de FICHA-AVATAR y pivotada a pedido del usuario (Eucaristía + todos los santos + milagros eucarísticos como núcleo). 5 rondas de revisor-visual corridas, con arreglos reales en cada una (contraste, animación, copy sin sustento, dead-links, garantía cerca del CTA). Veredicto vigente: NO LISTA — 28/40 usabilidad, 15/20 craft, 16/20 copy (el copy ya pasa; faltan ~8 pts de usabilidad y 1 de craft). / Siguiente acción exacta: decidir con el usuario si se sigue iterando el gate visual ahora o se documenta como pendiente y se avanza — ver "Problemas conocidos".
+⏸️ CHECKPOINT — Última acción completada: Sesión 3 cerrada — el usuario decidió AVANZAR con el veredicto de landing pendiente (NO LISTA, 28/40 usabilidad · 15/20 craft · 16/20 copy) documentado en "Problemas conocidos", en vez de seguir puliéndolo ahora. / Siguiente acción exacta: arrancar Sesión 4 (Onboarding, paywall y login) — leer 02B-ONBOARDING-Y-PAYWALL.md + 50-DISENO-ONBOARDING-PAYWALL.md + 26-AUTH-MODERNO.md, y construir el primer paso real de `/onboarding` (hoy es un stub).
 
 ## Qué es esta app (3 líneas máximo)
 Reto diario de 3 minutos centrado en la Eucaristía: el pensamiento de un santo (Carlo Acutis y otros grandes devotos eucarísticos) + la historia de un milagro eucarístico + una micro-preparación para la comunión, respaldado por un diario espiritual privado y retos de novenas en grupo. Para católicas practicantes ocupadas (avatar: Carmen Rosa) que sienten que van a misa por inercia y quieren constancia sin pagar precios abusivos. Monetización: $3.99/mes o $29.99/año, 7 días de prueba gratis.
