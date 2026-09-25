@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@import "../components/landing/tokens.css";
+
+/* La cascada de tokens.css define --font-body con el fallback del sistema;
+   aquí se le antepone el @font-face real de next/font (DM Sans) — nunca al revés. */
+:root {
+  --font-body: var(--font-dm-sans), 'Segoe UI', sans-serif;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --radius-card: var(--radius-card);
+  --radius-button: var(--radius-button);
+}

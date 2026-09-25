@@ -1,85 +1,85 @@
 # ESTADO — EucaristíaViva
-Última actualización: 2026-09-22 | Sesión actual: 1
+Última actualización: 2026-09-25 | Sesión actual: 3
 
-⏸️ CHECKPOINT — Última acción completada: Sesión 2 (identidad visual) — paleta día/noche + oro litúrgico + teal (contrato del usuario) y tipografía final (Zodiak en títulos/frases de santos + DM Sans en el resto) ya aplicadas en vista-previa-app.html. / Siguiente acción exacta: preguntar "me encanta / ajusto un detalle / repienso el estilo" sobre el tour completo; con su OK, cerrar FICHA-ARTE.md como aprobada y arrancar Sesión 3 (página de ventas).
+⏸️ CHECKPOINT — Última acción completada: Sesión 3 (página de ventas) construida con Next.js + el kit canónico de landing, tematizada con FICHA-ARTE, copy derivado de FICHA-AVATAR y pivotada a pedido del usuario (Eucaristía + todos los santos + milagros eucarísticos como núcleo). 5 rondas de revisor-visual corridas, con arreglos reales en cada una (contraste, animación, copy sin sustento, dead-links, garantía cerca del CTA). Veredicto vigente: NO LISTA — 28/40 usabilidad, 15/20 craft, 16/20 copy (el copy ya pasa; faltan ~8 pts de usabilidad y 1 de craft). / Siguiente acción exacta: decidir con el usuario si se sigue iterando el gate visual ahora o se documenta como pendiente y se avanza — ver "Problemas conocidos".
 
 ## Qué es esta app (3 líneas máximo)
-Reto diario de 3 minutos con pensamientos de Carlo Acutis y grandes santos, diario espiritual privado y retos de novenas en grupo (asíncronos, solo lectura). Para católicas practicantes ocupadas (avatar: Carmen Rosa) que quieren constancia en su fe sin pagar precios abusivos. Monetización: suscripción $3.99/mes o $29.99/año, con 7 días de prueba gratis.
+Reto diario de 3 minutos centrado en la Eucaristía: el pensamiento de un santo (Carlo Acutis y otros grandes devotos eucarísticos) + la historia de un milagro eucarístico + una micro-preparación para la comunión, respaldado por un diario espiritual privado y retos de novenas en grupo. Para católicas practicantes ocupadas (avatar: Carmen Rosa) que sienten que van a misa por inercia y quieren constancia sin pagar precios abusivos. Monetización: $3.99/mes o $29.99/año, 7 días de prueba gratis.
 
 ## Promesa central
-"Ayudo a creyentes devotos a transformar su vida espiritual con hábitos diarios de 3 minutos sin pagar los $70 al año que cobran las apps masivas."
+"Vive la Eucaristía a fondo, en 3 minutos al día — con la sabiduría de los santos y los milagros eucarísticos del mundo, sin pagar los $70 al año que cobran las apps masivas."
 
 ## Reporte de validación (Sesión 1)
-- Veredicto: Excelente oportunidad — idea validada por el usuario antes de llegar (investigación de mercado + avatar + propuesta de valor) y confirmada con la ficha de la app modelo (Hallow).
-- App modelo (FICHA-MODELO.md — APROBADA): Hallow — Prayer & Meditation. 3 señales de revenue independientes: ~$40M revenue neto 2025 (Appfigures, feb-2026) · $50M Serie C / ~$105-157M total (PR Newswire/Tracxn) · #1 entre apps de oración en App Store tras su comercial del Super Bowl (Axios, feb-2024).
-- Apps de referencia: Hallow (10M descargas, 4.8★ aprox, pero quejas de precio y "locked out") · St Carlo Miracles (catálogo estático) · Echo Prayer (básica).
-- Lo que los usuarios odian de la competencia (nuestra oportunidad): precio de $69.99-70/año, te deja sin acceso a mitad del trial, onboarding confuso, dispersión de contenido sin foco.
-- Brecha confirmada: nadie bautizó un mecanismo enfocado 100% en la Eucaristía + Carlo Acutis a precio bajo — la categoría amplia de apps de oración está saturada, pero este nicho específico no.
-- Precio de referencia del mercado: Hallow $9.99/mes o $69.99/año. Nuestro precio: $3.99/mes o $29.99/año (más barato incluso que su plan mensual anualizado).
-- Gate de unidad económica (40 — PASA): con Hotmart (9.9%+fee) y COGS estimado de $0.30/usuario/mes (sin IA en vivo — ver Decisiones técnicas), el margen bruto en venta directa es ≈91% (mensual) y ≈86% (anual); en venta por afiliado (40% comisión) el margen baja a ≈45% pero sigue sano. LTV estimado (churn 15%/mes) ≈$21/usuario en el plan mensual — sobra margen para pagar adquisición.
+- Veredicto: Excelente oportunidad — idea validada por el usuario antes de llegar y confirmada con la ficha de la app modelo (Hallow).
+- App modelo (FICHA-MODELO.md — APROBADA): Hallow — Prayer & Meditation. 3 señales de revenue independientes (ver FICHA-MODELO.md).
+- Brecha confirmada: nadie bautizó un mecanismo enfocado 100% en la Eucaristía (santos + milagros eucarísticos) a precio bajo.
+- Precio de referencia del mercado: Hallow $9.99/mes o $69.99/año. Nuestro precio: $3.99/mes o $29.99/año.
+- Gate de unidad económica (40 — PASA): margen bruto ≈91% (mensual) / ≈86% (anual) en venta directa; ≈45% por afiliado. Detalle en versión anterior de este archivo (git log) si se necesita.
 
-## Dirección de Arte (Sesión 2 — cosa juzgada, NO cambiar sin validar)
-- FICHA-ARTE.md: existe. Brand kit APROBADO por contrato textual del usuario; falta solo su OK final sobre el tour (vista-previa-app.html).
-- Resumen: modo DOBLE (día #F8F9FA/#111827 · noche #11162A/#1C2541/#F0F2F5) · acento oro litúrgico #D4AF37 (acción) · acento teal #0F766E (éxito) · Display Zodiak (títulos/frases de santos) · Body DM Sans (resto de la app) · radio 16/12.
+## Dirección de Arte (Sesión 2 — CERRADA y aprobada por el usuario)
+- FICHA-ARTE.md: existe y APROBADA — el usuario vio el tour (vista-previa-app.html), pidió 3 micro-ajustes (badge de ahorro, contraste del tab activo, punto vivo animado) y luego la tipografía final (Zodiak/DM Sans); todo aplicado y aprobado.
+- Resumen: modo DOBLE (día #F8F9FA/#111827 · noche #11162A/#1C2541/#F0F2F5) · acento oro litúrgico #D4AF37 (acción — SOLO como fill sólido con texto --text-primary, NUNCA como texto sobre fondo claro: mide ~1.6:1 y falla WCAG) · acento teal #0F766E (éxito) · Display Zodiak (títulos/frases de santos) · Body DM Sans · radio 16/12.
+- Token nuevo descubierto en la Sesión 3 (landing): `--accent-text` en `components/landing/tokens.css` — el oro oscurecido 55%/45% hacia --text-primary, para cuando el acento necesita ser TEXTO sobre fondo claro (Kicker, badges, links). Sobre fondo invertido oscuro (CtaFinal), se sobrescribe a `var(--accent)` puro. Anotar esta regla en cualquier FICHA-ARTE futura con esta paleta.
 
-## Avatar y venta (Sesión 1 — cosa juzgada, NO cambiar sin validar con el usuario)
-- FICHA-AVATAR.md: existe y APROBADA (12 frases VoC con fuente — sep-2026).
-- Resumen: avatar Carmen Rosa, 38 años, católica practicante ocupada · dolor #1: empieza novenas con fe y las abandona al cuarto día, con culpa · deseo #1: terminar una novena completa sin fallar · nivel de consciencia dominante 3-4 (ya probó y abandonó soluciones, incluye Hallow) · sofisticación doble: categoría amplia (apps de oración) en etapa 4-5, nuestro nicho específico (Eucaristía+Carlo Acutis) en etapa 2-3 → entramos con mecanismo bautizado, no solo identificación.
-- Landing: pendiente (Sesión 3) — sigue la estructura canónica de 10 secciones del 19.
+## Avatar y venta (Sesión 1 — cosa juzgada; el DOLOR se amplió en Sesión 3, ver nota)
+- FICHA-AVATAR.md: existe y APROBADA (12 frases VoC con fuente).
+- Resumen: avatar Carmen Rosa, 38 años. Deseo #1: terminar una novena/vivir su fe sin fallar.
+- ⚠️ **PENDIENTE DE SINCRONIZAR:** el usuario amplió el dolor principal en la Sesión 3 de "solo abandona novenas" a "va a misa por inercia, comulga mecánicamente, siente que la Eucaristía no transforma su día a día" (inercia espiritual, más amplio que solo el ciclo de la novena). FICHA-AVATAR.md todavía no tiene esta ampliación por escrito — el copy de la landing YA la refleja, pero la ficha debe actualizarse en la próxima sesión para que ambas queden trazables entre sí.
 
-## Estrategia de monetización (Sesión 1 — cosa juzgada, NO cambiar sin validar)
-- Modelo: Modelo 2 — Onboarding + Paywall de prueba, variante "preview anónimo → paywall → login/auth" (no requiere cuenta para sentir el primer valor).
-- Justificación: nicho "Bienestar espiritual" en la MATRIZ ESTRATÉGICA de 02C → primera victoria = sesión corta, onboarding suave/emocional, paywall tras la mini-experiencia, retención por rutina diaria. Frecuencia diaria = hábito → confirma Modelo 2 sobre hard paywall.
-- Diseño del paywall: aparece después de que el usuario vive su primer reto de 3 minutos (pensamiento + micro-oración) en el onboarding, en el momento de mayor inversión emocional — no antes.
-- Trial: 7 días en ambos planes (mensual y anual) — el "aha" es inmediato (3 minutos), así que 5-7 días es el tramo correcto según la regla de tiempo-a-valor de 02C (no 14+, que es para valor que tarda en acumularse).
-- Garantía (FICHA-MERCADO.md §4 — verificado contra Hotmart real): 15 días (Hotmart admite 7/15/21/30) — pasa la regla dura garantía > prueba (15 > 7).
-- Pricing: $3.99/mes · $29.99/año (mostrado como $2.50/mes, "Ahorra 37%") — bien por debajo del ancla de Hallow ($9.99/mes · $69.99/año), que es justo la objeción #1 del mercado.
-- Mecanismo bautizado (Constitución 4b de 01): **"La Autopista de 3 Minutos"** — nombre tomado literalmente de la cita de Carlo Acutis ya central en todo el copy ("la Eucaristía es mi autopista al cielo"), lo que da cohesión total entre el nombre del mecanismo y el gancho emocional de toda la marca. 3 pasos: pensamiento del santo → micro-preparación → intención/novena.
+## Estrategia de monetización (Sesión 1 — cosa juzgada, sin cambios)
+- Modelo 2 (onboarding-first, variante anónima) · Trial 7 días ambos planes · Garantía 15 días (>7, pasa la regla dura) · Pricing $3.99/mes o $29.99/año ($2.50/mes anual, "Ahorra 37%").
+- Mecanismo bautizado: **"La Autopista de 3 Minutos"** (cita de Carlo Acutis). **AMPLIADO en Sesión 3** (pedido del usuario): el mecanismo ya no es solo "Carlo Acutis" — cada día entrega (a) el pensamiento de UN santo devoto de la Eucaristía (Carlo Acutis, San Pío de Pietrelcina, Santo Tomás de Aquino, San Agustín, Santa Teresita, etc.), (b) la historia de un milagro eucarístico real del mundo (ej. Lanciano), (c) la micro-preparación de 3 min para la comunión. Novenas + diario + comunidad quedan como el "sistema de hábitos y soporte" (peso menor, no eliminado). Distribución de peso pedida por el usuario: Eucaristía/santos/milagros ~75% · diario ~15% · novenas/comunidad ~10%.
 
-## Gamificación y retención (loop documentado en Sesión 1, se construye en Sesión 5)
-- Loop del hábito (Hooked): Gatillo (notificación diaria a la hora que la usuaria suele rezar) → Acción (abrir la app y completar el reto de 3 min: pensamiento del santo + micro-preparación) → Recompensa (racha +1, ver el contador global de la novena en curso) → Inversión (su diario espiritual privado acumula peticiones/milagros — cuanto más escribe, más le cuesta irse).
-- Mecánicas elegidas: racha diaria (streak) + contador de novena en grupo (asíncrono, solo lectura) + diario privado como ancla de datos personales.
-- Primera victoria que celebra el onboarding (<5 min): ver su primer pensamiento del día y completar el primer micro-reto de preparación para la comunión.
-- Notificaciones de re-enganche: D1/D3/D7, en la mañana (antes de su rutina) — tope 1/día.
+## Gamificación y retención (sin cambios respecto a Sesión 1)
+- Loop Hooked: notificación diaria → abrir y vivir el reto de 3 min → racha +1 + novena → diario privado como ancla.
+- Primera victoria del onboarding (<5 min): ver su primer pensamiento+milagro del día.
 
-## Secuencia maestra de construcción (NO saltar)
-- Estado de la secuencia: ninguna etapa construida aún — Sesión 1 (decisiones) completa, Sesión 2 (identidad visual) es la siguiente.
-- Ruta aprobada: `/` → `/onboarding` → `/paywall` → `/login` → `/app`
-- Landing: pendiente — Onboarding: pendiente — Paywall: pendiente — Login/Auth: pendiente — App interna: pendiente — Servicios externos: pendiente.
+## Secuencia maestra de construcción
+- Landing: **CONSTRUIDA** (Next.js 16 + kit canónico de `plantillas-codigo/landing/`, tematizado). Gate visual del revisor: NO LISTA todavía (ver Problemas conocidos) — no mandar tráfico pagado hasta cerrarlo o decidir avanzar igual.
+- Onboarding / Paywall / Login-Auth / App interna / Servicios externos: pendientes (Sesiones 4-6).
+- Ruta aprobada: `/` → `/onboarding` → `/paywall` → `/login` → `/app`.
 
 ## Puertas de etapa (aprobación antes de avanzar)
-- Landing / Onboarding / Paywall / Login-Auth / App interna: no iniciadas.
-- Servicios externos: bloqueados hasta que las anteriores estén aprobadas.
+- Landing: **construida, NO APROBADA** — evidencia: `docs/revisiones/landing-375.png` + `docs/revisiones/landing-veredicto.md` (5 pasadas, última: 28/40 usabilidad, 15/20 craft, 16/20 copy — gate doble exige ≥36/40 y ≥16/20).
+- Onboarding / Paywall / Login-Auth / App interna: no iniciadas. Servicios externos: bloqueados.
 
 ## Decisiones técnicas (NO re-discutir sin pedirlo el usuario)
-- Framework: Next.js (App Router) — decidido 2026-09-22. Motivo: la app necesita landing con SEO/adquisición orgánica (TikTok → página) además de la app tras login → regla del stack de CLAUDE.md resuelve a Next.js en caso de duda, y aquí no hay duda (sí hay landing).
-- Auth: magic link/OTP por email, Hotmart-first (el webhook crea el usuario passwordless; el correo de bienvenida trae enlace + código de 6 dígitos). Passkey se ofrece recién tras la primera semana (D7), nunca en el primer login. Sin contraseñas.
-- Modelo de IA: NINGUNA generación de IA en vivo para el contenido central. El "pensamiento del día" y la guía de 3 minutos son contenido CURADO Y ESCRITO UNA VEZ (biblioteca de ~365 entradas ligadas a un ciclo/calendario), revisado doctrinalmente antes de publicar — elimina el riesgo de un error doctrinal generado en vivo y el costo de IA baja a ~$0. (Esto es una decisión técnica que MEJORA el estimado de costo que trajo el usuario, no lo empeora — se avisa igual porque cambia lo que él esperaba pagar.) V2 podría evaluar IA solo para personalización opcional, no para el contenido devocional en sí.
-- Modelo de datos (esquema, sin exponerlo al usuario): `profiles` (datos de la cuenta) · `daily_content` (biblioteca curada de pensamientos/retos por día de ciclo) · `user_progress` (racha, día actual, última sesión) · `diary_entries` (peticiones/milagros privados, RLS estricta por `auth.uid()`) · `novenas` (definición de cada novena/reto de temporada) · `novena_participation` (una fila por usuario-novena, RLS: cada usuario solo ve/crea la suya; el contador global se sirve desde una vista agregada sin datos personales) · `subscriptions` (estado de plan, alimentado por el webhook de Hotmart).
-- Idioma de UI: mono-idioma, español latino neutro (sin i18n en el MVP).
+- Framework: Next.js 16 (App Router, Turbopack) — scaffold en la raíz del proyecto (no en subcarpeta). React 19.
+- Landing: `app/page.tsx` compone las 10 secciones canónicas desde `components/landing/` (copiado de `plantillas-codigo/landing/`, tematizado en `components/landing/tokens.css`). Copy marcado fuente de verdad: `docs/copy/landing.md`.
+- Auth: magic link/OTP por email, Hotmart-first. Passkey tras D7. Sin contraseñas.
+- Modelo de IA: NINGUNA generación en vivo para el contenido central — biblioteca curada de ~365 días (pensamiento del santo + milagro eucarístico + preparación), revisada doctrinalmente antes de publicar.
+- Modelo de datos: `profiles` · `daily_content` (ahora con 2 piezas por día: santo Y milagro) · `user_progress` · `diary_entries` (RLS por `auth.uid()`) · `novenas` · `novena_participation` (RLS individual + vista agregada pública) · `subscriptions`.
+- Idioma de UI: mono-idioma, español latino neutro.
+- Rutas creadas como stubs honestos (no dead-links): `/onboarding` (pendiente Sesión 4, con salida "Volver al inicio") · `/entrar` (pendiente Sesión 6) · `/privacidad`, `/terminos` (mensaje de "en construcción" con salida — pendientes de datos del responsable) · `/reembolsos` (contenido REAL: plazo de 15 días + cómo pedirlo).
 
 ## Sesiones completadas ✅
-(ninguna cerrada del todo — Sesión 1 con sus decisiones tomadas, pendiente el cierre formal con el usuario)
+- Sesión 1 — Validación, FICHA-MODELO, FICHA-AVATAR, FICHA-MERCADO, monetización, mecanismo bautizado.
+- Sesión 2 — Identidad visual: FICHA-ARTE aprobada (paleta día/noche del usuario + Zodiak/DM Sans).
 
 ## Sesión en progreso 🔧
-- Sesión 1 — decisiones de validación, avatar, monetización y arquitectura tomadas y documentadas; falta presentarle el resumen simple al usuario y su OK para pasar a la Sesión 2.
+- Sesión 3 — Landing construida y con 5 rondas de revisión real; NO LISTA por el gate visual (usabilidad/craft). Copy ya aprobado (16/20). Pendiente: decidir con el usuario cómo cerrar el gate (seguir iterando vs. avanzar con lo documentado).
 
 ## Próximas sesiones 📋
-- Sesión 2: Identidad visual — empieza con LA PREGUNTA DE REFERENCIA (54, PASO 0).
-- Sesión 3: Página de ventas.
-- Sesión 4: Onboarding, paywall y login.
-- Sesión 5: App interna (reto diario, diario espiritual, novenas en grupo).
-- Sesión 6: Integraciones reales y seguridad (Supabase, Hotmart, dominio).
+- Cerrar Sesión 3 (gate visual de la landing) o documentarlo y avanzar.
+- Sesión 4: Onboarding, paywall y login — construye el primer paso real de `/onboarding` (hoy es un stub).
+- Sesión 5: App interna — monta los screenshots reales del carrusel "La app por dentro" (hoy son placeholders).
+- Sesión 6: Integraciones reales y seguridad (Supabase, Hotmart, dominio, Resend) — ahí se resuelve `/entrar`.
 - Sesión 7: Testing, pulido y rigor de entrega.
 - Sesión 8: Adquisición, lanzamiento y backoffice.
 
 ## Problemas conocidos ⚠️
-- Contenido doctrinal: como la biblioteca de pensamientos diarios se escribe una vez (no la genera IA en vivo), su calidad doctrinal depende de una buena curación inicial — al llegar a la Sesión 5 (app interna) hay que decidir con el usuario la fuente/autoría de esos ~365 textos (dominio público de los santos citados, o redactados y luego revisados) antes de darlos por buenos.
+- **Veredicto de landing (docs/revisiones/landing-veredicto.md): NO LISTA.** Usabilidad 28/40 (falta ≥36) y Craft 15/20 (falta ≥16); Copy 16/20 SÍ pasa. Los defectos que quedan tras 5 rondas son en su mayoría estructurales para este TIPO de pantalla (heurísticas de Nielsen como "control/deshacer" o "atajos de experto" no aplican bien a una landing estática) o de identidad visual profunda (el mundo del sujeto de FICHA-ARTE — rayos de custodia, textura de trigo, sello de hostia — no se llevó a un tratamiento visual concreto, solo queda el hairline dorado). Antes de mandar tráfico pagado, decidir con el usuario: seguir puliendo, o aceptar y avanzar.
+- Carrusel "La app por dentro" con PLACEHOLDERS rotulados — se resuelve montando screenshots reales en la Sesión 5.
+- `/onboarding` es un stub sin flujo real — los 7 CTA de la landing no completan la acción hasta la Sesión 4.
+- `/privacidad` y `/terminos` muestran "en construcción" — PENDIENTE de que el usuario dé sus DATOS DEL RESPONSABLE (nombre/razón social, país desde el que opera) para redactarlas con 47-LEGAL-FISCAL-Y-PRIVACIDAD.md.
+- Correo de soporte `hola@eucaristiaviva.com` es un PLACEHOLDER plausible (mismo patrón que usa el propio kit del SO) — PENDIENTE de que el usuario confirme su dominio/correo real antes de publicar. Aparece en el footer y en `/reembolsos`.
+- Contenido doctrinal ampliado: ahora la biblioteca diaria incluye, además del pensamiento del santo, la historia de un milagro eucarístico real (ej. Lanciano) — la precisión histórica/doctrinal de esos ~365×2 textos necesita la misma revisión cuidadosa ya anotada, y ahora cubre también el catálogo de milagros (el propio Carlo Acutis documentó esto en vida — hay fuentes reales que usar como base, no inventar).
+- FICHA-AVATAR.md no refleja aún por escrito el dolor ampliado ("inercia espiritual") que ya vive en el copy — sincronizar en la próxima sesión.
 
 ## Pendientes del usuario (acciones que el usuario debe hacer)
-- [ ] Ninguno todavía — llegarán uno por uno en la fase de servicios externos (Sesión 6: cuentas de Supabase, Hotmart, dominio, Resend).
+- [ ] Dar sus DATOS DEL RESPONSABLE (nombre o razón social, país desde el que opera, y el correo real de soporte) para terminar `/privacidad`, `/terminos` y confirmar el correo del footer/`/reembolsos`.
+- [ ] Decidir si seguimos puliendo el gate visual de la landing ahora, o avanzamos documentándolo como pendiente.
 
 ## Notas para la próxima sesión
-- La app modela a Hallow (FICHA-MODELO.md) pero con un solo eje distinto: foco 100% en la Eucaristía/Carlo Acutis a precio bajo — conservar su estructura de onboarding→paywall y su arquitectura de pricing; no diluir el mecanismo con más de una app modelo.
-- El copy de venta (landing, onboarding, paywall) se deriva de FICHA-AVATAR.md — nunca inventarlo. El ángulo del hero entra por mecanismo bautizado (etapa 2-3 del nicho específico), apoyado con anti-culpa/identificación (por la etapa 4-5 de la categoría amplia).
-- Antes de proponer cualquier estilo visual en la Sesión 2: preguntar si el usuario tiene una referencia visual propia (Pinterest, otra app, capturas) — si la da, es CONTRATO y manda sobre todo lo demás.
+- El mecanismo bautizado "La Autopista de 3 Minutos" ahora entrega 2 piezas de contenido por día (santo + milagro eucarístico), no solo 1 — esto afecta el modelo de datos de `daily_content` (dos columnas o dos tablas relacionadas) y el diseño de la pantalla principal cuando se construya la app interna (Sesión 5): debe caber sin sentirse apretada (revisar el gate cognitivo de "≤4-5 ítems visibles").
+- El copy de venta se deriva de FICHA-AVATAR.md — al sincronizar la ficha con el dolor ampliado, revisar que ninguna pieza de copy quede sin traza a un campo de la ficha.
