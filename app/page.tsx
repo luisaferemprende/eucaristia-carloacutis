@@ -242,7 +242,10 @@ export default function LandingEucaristiaViva() {
         ctaLabel={CTA_LABEL}
         ctaHref={CTA_HREF}
         recap="la Garantía de tu Primera Novena Completa · 7 días gratis"
-        psMarked="PD: La Autopista de 3 Minutos te acompaña cada día con el pensamiento de los santos, la historia de un milagro eucarístico, tu diario privado y tu novena con la comunidad. Hoy entras con 7 días gratis y la Garantía de tu Primera Novena Completa (15 días)."
+        psMarked={[
+          'PD: Cada día recibes el pensamiento de un santo, un milagro eucarístico y tu diario y novena con la comunidad.',
+          'Hoy entras con 7 días gratis y la Garantía de tu Primera Novena Completa (15 días).',
+        ]}
       />
 
       {/* 10. FOOTER LEGAL */}

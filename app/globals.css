@@ -7,6 +7,25 @@
   --font-body: var(--font-dm-sans), 'Segoe UI', sans-serif;
 }
 
+/* ── Modo NOCHE (contrato del usuario, FICHA-ARTE — "modo DOBLE") ──────────
+   El resto de la app hereda el modo DÍA de tokens.css (:root) por defecto.
+   .tema-noche envuelve las pantallas que el tour aprobado mostró en oscuro
+   (paywall, mecanismo) — sobrescribe las mismas variables por scoping de CSS. */
+.tema-noche {
+  --bg: #11162a;
+  --surface: #1c2541;
+  --surface-2: #0d1020;
+  --text-primary: #f0f2f5;
+  --text-secondary: #a6adc4;
+  --text-tertiary: #8b93ac;
+  --accent: #d4af37;
+  --accent-2: #0f766e;
+  --accent-text: var(--accent); /* oro puro ya contrasta bien sobre este fondo oscuro */
+  --danger: #f87171; /* rojo aclarado — el tono día falla contraste sobre este fondo oscuro */
+  --shadow-1: 0 1px 2px rgb(3 4 10 / 0.5);
+  --shadow-2: 0 12px 32px -12px rgb(3 4 10 / 0.65);
+}
+
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);

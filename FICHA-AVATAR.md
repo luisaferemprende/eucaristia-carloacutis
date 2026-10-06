@@ -13,17 +13,26 @@
 - Dónde pasa tiempo online: TikTok e Instagram (Reels) — contenido católico, historias de santos, milagros.
 
 ## El problema urgente y diario (escena, no categoría)
-- Problema: empieza novenas y propósitos espirituales con ilusión pero los abandona a los pocos días (frecuentemente "al cuarto día") por la rutina, el cansancio y la falta de un método guiado, rápido y económico.
+- Problema (AMPLIADO en Sesión 3, a pedido del usuario — el ciclo de la novena es UN síntoma, no
+  el dolor completo): Carmen va a misa y comulga por costumbre, y a los pocos minutos siente que
+  "nada cambió" — la Eucaristía se volvió un gesto mecánico, no un encuentro real. Ese mismo
+  automatismo es lo que la hace empezar novenas y propósitos espirituales con ilusión y
+  abandonarlos a los pocos días (frecuentemente "al cuarto día") por la rutina, el cansancio y la
+  falta de un método guiado, rápido y económico. Nombre corto: "inercia espiritual".
+- Problema (versión original, sigue vigente como el síntoma más citable): empieza novenas y
+  propósitos espirituales con ilusión pero los abandona a los pocos días (frecuentemente "al
+  cuarto día") por la rutina, el cansancio y la falta de un método guiado, rápido y económico.
 - Test de urgencia: ¿le pasó esta semana? SÍ (es un patrón recurrente, no un evento aislado) · ¿le costó vergüenza/culpa esta semana? SÍ ("me da vergüenza confesarle al sacerdote que llevo meses sin ritmo de oración") · ¿ya intentó resolverlo? SÍ (libretas, alarmas, apps genéricas — ver arriba).
 - COSTO DE LA INACCIÓN: cada mes que sigue sin un método pierde la sensación de constancia y acumula culpa; en un año son 12 novenas empezadas y abandonadas más, y el costo emocional es sentir que "su fe es superficial y desorganizada" y no poder transmitirle la devoción a sus hijos.
 - DISPARADOR DE COMPRA (el evento de esta semana que convierte el dolor crónico en compra hoy): empezar una novena nueva (a un santo, en Cuaresma o Adviento) y, por primera vez, querer terminarla completa sin fallar ni un día — o ver en redes sociales un contenido de Carlo Acutis que le "toca el alma" justo cuando se siente culpable de su inconstancia.
 
 ## Dolores que no lo dejan dormir
-1. ★ "Empiezo las novenas con toda la fe, pero al cuarto día se me olvida y me da una pena horrible." (fuente: RESUMEN de investigación del usuario, sep-2026) ← DOLOR #1
-2. "Siento que le doy las obras cansadas del final del día a Dios." (fuente: RESUMEN de investigación del usuario, sep-2026)
-3. "Las apps católicas populares son carísimas, piden casi lo mismo que una suscripción de streaming." (fuente: RESUMEN de investigación del usuario, sep-2026)
-4. "Me siento sola en mi devoción; nadie en mi casa o trabajo entiende lo importante que es esto para mí." (fuente: RESUMEN de investigación del usuario, sep-2026)
-5. "Me da vergüenza confesarle al sacerdote que llevo meses sin llevar un ritmo de oración constante." (identidad — lo que teme ser: alguien espiritualmente desorganizado e inconstante) (fuente: RESUMEN de investigación del usuario, sep-2026)
+1. ★ "Comulgo y a los cinco minutos ya siento que nada cambió — es como si fuera puro hábito, no un encuentro real." (dolor ampliado en Sesión 3, a pedido del usuario — "inercia espiritual", la raíz de la que nace el dolor #1 original de abandonar novenas) ← DOLOR #1 (ampliado)
+2. "Empiezo las novenas con toda la fe, pero al cuarto día se me olvida y me da una pena horrible." (fuente: RESUMEN de investigación del usuario, sep-2026) ← el síntoma más citable del dolor #1
+3. "Siento que le doy las obras cansadas del final del día a Dios." (fuente: RESUMEN de investigación del usuario, sep-2026)
+4. "Las apps católicas populares son carísimas, piden casi lo mismo que una suscripción de streaming." (fuente: RESUMEN de investigación del usuario, sep-2026)
+5. "Me siento sola en mi devoción; nadie en mi casa o trabajo entiende lo importante que es esto para mí." (fuente: RESUMEN de investigación del usuario, sep-2026)
+6. "Me da vergüenza confesarle al sacerdote que llevo meses sin llevar un ritmo de oración constante." (identidad — lo que teme ser: alguien espiritualmente desorganizado e inconstante) (fuente: RESUMEN de investigación del usuario, sep-2026)
 
 ## Deseos que lo mueven
 1. ★ "Poder decir con orgullo que terminé los 9 días de la novena sin fallar." (fuente: RESUMEN de investigación del usuario, sep-2026) ← DESEO #1

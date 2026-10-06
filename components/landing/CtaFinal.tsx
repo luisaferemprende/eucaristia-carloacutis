@@ -24,8 +24,10 @@ export interface CtaFinalProps {
   ctaHref: string;
   /** Recap riesgo/urgencia bajo el CTA — cupo SOLO si es real (19). */
   recap?: string;
-  /** El PS de la oferta Hormozi — máx 4 líneas (~55 palabras, warn). */
-  psMarked?: string;
+  /** El PS de la oferta Hormozi — 1-2 párrafos cortos, máx 4 líneas c/u en
+   * mobile (una idea por párrafo: qué incluye · qué pasa hoy). String[] para
+   * partirlo en bloques; string para un PS de una sola línea. */
+  psMarked?: string | string[];
   /** default 'cta-final' — lo observa StickyCtaMobile para ocultarse. */
   id?: string;
 }
@@ -41,7 +43,8 @@ export function CtaFinal({
 }: CtaFinalProps) {
   warnCopy('CtaFinal → h2', h2Marked, 8);
   warnCopy('CtaFinal → future pacing', futurePacingMarked, 24);
-  if (psMarked !== undefined) warnCopy('CtaFinal → PS', psMarked, 55);
+  const psLineas = psMarked === undefined ? undefined : Array.isArray(psMarked) ? psMarked : [psMarked];
+  psLineas?.forEach((l, i) => warnCopy(`CtaFinal → PS (párrafo ${i + 1})`, l, 26));
   const { contenedor, item } = useReveal();
 
   return (
@@ -107,17 +110,22 @@ export function CtaFinal({
           </motion.p>
         )}
 
-        {psMarked !== undefined && (
-          <motion.p
+        {psLineas !== undefined && (
+          <motion.div
             variants={item}
-            className="mt-10 max-w-[520px] border-l-2 pl-4 text-left text-[15px] italic leading-[1.6]"
-            style={{
-              borderColor: 'var(--accent)',
-              color: 'color-mix(in oklab, var(--bg) 80%, transparent)',
-            }}
+            className="mt-10 flex max-w-[520px] flex-col gap-3 border-l-2 pl-4 text-left"
+            style={{ borderColor: 'var(--accent)' }}
           >
-            <MarkedCopy text={psMarked} />
-          </motion.p>
+            {psLineas.map((linea, i) => (
+              <p
+                key={i}
+                className="text-[15px] italic leading-[1.6]"
+                style={{ color: 'color-mix(in oklab, var(--bg) 80%, transparent)' }}
+              >
+                <MarkedCopy text={linea} />
+              </p>
+            ))}
+          </motion.div>
         )}
       </motion.div>
     </section>

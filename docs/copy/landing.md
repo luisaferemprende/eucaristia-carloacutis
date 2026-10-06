@@ -103,7 +103,9 @@ Si en tus primeros 15 días no sientes que por primera vez vas a poder terminar 
 - **Identidad aspiracional / H2:** Por fin, [acento]tu Eucaristía cobra vida[/acento].
 - **Recap:** la Garantía de tu Primera Novena Completa · 7 días gratis
 - **CTA:** Empezar mi primer día gratis
-- **PD:** PD: La Autopista de 3 Minutos te acompaña cada día con el pensamiento de los santos, la historia de un milagro eucarístico, tu diario privado y tu novena con la comunidad. Hoy entras con 7 días gratis y la Garantía de tu Primera Novena Completa (15 días).
+- **PD (2 párrafos cortos — auditoría de escaneabilidad, 2026-09-26: el bloque de un solo párrafo pasaba de 4 líneas en mobile, se partió en 2 ideas):**
+  1. PD: Cada día recibes el pensamiento de un santo, un milagro eucarístico y tu diario y novena con la comunidad.
+  2. Hoy entras con 7 días gratis y la Garantía de tu Primera Novena Completa (15 días).
 
 ## 10. FOOTER LEGAL
 - Enlaces: Privacidad · Términos y Condiciones · Reembolsos (contenido real, plazo de 15 días) · Contacto: hola@eucaristiaviva.com (placeholder plausible — PENDIENTE que el dueño confirme su dominio/correo real antes de publicar, ver ESTADO.md).

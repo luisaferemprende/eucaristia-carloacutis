@@ -30,6 +30,14 @@
   /* ── MARCA ── */
   --accent: #d4af37;          /* oro litúrgico — acción/CTA/dato clave */
   --accent-2: #0f766e;        /* teal — 2ª nota, éxito/completado (FICHA-ARTE) */
+  /* Texto SOBRE un fill sólido de --accent (botones, badges) — SIEMPRE oscuro,
+     en día Y en noche: el oro no cambia entre modos, así que este token NO se
+     redefine en .tema-noche (hallazgo real del revisor-visual: --text-primary
+     se vuelve casi-blanco en noche y revienta el contraste sobre el mismo oro). */
+  --on-accent-fill: #14100a;
+
+  /* ── SEMÁNTICO (solo en su función, nunca decorativo — DESIGN-CORE) ── */
+  --danger: #b4231f;          /* error de formulario/login — ≥4.5:1 sobre --bg/--surface */
 
   /* ── FORMA (radios del brand kit — UNO por rol, toda la página) ── */
   --radius-card: 16px;
