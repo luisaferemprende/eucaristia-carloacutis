@@ -13,14 +13,26 @@ se separó en Server Component (`layout.tsx`, chequea auth) + Client Component
 (`components/app/shell-cliente.tsx`, el día/noche por hora). El onboarding ahora guarda sus
 respuestas en localStorage al llegar al loading (clave `ev_onboarding_respuestas`) para poder
 aplicarlas al perfil real en el primer login (la cuenta no existe todavía durante el onboarding
-anónimo). Vercel: el usuario ya creó el repo de GitHub (`luisaferemprende/eucaristia-carloacutis`)
-pero `create_git_project` dio 403 "forbidden" — causa probable: la GitHub App de Vercel no tiene
-permiso sobre ese repo todavía (instalada en modo "solo repos seleccionados"). Se le explicó cómo
-arreglarlo desde vercel.com/new o github.com/settings/installations; está pendiente su respuesta.
-/ Siguiente acción exacta: (a) seguir con el usuario hasta que el repo quede conectado en Vercel,
-(b) terminar de conectar `/app` (Hoy/Novena/Diario/Perfil) a datos reales de Supabase — ya está el
-layout protegido pero las 4 pantallas TODAVÍA leen `lib/demo-data.ts`, no la base real — y el
-sincronizador de localStorage→perfil todavía no se escribió.
+anónimo, ya escrito en `components/app/sincronizar-onboarding.tsx` pero TODAVÍA no está montado en
+ninguna pantalla). Vercel: el MCP de Vercel de esta sesión NO ve los proyectos/equipo del usuario
+(403 al crear, lista vacía aun cuando el usuario SÍ ve el proyecto en su navegador — son cuentas/
+tokens distintos) — se abandonó la vía API y se guió al usuario a mano por la UI: creó el proyecto
+"eucaristia-carloacutis" en el equipo "DIARIOSANTO" desde vercel.com/new, importado del repo. El
+repo de GitHub existía pero estaba VACÍO (el proyecto de esta sesión nunca tenía un remoto
+configurado) — se conectó `origin` a `https://github.com/luisaferemprende/eucaristia-carloacutis.git`,
+se renombró la rama local `master`→`main`, y se hizo el primer commit + push (41 archivos). Vercel
+debería desplegar solo al detectar el push — falta que el usuario confirme que el build pasó.
+Las 4 pantallas de `/app/*` (Hoy/Novena/Diario/Perfil) YA se convirtieron a Server Components que
+leen Supabase de verdad (antes eran 100% `lib/demo-data.ts`); cada una delega su parte interactiva
+a un Client Component en `components/app/*-cliente.tsx`. `<SincronizarOnboarding />` ya está
+montada en Hoy. Bug real encontrado en producción: el middleware se caía con
+`MIDDLEWARE_INVOCATION_FAILED` en Vercel (pero funcionaba en local) — causa: la "publishable key"
+nueva de Supabase (`sb_publishable_...`) no es compatible todavía con la versión instalada de
+`@supabase/ssr` (0.12.7); se cambió `.env.local` (y se le pidió al usuario cambiar la misma
+variable en Vercel) a la clave clásica `anon` (JWT) — confirmado que ARREGLA el problema en local.
+Falta confirmar que el redeploy en Vercel con esa clave también queda bien.
+/ Siguiente acción exacta: confirmar con el usuario que Vercel ya carga bien con la clave clásica;
+luego seguir con Perfil (falta convertirlo a datos reales) y después Hotmart + Resend + dominio.
 
 ## Qué es esta app (3 líneas máximo)
 Reto diario de 3 minutos centrado en la Eucaristía: el pensamiento de un santo (Carlo Acutis y otros grandes devotos eucarísticos) + la historia de un milagro eucarístico + una micro-preparación para la comunión, respaldado por un diario espiritual privado y retos de novenas en grupo. Para católicas practicantes ocupadas (avatar: Carmen Rosa) que sienten que van a misa por inercia y quieren constancia sin pagar precios abusivos. Monetización: $3.99/mes o $29.99/año, 7 días de prueba gratis.
