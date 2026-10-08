@@ -4,12 +4,13 @@
 // Server Component (app/app/page.tsx) y solo maneja la interacción (el
 // check-in llama al RPC real, no un estado local falso).
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, type Variants } from 'motion/react';
-import { BookHeart, Check, ChevronRight, Flame, Sparkles } from 'lucide-react';
+import { BookHeart, Check, ChevronRight, CircleDot, Flame, Sparkles } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { AnilloProgresoApp, CountUp, saludoPorHora } from '@/components/app/ui';
 import { createClient } from '@/lib/supabase/client';
+import { CONJUNTOS, conjuntoDeHoy, type ConjuntoId } from '@/lib/rosario';
 
 const lista: Variants = { hidden: {}, visible: { transition: { staggerChildren: 0.07 } } };
 const item: Variants = {
@@ -49,6 +50,9 @@ export function HoyCliente(d: HoyData) {
   const router = useRouter();
   const [hecho, setHecho] = useState(d.hechoHoy);
   const [enviando, setEnviando] = useState(false);
+  // El día de la semana se lee en el dispositivo (el servidor está en otra zona horaria).
+  const [conjuntoHoy, setConjuntoHoy] = useState<ConjuntoId | null>(null);
+  useEffect(() => setConjuntoHoy(conjuntoDeHoy()), []);
   const ahora = new Date();
   const fecha = fechaCorta(ahora);
   const pctNovena = d.novena ? Math.round((d.novena.diaActual / d.novena.diasTotal) * 100) : 0;
@@ -185,6 +189,30 @@ export function HoyCliente(d: HoyData) {
             <p className="text-[15px] font-semibold text-[var(--text-primary)]">Elige tu novena</p>
             <p className="mt-0.5 text-[13px] text-[var(--text-secondary)]">
               Empieza tu primera novena completa, 9 días guiados
+            </p>
+          </div>
+          <ChevronRight size={20} color="var(--text-tertiary)" aria-hidden="true" className="shrink-0" />
+        </motion.a>
+      )}
+
+      {/* ——— ROSARIO: misterios del día, opcional y aparte de los 3 minutos ——— */}
+      {conjuntoHoy && (
+        <motion.a
+          href="/app/rosario"
+          variants={item}
+          whileTap={{ scale: 0.98 }}
+          className="mt-4 flex items-center gap-3 rounded-[var(--radius-card)] border border-[color-mix(in_oklab,var(--text-tertiary)_20%,transparent)] bg-[var(--surface)] p-5 [touch-action:manipulation]"
+        >
+          <span
+            aria-hidden="true"
+            className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[var(--chip-bg)]"
+          >
+            <CircleDot size={20} color="var(--accent)" aria-hidden="true" />
+          </span>
+          <div className="min-w-0 flex-1">
+            <p className="text-[15px] font-semibold text-[var(--text-primary)]">Rosario de hoy</p>
+            <p className="mt-0.5 text-[13px] text-[var(--text-secondary)]">
+              {CONJUNTOS[conjuntoHoy].titulo} · 5 meditaciones
             </p>
           </div>
           <ChevronRight size={20} color="var(--text-tertiary)" aria-hidden="true" className="shrink-0" />

@@ -9,6 +9,16 @@
 > (peso menor, no ausente). Distribución de peso pedida: Eucaristía/santos/milagros ~75% · diario ~15% ·
 > novenas/comunidad ~10%. Ver ESTADO.md y FICHA-MODELO.md para el registro de esta decisión de producto.
 
+> **Integración del Santo Rosario (2026-10-07, a pedido del usuario):** se suma "La Corona de María" —
+> los misterios del Rosario del día, meditados uno por uno (opcional, ~5 min, aparte de los 3 min del
+> ritual). Cambios SOLO en: H1 ("Vive la Eucaristía y el Rosario [como los santos]"), subtítulo
+> ("La Autopista de 3 Minutos: Eucaristía, milagros y la Corona de María, cada día."), título y Big
+> Idea de §4, paso "Vives" (La Corona de María + micro-preparación), Antes/Después, FAQ 1 y 3, cierre y
+> PD, y tarjeta extra en el visual del hero. La OFERTA (§6: stack de $70, planes y features) y la
+> GARANTÍA NO se tocaron, por indicación del usuario. Se mantiene el valor real de $70 (no se
+> reintroduce un "$105": las líneas por función no tienen fuente verificable). Pendiente: redactar y
+> revisar doctrinalmente las 20 meditaciones (hoy solo hay 1) y verificar licencias de imágenes.
+
 ## PROCESO OBLIGATORIO DE HEADLINE (evidencia — 52, mínimo 10 variantes puntuadas)
 
 Mecanismo bautizado: **La Autopista de 3 Minutos** (cita literal de Carlo Acutis, ya el gancho central de la marca — se conserva tras el pivote: el mecanismo no cambia, se AMPLÍA su contenido diario).

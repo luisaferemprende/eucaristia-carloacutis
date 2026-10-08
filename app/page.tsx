@@ -73,6 +73,12 @@ function HeroVisualMock() {
           Lanciano, Italia — el pan y el vino que aún hoy se conservan.
         </p>
       </div>
+      <div className="mt-3 rounded-[calc(var(--radius-card)-4px)] border border-[color-mix(in_oklab,var(--text-tertiary)_22%,transparent)] bg-[var(--bg)] p-4">
+        <p className="text-[16px] font-semibold text-[var(--text-primary)]">La Corona de María</p>
+        <p className="mt-1 text-[16px] leading-snug text-[var(--text-secondary)]">
+          Los misterios del día, meditados uno por uno.
+        </p>
+      </div>
     </div>
   );
 }
@@ -84,8 +90,8 @@ export default function LandingEucaristiaViva() {
       <Hero
         appName="EucaristíaViva"
         loginHref="/entrar"
-        h1Marked="Vive la Eucaristía [acento]a fondo[/acento], en 3 minutos al día"
-        subtitleMarked="La Autopista de 3 Minutos: los santos y un milagro eucarístico, cada día."
+        h1Marked="Vive la Eucaristía y el Rosario [acento]como los santos[/acento]"
+        subtitleMarked="La Autopista de 3 Minutos: Eucaristía, milagros y la Corona de María, cada día."
         ctaLabel={CTA_LABEL}
         ctaHref={CTA_HREF}
         socialProof={<span>7 días gratis · cancela cuando quieras</span>}
@@ -120,30 +126,30 @@ export default function LandingEucaristiaViva() {
 
       {/* 4. SOLUCIÓN — La Autopista de 3 Minutos */}
       <Solucion
-        tituloMarked="Tu Eucaristía, [acento]con vida otra vez[/acento]"
+        tituloMarked="Eucaristía y Rosario, [acento]con vida otra vez[/acento]"
         mecanismo="La Autopista de 3 Minutos"
-        bigIdeaMarked="No te falta fe. Te faltaba un método diario que te lleve de vuelta al centro: la Eucaristía. [b]La Autopista de 3 Minutos[/b] te acompaña cada día."
+        bigIdeaMarked="No te falta fe. Te faltaba un método diario hacia el centro: la Eucaristía, de la mano de María. [b]La Autopista de 3 Minutos[/b] te acompaña."
         pasos={[
           { titulo: 'Recibes', detalle: 'El pensamiento de un santo y la historia de un milagro eucarístico.' },
-          { titulo: 'Vives', detalle: 'Tu micro-preparación de 3 minutos antes de tu próxima comunión.' },
+          { titulo: 'Vives', detalle: 'La Corona de María y tu micro-preparación de 3 minutos antes de comulgar.' },
           { titulo: 'Guardas', detalle: 'Tu avance en la novena y tu intención en el diario, con la comunidad.' },
         ]}
         antesDespues={{
           labelAntes: 'Antes',
           antes: 'Comulgo por inercia y abandono mis novenas con culpa.',
           labelDespues: 'Después',
-          despues: 'Vivo la Eucaristía a fondo, cada día, sin fallar.',
+          despues: 'Vivo la Eucaristía y el Rosario a fondo, cada día, sin fallar.',
         }}
       />
 
-      {/* 5. LA APP POR DENTRO — placeholders honestos hasta tener screenshots reales (pendiente en ESTADO.md) */}
+      {/* 5. LA APP POR DENTRO — capturas reales de la app (public/app/*.png, 375×812, datos de ejemplo) */}
       <AppPorDentro
         tituloMarked="Tu Eucaristía, [acento]día por día[/acento]"
         frames={[
-          { label: 'El santo y el milagro eucarístico de hoy', nombrePantalla: 'Inicio' },
-          { label: 'Tu novena, sin perder la cuenta', nombrePantalla: 'Novena' },
-          { label: 'Tu prueba gratis de 7 días', nombrePantalla: 'Planes' },
-          { label: 'Tu diario privado, para siempre', nombrePantalla: 'Diario' },
+          { src: '/app/hoy.png', alt: 'Pantalla de inicio: el pensamiento del santo y el milagro eucarístico de hoy', label: 'El santo y el milagro eucarístico de hoy' },
+          { src: '/app/novena.png', alt: 'Pantalla de novena: progreso día a día', label: 'Tu novena, sin perder la cuenta' },
+          { src: '/app/planes.png', alt: 'Pantalla de planes con 7 días gratis', label: 'Tu prueba gratis de 7 días' },
+          { src: '/app/diario.png', alt: 'Pantalla del diario espiritual privado', label: 'Tu diario privado, para siempre' },
         ]}
         ctaLabel={CTA_LABEL}
         ctaHref={CTA_HREF}
@@ -205,7 +211,7 @@ export default function LandingEucaristiaViva() {
           {
             pregunta: '¿No tengo tiempo para otra app más?',
             respuestaMarked:
-              'Son 3 minutos, menos de lo que ya pierdes decidiendo qué rezar. Puedes hacerlo antes de dormir o antes de misa.',
+              'Tu ritual son 3 minutos, menos de lo que ya pierdes decidiendo qué rezar. La Corona de María es un extra opcional, para cuando quieras más.',
           },
           {
             pregunta: '¿Y si la abandono como las demás?',
@@ -215,7 +221,7 @@ export default function LandingEucaristiaViva() {
           {
             pregunta: '¿Para qué pagar si puedo rezar gratis?',
             respuestaMarked:
-              'Gratis no te trae la sabiduría de los santos ni el milagro de hoy, ordenados y a tiempo. Pagas por la constancia.',
+              'Gratis no te trae la sabiduría de los santos, el milagro de hoy ni la Corona de María, ordenados y a tiempo. Pagas por la constancia.',
           },
           {
             pregunta: '¿Es otra suscripción cara?',
@@ -238,12 +244,12 @@ export default function LandingEucaristiaViva() {
       {/* 9. CTA FINAL — mismo verbo del hero, PS al cierre */}
       <CtaFinal
         h2Marked="Por fin, [acento]tu Eucaristía cobra vida[/acento]"
-        futurePacingMarked="Imagina abrir los ojos mañana y tener el pensamiento del santo y el milagro del día esperándote — sin buscar, sin decidir, solo vivirlo."
+        futurePacingMarked="Imagina abrir los ojos mañana y tener el pensamiento del santo, el milagro y tus misterios del Rosario esperándote — sin buscar, solo vivirlo."
         ctaLabel={CTA_LABEL}
         ctaHref={CTA_HREF}
         recap="la Garantía de tu Primera Novena Completa · 7 días gratis"
         psMarked={[
-          'PD: Cada día recibes el pensamiento de un santo, un milagro eucarístico y tu diario y novena con la comunidad.',
+          'PD: Cada día recibes el pensamiento de un santo, un milagro eucarístico, la Corona de María y tu diario y novena con la comunidad.',
           'Hoy entras con 7 días gratis y la Garantía de tu Primera Novena Completa (15 días).',
         ]}
       />

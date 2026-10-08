@@ -31,8 +31,17 @@ nueva de Supabase (`sb_publishable_...`) no es compatible todavía con la versi�
 `@supabase/ssr` (0.12.7); se cambió `.env.local` (y se le pidió al usuario cambiar la misma
 variable en Vercel) a la clave clásica `anon` (JWT) — confirmado que ARREGLA el problema en local.
 Falta confirmar que el redeploy en Vercel con esa clave también queda bien.
-/ Siguiente acción exacta: confirmar con el usuario que Vercel ya carga bien con la clave clásica;
-luego seguir con Perfil (falta convertirlo a datos reales) y después Hotmart + Resend + dominio.
+ACTUALIZACIÓN 2026-10-07: la causa real del 500 en Vercel eran DOS cosas encadenadas: (1) Next 16
+renombró `middleware.ts`→`proxy.ts` (export `proxy`) — ya migrado y subido (commit 91f697b); (2) el
+usuario borró todos los proyectos de Vercel y recreó uno nuevo (`prj_R25DibI5LX0PYWBWRelgWVK6JoHR`,
+equipo DIARIOSANTO) que quedó con CERO variables de entorno → el proxy crasheaba al crear el cliente
+de Supabase. Se agregaron `NEXT_PUBLIC_SUPABASE_URL` y `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
+(clave anon clásica, no secreta) vía el MCP de Vercel (funciona SIN `teamId`; con `teamId` da 404) y
+se disparó un redeploy `dpl_LuPMqABir7Qq4xy7C7xD26rdu48j`. Ya no se usa `lib/demo-data.ts` (borrado);
+Perfil y las otras 3 pantallas leen Supabase. Protección de despliegue de Vercel: SSO activo para
+URLs `*.vercel.app` (puede pedir login de Vercel a visitantes; desactivar antes de lanzar).
+/ Siguiente acción exacta: confirmar que el redeploy responde 200 y que `/entrar` carga en
+producción; luego Hotmart (webhook con hottok) + Resend + dominio propio.
 
 ## Qué es esta app (3 líneas máximo)
 Reto diario de 3 minutos centrado en la Eucaristía: el pensamiento de un santo (Carlo Acutis y otros grandes devotos eucarísticos) + la historia de un milagro eucarístico + una micro-preparación para la comunión, respaldado por un diario espiritual privado y retos de novenas en grupo. Para católicas practicantes ocupadas (avatar: Carmen Rosa) que sienten que van a misa por inercia y quieren constancia sin pagar precios abusivos. Monetización: $3.99/mes o $29.99/año, 7 días de prueba gratis.

@@ -41,6 +41,11 @@
 4. "Sentir que formo parte de una comunidad global que está rezando exactamente lo mismo que yo hoy." (fuente: RESUMEN de investigación del usuario, sep-2026)
 5. "Convertir la Eucaristía en el verdadero motor de mi día a día." (identidad — en quién se convierte: una mujer con una relación viva e íntima con la Eucaristía) (fuente: RESUMEN de investigación del usuario, sep-2026)
 
+## Ampliación 2026-10-07 (dirección del usuario — Santo Rosario)
+- Deseo adicional: "Amar el Santo Rosario como lo amaron Carlo Acutis y los santos", unido al amor a
+  la Eucaristía. NO viene de VoC recolectada (no hay frases del cliente todavía): es una decisión de
+  producto del dueño, a validar con los primeros usuarios reales antes de darle más peso en el copy.
+
 ## Voice of customer (12 frases con fuente — mezcla de investigación propia del usuario + VoC del líder global, ya que el nicho específico en español todavía no tiene reseñas propias)
 - "It's too expensive for a prayer app, $70 a year is way out of budget for my family." (fuente: Facebook/App Store vía usuario, sep-2026)
 - "Keeps locking me out of content even during trials, hard to navigate daily routines." (fuente: App Store Hallow vía usuario, sep-2026)
