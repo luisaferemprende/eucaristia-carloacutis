@@ -11,7 +11,7 @@ import { Mail } from 'lucide-react';
 import { CtaFunnel } from '@/components/funnel/ui';
 import { createClient } from '@/lib/supabase/client';
 
-type Estado = 'reposo' | 'enviando' | 'enviado' | 'error';
+type Estado = 'reposo' | 'enviando' | 'enviado' | 'error' | 'limite';
 
 export default function Entrar() {
   const [correo, setCorreo] = useState('');
@@ -30,7 +30,12 @@ export default function Entrar() {
       options: { emailRedirectTo: `${window.location.origin}/auth/callback?next=/app` },
     });
     // Anti-enumeración: Supabase ya responde igual exista o no el correo para
-    // signInWithOtp — cualquier error de red/formato muestra el mismo mensaje genérico.
+    // signInWithOtp. El límite de envíos no revela nada de la cuenta, así que
+    // se avisa aparte para que la persona sepa que debe esperar y no reintentar.
+    if (error?.status === 429 || error?.code === 'over_email_send_rate_limit') {
+      setEstado('limite');
+      return;
+    }
     setEstado(error ? 'error' : 'enviado');
   };
 
@@ -85,7 +90,7 @@ export default function Entrar() {
                 value={correo}
                 onChange={(e) => {
                   setCorreo(e.target.value);
-                  if (estado === 'error') setEstado('reposo');
+                  if (estado === 'error' || estado === 'limite') setEstado('reposo');
                 }}
                 className={`h-14 w-full rounded-[var(--radius-button)] border bg-[var(--surface)] px-4 text-[16px] text-[var(--text-primary)] outline-none transition-colors placeholder:text-[var(--text-tertiary)] ${
                   estado === 'error'
@@ -96,6 +101,11 @@ export default function Entrar() {
               {estado === 'error' && (
                 <p className="mt-2 text-[13px] text-[var(--danger)]">
                   Revisa tu correo — si es válido, te llegará el enlace.
+                </p>
+              )}
+              {estado === 'limite' && (
+                <p className="mt-2 text-[13px] text-[var(--danger)]">
+                  Pedimos muchos enlaces en poco tiempo. Espera unos minutos y vuelve a intentarlo.
                 </p>
               )}
             </div>
