@@ -27,7 +27,7 @@ export default function Entrar() {
     const supabase = createClient();
     const { error } = await supabase.auth.signInWithOtp({
       email: correo,
-      options: { emailRedirectTo: `${window.location.origin}/app` },
+      options: { emailRedirectTo: `${window.location.origin}/auth/callback?next=/app` },
     });
     // Anti-enumeración: Supabase ya responde igual exista o no el correo para
     // signInWithOtp — cualquier error de red/formato muestra el mismo mensaje genérico.
@@ -38,7 +38,7 @@ export default function Entrar() {
     const supabase = createClient();
     await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: `${window.location.origin}/app` },
+      options: { redirectTo: `${window.location.origin}/auth/callback?next=/app` },
     });
   };
 
