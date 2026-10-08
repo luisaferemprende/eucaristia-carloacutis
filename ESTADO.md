@@ -1,47 +1,28 @@
 # ESTADO — EucaristíaViva
-Última actualización: 2026-10-05 | Sesión actual: 6
+Última actualización: 2026-10-07 | Sesión actual: 6
 
-⏸️ CHECKPOINT — Última acción completada: Arrancó la Sesión 6 (integraciones reales). Supabase:
-proyecto nuevo "EucaristiaViva" (id `rcbkiuccypqtvupkyvxq`) creado y activo — esquema completo
-aplicado (profiles/daily_content/novenas/novena_participation/diary_entries/user_progress/
-subscriptions, todo con RLS + índices + el RPC transaccional `marcar_hoy_hecho`), advisors de
-seguridad limpios (solo queda 1 warning intencional documentado abajo), datos semilla reales
-insertados (4 novenas, el contenido de hoy). `.env.local` con la URL y la publishable key (no son
-secretas). `/entrar` ya llama a Supabase Auth real (magic link + Google OAuth) en vez del
-simulado. `app/app/layout.tsx` ahora exige sesión real (redirige a `/entrar` si no hay usuario) —
-se separó en Server Component (`layout.tsx`, chequea auth) + Client Component
-(`components/app/shell-cliente.tsx`, el día/noche por hora). El onboarding ahora guarda sus
-respuestas en localStorage al llegar al loading (clave `ev_onboarding_respuestas`) para poder
-aplicarlas al perfil real en el primer login (la cuenta no existe todavía durante el onboarding
-anónimo, ya escrito en `components/app/sincronizar-onboarding.tsx` pero TODAVÍA no está montado en
-ninguna pantalla). Vercel: el MCP de Vercel de esta sesión NO ve los proyectos/equipo del usuario
-(403 al crear, lista vacía aun cuando el usuario SÍ ve el proyecto en su navegador — son cuentas/
-tokens distintos) — se abandonó la vía API y se guió al usuario a mano por la UI: creó el proyecto
-"eucaristia-carloacutis" en el equipo "DIARIOSANTO" desde vercel.com/new, importado del repo. El
-repo de GitHub existía pero estaba VACÍO (el proyecto de esta sesión nunca tenía un remoto
-configurado) — se conectó `origin` a `https://github.com/luisaferemprende/eucaristia-carloacutis.git`,
-se renombró la rama local `master`→`main`, y se hizo el primer commit + push (41 archivos). Vercel
-debería desplegar solo al detectar el push — falta que el usuario confirme que el build pasó.
-Las 4 pantallas de `/app/*` (Hoy/Novena/Diario/Perfil) YA se convirtieron a Server Components que
-leen Supabase de verdad (antes eran 100% `lib/demo-data.ts`); cada una delega su parte interactiva
-a un Client Component en `components/app/*-cliente.tsx`. `<SincronizarOnboarding />` ya está
-montada en Hoy. Bug real encontrado en producción: el middleware se caía con
-`MIDDLEWARE_INVOCATION_FAILED` en Vercel (pero funcionaba en local) — causa: la "publishable key"
-nueva de Supabase (`sb_publishable_...`) no es compatible todavía con la versión instalada de
-`@supabase/ssr` (0.12.7); se cambió `.env.local` (y se le pidió al usuario cambiar la misma
-variable en Vercel) a la clave clásica `anon` (JWT) — confirmado que ARREGLA el problema en local.
-Falta confirmar que el redeploy en Vercel con esa clave también queda bien.
-ACTUALIZACIÓN 2026-10-07: la causa real del 500 en Vercel eran DOS cosas encadenadas: (1) Next 16
-renombró `middleware.ts`→`proxy.ts` (export `proxy`) — ya migrado y subido (commit 91f697b); (2) el
-usuario borró todos los proyectos de Vercel y recreó uno nuevo (`prj_R25DibI5LX0PYWBWRelgWVK6JoHR`,
-equipo DIARIOSANTO) que quedó con CERO variables de entorno → el proxy crasheaba al crear el cliente
-de Supabase. Se agregaron `NEXT_PUBLIC_SUPABASE_URL` y `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
-(clave anon clásica, no secreta) vía el MCP de Vercel (funciona SIN `teamId`; con `teamId` da 404) y
-se disparó un redeploy `dpl_LuPMqABir7Qq4xy7C7xD26rdu48j`. Ya no se usa `lib/demo-data.ts` (borrado);
-Perfil y las otras 3 pantallas leen Supabase. Protección de despliegue de Vercel: SSO activo para
-URLs `*.vercel.app` (puede pedir login de Vercel a visitantes; desactivar antes de lanzar).
-/ Siguiente acción exacta: confirmar que el redeploy responde 200 y que `/entrar` carga en
-producción; luego Hotmart (webhook con hottok) + Resend + dominio propio.
+⏸️ CHECKPOINT — Última acción completada (2026-10-07): producción en Vercel
+(`https://eucaristia-carloacutis.vercel.app`, repo `luisaferemprende/eucaristia-carloacutis`, rama
+`main`, auto-deploy activo) responde bien. Supabase (`rcbkiuccypqtvupkyvxq`) conectado con esquema,
+RLS y datos semilla; `/app/*` lee datos reales; `proxy.ts` (Next 16) reemplazó a `middleware.ts`;
+la clave pública usada es la `anon` clásica (la `sb_publishable_` rompía `@supabase/ssr` 0.12.7).
+Hecho en esta tanda: carrusel de la landing con capturas reales (`public/app/*.png`); Santo Rosario
+"La Corona de María" como extra opcional (`lib/rosario.ts`, `/app/rosario`, tarjeta en Hoy; 4
+conjuntos × 5 misterios, SOLO la Anunciación tiene meditación — faltan 19, y las imágenes están sin
+licencia verificada); landing con copy del Rosario sin tocar la oferta ($3.99/mes · $29.99/año,
+"$70" de referencia, sin "$105"); `/auth/callback` (cambia el código del correo por sesión).
+**LOGIN POR CORREO BLOQUEADO (diagnosticado):** los logs de Supabase Auth muestran
+`429 over_email_send_rate_limit` — el correo integrado de Supabase permite muy pocos envíos por
+hora y las pruebas lo agotaron. `/entrar` ya muestra un mensaje distinto para ese caso (commit
+f9087c5). Pendientes del usuario: (1) esperar ~1 h y pedir UN solo enlace; (2) en Supabase →
+Authentication → URL Configuration poner Site URL `https://eucaristia-carloacutis.vercel.app` y
+Redirect URL `https://eucaristia-carloacutis.vercel.app/**` (hoy el enlace del correo cae en
+localhost); (3) crear cuenta en Resend para conectar SMTP propio (solución definitiva).
+Google OAuth NO está configurado (requiere cliente OAuth creado por el usuario en Google Cloud).
+/ Siguiente acción exacta: conectar Resend como SMTP de Supabase (sin dominio propio solo envía al
+correo dueño de la cuenta, suficiente para probar); luego Hotmart (webhook con hottok, escribe
+`subscriptions` con service_role) + dominio propio + desactivar la protección SSO de Vercel antes de
+lanzar. Considerar login con código de 6 dígitos para evitar el prefetch de Gmail (otp_expired).
 
 ## Qué es esta app (3 líneas máximo)
 Reto diario de 3 minutos centrado en la Eucaristía: el pensamiento de un santo (Carlo Acutis y otros grandes devotos eucarísticos) + la historia de un milagro eucarístico + una micro-preparación para la comunión, respaldado por un diario espiritual privado y retos de novenas en grupo. Para católicas practicantes ocupadas (avatar: Carmen Rosa) que sienten que van a misa por inercia y quieren constancia sin pagar precios abusivos. Monetización: $3.99/mes o $29.99/año, 7 días de prueba gratis.
@@ -77,9 +58,9 @@ Reto diario de 3 minutos centrado en la Eucaristía: el pensamiento de un santo 
 - Primera victoria del onboarding (<5 min): ver su primer pensamiento+milagro del día.
 
 ## Secuencia maestra de construcción
-- Landing: **CONSTRUIDA + elevada** (Next.js 16 + kit canónico, tematizado; auditoría de escaneabilidad mobile pasada en Sesión 4-5 con 1 corrección real). Gate visual del revisor: NO LISTA con datos viejos (ver Problemas conocidos) — el usuario decidió avanzar con esto documentado.
-- Onboarding + Paywall + Login: **CONSTRUIDOS** — flujo cliente en `/onboarding` (6 preguntas → loading → paywall de 3 pantallas, con lista de beneficios ya corregida → confirmación simulada) que entrega a `/entrar` (login real).
-- App interna: **CONSTRUIDA** (Sesión 5) — `/app` (Hoy/M0), `/app/novena`, `/app/diario`, `/app/perfil`, con datos semilla realistas (`lib/demo-data.ts`) y nav inferior de 4 destinos (`components/app/ui.tsx`). Modo día/noche responde a la hora real del dispositivo.
+- Landing: construida y elevada, gate visual del revisor PENDIENTE (veredicto NO LISTA, ver Problemas conocidos) (Next.js 16 + kit canónico, tematizado; auditoría de escaneabilidad mobile pasada en Sesión 4-5 con 1 corrección real). Gate visual del revisor: NO LISTA con datos viejos (ver Problemas conocidos) — el usuario decidió avanzar con esto documentado.
+- Onboarding + Paywall + Login: implementados, gate visual del revisor PENDIENTE de re-correr (veredictos NO LISTA, ver Problemas conocidos) — flujo cliente en `/onboarding` (6 preguntas → loading → paywall de 3 pantallas, con lista de beneficios ya corregida → confirmación simulada) que entrega a `/entrar` (login real).
+- App interna: implementada (Sesión 5), pantalla principal con gate visual PENDIENTE (veredicto NO LISTA, ver Problemas conocidos) — `/app` (Hoy/M0), `/app/novena`, `/app/diario`, `/app/perfil`, con datos semilla realistas (`lib/demo-data.ts`) y nav inferior de 4 destinos (`components/app/ui.tsx`). Modo día/noche responde a la hora real del dispositivo.
 - Servicios externos — **EN CURSO (Sesión 6):** Supabase conectado (esquema+RLS+seed, ver Decisiones
   técnicas) y `/entrar` ya usa Auth real. Hotmart/dominio/Resend: no iniciados todavía. Vercel:
   repo de GitHub listo, conexión del proyecto bloqueada por un permiso de la GitHub App (pendiente
@@ -179,7 +160,12 @@ Reto diario de 3 minutos centrado en la Eucaristía: el pensamiento de un santo 
   cuando se conecte Supabase, no antes (sería fingir una espera que no existe). PENDIENTE:
   re-correr el revisor-visual.
 
+- **Rosario (Sesión 6):** 19 de 20 meditaciones sin escribir (requieren fuentes verificadas y revisión doctrinal); imágenes de misterios sin licencia verificada; traducción bíblica por definir (Torres Amat, dominio público).
+- **Login por correo:** límite de envíos del correo integrado de Supabase (429) — solución definitiva = SMTP propio con Resend. URL Configuration de Supabase sin configurar.
+
 ## Pendientes del usuario (acciones que el usuario debe hacer)
+- [ ] Supabase → Authentication → URL Configuration: Site URL `https://eucaristia-carloacutis.vercel.app` + Redirect URL `https://eucaristia-carloacutis.vercel.app/**`.
+- [ ] Crear cuenta gratis en Resend para conectar el correo de acceso.
 - [ ] Dar sus DATOS DEL RESPONSABLE (nombre o razón social, país desde el que opera, y el correo real de soporte) para terminar `/privacidad`, `/terminos` y confirmar el correo del footer/`/reembolsos`.
 - [ ] Decidir si seguimos puliendo el gate visual de la landing ahora, o avanzamos documentándolo como pendiente.
 - [ ] Darle permiso a la GitHub App de Vercel sobre el repo `eucaristia-carloacutis` (vercel.com/new
