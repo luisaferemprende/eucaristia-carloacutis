@@ -9,7 +9,7 @@ la clave pública usada es la `anon` clásica (la `sb_publishable_` rompía `@su
 Hecho en esta tanda: carrusel de la landing con capturas reales (`public/app/*.png`); Santo Rosario
 "La Corona de María" como extra opcional (`lib/rosario.ts`, `/app/rosario`, tarjeta en Hoy; 4
 conjuntos × 5 misterios, SOLO la Anunciación tiene meditación — faltan 19, y las imágenes están sin
-licencia verificada); landing con copy del Rosario sin tocar la oferta ($3.99/mes · $29.99/año,
+licencia por verificar); la página de ventas ahora incluye copy del Rosario sin tocar la oferta ($3.99/mes · $29.99/año,
 "$70" de referencia, sin "$105"); `/auth/callback` (cambia el código del correo por sesión).
 **LOGIN POR CORREO BLOQUEADO (diagnosticado):** los logs de Supabase Auth muestran
 `429 over_email_send_rate_limit` — el correo integrado de Supabase permite muy pocos envíos por
@@ -127,19 +127,19 @@ Reto diario de 3 minutos centrado en la Eucaristía: el pensamiento de un santo 
 - Sesión 8: Adquisición, lanzamiento y backoffice.
 
 ## Problemas conocidos ⚠️
-- **Veredicto de landing (docs/revisiones/landing-veredicto.md): NO LISTA.** Usabilidad 28/40 (falta ≥36) y Craft 15/20 (falta ≥16); Copy 16/20 SÍ pasa. Los defectos que quedan tras 5 rondas son en su mayoría estructurales para este TIPO de pantalla (heurísticas de Nielsen como "control/deshacer" o "atajos de experto" no aplican bien a una landing estática) o de identidad visual profunda (el mundo del sujeto de FICHA-ARTE — rayos de custodia, textura de trigo, sello de hostia — no se llevó a un tratamiento visual concreto, solo queda el hairline dorado). Antes de mandar tráfico pagado, decidir con el usuario: seguir puliendo, o aceptar y avanzar.
+- **Veredicto de landing (docs/revisiones/landing-veredicto.md): NO LISTA (gate PENDIENTE).** Usabilidad 28/40 (falta ≥36) y Craft 15/20 (falta ≥16); Copy 16/20 SÍ pasa. Los defectos que quedan tras 5 rondas son en su mayoría estructurales para este TIPO de pantalla (heurísticas de Nielsen como "control/deshacer" o "atajos de experto" no aplican bien a una landing estática) o de identidad visual profunda (el mundo del sujeto de FICHA-ARTE — rayos de custodia, textura de trigo, sello de hostia — no se llevó a un tratamiento visual concreto, solo queda el hairline dorado). Antes de mandar tráfico pagado, decidir con el usuario: seguir puliendo, o aceptar y avanzar.
 - Carrusel "La app por dentro" con PLACEHOLDERS rotulados — se resuelve montando screenshots reales en la Sesión 5.
 - `/privacidad` y `/terminos` muestran "en construcción" — PENDIENTE de que el usuario dé sus DATOS DEL RESPONSABLE (nombre/razón social, país desde el que opera) para redactarlas con 47-LEGAL-FISCAL-Y-PRIVACIDAD.md.
 - Correo de soporte `hola@eucaristiaviva.com` es un PLACEHOLDER plausible (mismo patrón que usa el propio kit del SO) — PENDIENTE de que el usuario confirme su dominio/correo real antes de publicar. Aparece en el footer y en `/reembolsos`.
 - Contenido doctrinal ampliado: ahora la biblioteca diaria incluye, además del pensamiento del santo, la historia de un milagro eucarístico real (ej. Lanciano) — la precisión histórica/doctrinal de esos ~365×2 textos necesita la misma revisión cuidadosa ya anotada, y ahora cubre también el catálogo de milagros (el propio Carlo Acutis documentó esto en vida — hay fuentes reales que usar como base, no inventar).
-- **Veredicto — onboarding: NO LISTA (30/40 usabilidad, 12/20 craft)** en `docs/revisiones/onboarding-veredicto.md`
+- **Veredicto — onboarding: NO LISTA (30/40 usabilidad, 12/20 craft) — gate PENDIENTE** en `docs/revisiones/onboarding-veredicto.md`
   (veredicto de la versión SIN corregir). Defectos que señaló y ya se corrigieron: vacío muerto
   arriba/abajo del bloque de preguntas → `justify-start` + halo de profundidad; sin salida en la
   primera pregunta → botón "X" agregado; el chip seleccionado avanzaba antes de que se viera el
   check → delay de 280ms (`PreguntaOpciones`); sin stagger de entrada entre ícono/título/chips →
   ahora cada uno anima por separado; fondo plano → gradiente radial sutil arriba. PENDIENTE:
   re-correr el revisor-visual sobre la versión corregida para confirmar que sí pasa el gate.
-- **Veredicto — paywall: NO LISTA (32/40 usabilidad, 8/20 craft, 15/20 copy)** en
+- **Veredicto — paywall: NO LISTA (32/40 usabilidad, 8/20 craft, 15/20 copy) — gate PENDIENTE** en
   `docs/revisiones/paywall-veredicto.md` (versión sin corregir). Defectos ya corregidos: bug de
   contraste real (texto casi-blanco sobre botón/badge dorado en modo noche — nuevo token
   `--on-accent-fill` en `components/landing/tokens.css`, siempre oscuro en día Y noche); faltaba
@@ -148,7 +148,7 @@ Reto diario de 3 minutos centrado en la Eucaristía: el pensamiento de un santo 
   tarjetas de plan sin feedback de selección (whileTap + check) → agregado; copy sin comparación
   de precio ni desglose diario → se agregó "menos de $0.08 al día" y la comparación vs. la app
   líder ($70/año). PENDIENTE: re-correr el revisor-visual.
-- **Veredicto — pantalla principal: NO LISTA (29/40 usabilidad, 13/20 craft)** en
+- **Veredicto — pantalla principal: NO LISTA (29/40 usabilidad, 13/20 craft) — gate PENDIENTE** en
   `docs/revisiones/pantalla-principal-veredicto.md` (versión sin corregir). Defectos ya
   corregidos: indicador de desarrollo de Next.js tapaba el nav → `devIndicators: false` en
   `next.config.ts`; el botón "Vivir mis 3 minutos" no se podía deshacer → ahora es un toggle;
