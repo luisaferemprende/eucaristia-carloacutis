@@ -29,7 +29,7 @@ export default async function Hoy() {
       supabase.from('user_progress').select('fecha').eq('user_id', userId).order('fecha', { ascending: false }).limit(3),
       supabase
         .from('novena_participation')
-        .select('dia_actual, novenas(nombre, dias_total)')
+        .select('dia_actual, dias_hechos, novenas(nombre, dias_total)')
         .eq('user_id', userId)
         .eq('completada', false)
         .order('created_at', { ascending: false })
@@ -54,7 +54,7 @@ export default async function Hoy() {
         milagroResumen={contenido.milagro_resumen}
         novena={
           participacion && novenaInfo
-            ? { nombre: novenaInfo.nombre, diaActual: participacion.dia_actual, diasTotal: novenaInfo.dias_total }
+            ? { nombre: novenaInfo.nombre, diasHechos: participacion.dias_hechos, diasTotal: novenaInfo.dias_total }
             : null
         }
         ultimaEntradaDiario={ultimaEntrada?.texto ?? null}

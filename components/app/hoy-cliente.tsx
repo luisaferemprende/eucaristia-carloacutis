@@ -42,7 +42,7 @@ export interface HoyData {
   pensamiento: string;
   milagroLugar: string;
   milagroResumen: string;
-  novena: { nombre: string; diaActual: number; diasTotal: number } | null;
+  novena: { nombre: string; diasHechos: number; diasTotal: number } | null;
   ultimaEntradaDiario: string | null;
 }
 
@@ -56,7 +56,7 @@ export function HoyCliente(d: HoyData) {
   useEffect(() => setConjuntoHoy(conjuntoDeHoy()), []);
   const ahora = new Date();
   const fecha = fechaCorta(ahora);
-  const pctNovena = d.novena ? Math.round((d.novena.diaActual / d.novena.diasTotal) * 100) : 0;
+  const pctNovena = d.novena ? Math.round((d.novena.diasHechos / d.novena.diasTotal) * 100) : 0;
 
   const abrirTresMinutos = () => router.push('/app/vivir');
 
@@ -161,7 +161,9 @@ export function HoyCliente(d: HoyData) {
           <div className="min-w-0 flex-1">
             <p className="text-[15px] font-semibold text-[var(--text-primary)]">{d.novena.nombre}</p>
             <p className="mt-0.5 text-[13px] text-[var(--text-secondary)]">
-              Día {d.novena.diaActual} de {d.novena.diasTotal} · sin fallar ni un día
+              {d.novena.diasHechos === 0
+                ? 'Empieza hoy tu día 1'
+                : `${d.novena.diasHechos} de ${d.novena.diasTotal} días hechos`}
             </p>
           </div>
           <ChevronRight size={20} color="var(--text-tertiary)" aria-hidden="true" className="shrink-0" />
