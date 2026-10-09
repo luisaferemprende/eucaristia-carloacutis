@@ -54,6 +54,47 @@ function envolverTexto(ctx: CanvasRenderingContext2D, texto: string, maxAncho: n
   return lineas;
 }
 
+// Emblema eucarístico (rayos + hostia + cruz) para los santos sin retrato libre.
+function dibujarEmblema(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  escala: number,
+  oro: string,
+  hostia: string,
+  cruz: string,
+) {
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.scale(escala, escala);
+  ctx.strokeStyle = oro;
+  ctx.lineCap = 'round';
+  for (let i = 0; i < 32; i++) {
+    const a = (i / 32) * Math.PI * 2;
+    const largo = i % 2 === 0 ? 150 : 112;
+    ctx.lineWidth = i % 2 === 0 ? 5 : 3;
+    ctx.globalAlpha = i % 2 === 0 ? 0.9 : 0.55;
+    ctx.beginPath();
+    ctx.moveTo(Math.cos(a) * 82, Math.sin(a) * 82);
+    ctx.lineTo(Math.cos(a) * largo, Math.sin(a) * largo);
+    ctx.stroke();
+  }
+  ctx.globalAlpha = 1;
+  ctx.fillStyle = hostia;
+  ctx.beginPath();
+  ctx.arc(0, 0, 66, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = oro;
+  ctx.lineWidth = 4;
+  ctx.beginPath();
+  ctx.arc(0, 0, 74, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.fillStyle = cruz;
+  ctx.fillRect(-5, -34, 10, 68);
+  ctx.fillRect(-22, -16, 44, 10);
+  ctx.restore();
+}
+
 // Cruz pequeña dibujada (no depende de que la fuente tenga el glifo).
 function cruzPequena(ctx: CanvasRenderingContext2D, cx: number, cy: number, s: number) {
   ctx.fillRect(cx - 2, cy - s, 4, s * 2);
@@ -118,6 +159,17 @@ export function TarjetaNovena({ santo, diasTotal, fecha, nombrePersona }: Props)
       const dw = img.width * escala;
       const dh = img.height * escala;
       ctx.drawImage(img, ax + (aw - dw) / 2, ay - (dh - ah) * 0.1, dw, dh);
+      ctx.restore();
+    } else {
+      ctx.save();
+      trazoArco(ctx, ax, ay, aw, ah);
+      ctx.clip();
+      const fondo = ctx.createLinearGradient(0, ay, 0, ay + ah);
+      fondo.addColorStop(0, v('--surface'));
+      fondo.addColorStop(1, v('--bg'));
+      ctx.fillStyle = fondo;
+      ctx.fillRect(ax, ay, aw, ah);
+      dibujarEmblema(ctx, W / 2, ay + ah * 0.46, 1.5, oro, v('--text-primary'), v('--bg'));
       ctx.restore();
     }
     ctx.strokeStyle = oro;
@@ -249,7 +301,30 @@ export function TarjetaNovena({ santo, diasTotal, fecha, nombrePersona }: Props)
                 className="aspect-[600/690] w-full rounded-t-full border-2 border-[var(--accent)] object-cover object-[50%_18%]"
               />
             ) : (
-              <div className="aspect-[600/690] w-full rounded-t-full border-2 border-[var(--accent)] bg-[var(--surface)]" />
+              <div className="flex aspect-[600/690] w-full items-center justify-center overflow-hidden rounded-t-full border-2 border-[var(--accent)] bg-gradient-to-b from-[var(--surface)] to-[var(--bg)]">
+                <svg viewBox="-170 -170 340 340" className="mt-[-12%] w-[88%]" role="img" aria-label="Eucaristía">
+                  {Array.from({ length: 32 }, (_, i) => {
+                    const a = (i / 32) * Math.PI * 2;
+                    const largo = i % 2 === 0 ? 150 : 112;
+                    return (
+                      <line
+                        key={i}
+                        x1={Number((Math.cos(a) * 82).toFixed(2))}
+                        y1={Number((Math.sin(a) * 82).toFixed(2))}
+                        x2={Number((Math.cos(a) * largo).toFixed(2))}
+                        y2={Number((Math.sin(a) * largo).toFixed(2))}
+                        strokeLinecap="round"
+                        style={{ stroke: 'var(--accent)', opacity: i % 2 === 0 ? 0.9 : 0.55 }}
+                        strokeWidth={i % 2 === 0 ? 5 : 3}
+                      />
+                    );
+                  })}
+                  <circle r="66" style={{ fill: 'var(--text-primary)' }} />
+                  <circle r="74" fill="none" strokeWidth="4" style={{ stroke: 'var(--accent)' }} />
+                  <rect x="-5" y="-34" width="10" height="68" style={{ fill: 'var(--bg)' }} />
+                  <rect x="-22" y="-16" width="44" height="10" style={{ fill: 'var(--bg)' }} />
+                </svg>
+              </div>
             )}
           </div>
           {/* Sello */}

@@ -14,6 +14,7 @@ import { TarjetaNovena } from '@/components/app/tarjeta-novena';
 import { createClient } from '@/lib/supabase/client';
 import { fechaLocalISO } from '@/lib/contenido-hoy';
 import {
+  ORACIONES_DE_SIEMPRE,
   fechaLarga,
   type NovenaActiva,
   type NovenaCompletada,
@@ -31,6 +32,52 @@ interface PremioVisible {
   santo: SantoNovena;
   diasTotal: number;
   fecha: string | null;
+}
+
+/* ───────────────────────── Padre Nuestro, Ave María y Gloria ───────────────────────── */
+function OracionesDeSiempre() {
+  const [abierto, setAbierto] = useState(false);
+  return (
+    <div className="relative mt-3 overflow-hidden rounded-[var(--radius-button)] border border-[color-mix(in_oklab,var(--text-tertiary)_22%,transparent)]">
+      <button
+        type="button"
+        onClick={() => setAbierto(!abierto)}
+        aria-expanded={abierto}
+        className="flex w-full items-center gap-3 p-4 text-left [touch-action:manipulation]"
+      >
+        <span className="min-w-0 flex-1">
+          <span className="block text-[13px] font-semibold text-[var(--text-secondary)]">Para terminar, reza</span>
+          <span className="block text-[15px] text-[var(--text-primary)]">Padre Nuestro, Ave María y Gloria</span>
+        </span>
+        <ChevronDown
+          size={18}
+          color="var(--text-tertiary)"
+          aria-hidden="true"
+          className={`shrink-0 transition-transform duration-200 ${abierto ? 'rotate-180' : ''}`}
+        />
+      </button>
+      <AnimatePresence initial={false}>
+        {abierto && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="overflow-hidden"
+          >
+            <div className="space-y-3 px-4 pb-4">
+              {ORACIONES_DE_SIEMPRE.map((o) => (
+                <div key={o.nombre}>
+                  <p className="text-[13px] font-semibold text-[var(--accent-text)]">{o.nombre}</p>
+                  <p className="mt-0.5 text-[14px] leading-relaxed text-[var(--text-primary)]">{o.texto}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
 }
 
 /* ───────────────────────── Vista de la tarjeta-premio ───────────────────────── */
@@ -257,11 +304,18 @@ function Progreso({
           <h2 className="relative mt-2 text-balance text-[24px] font-semibold leading-[1.25] text-[var(--text-primary)] [font-family:var(--font-display)]">
             {diaDeHoy.titulo}
           </h2>
-          <p className="relative mt-3 text-[16px] leading-relaxed text-[var(--text-primary)]">{diaDeHoy.reflexion}</p>
+          {diaDeHoy.entrada && (
+            <p className="relative mt-3 border-l-2 border-[var(--accent)] pl-3 text-[15px] italic leading-relaxed text-[var(--text-secondary)]">
+              {diaDeHoy.entrada}
+            </p>
+          )}
+          <p className="relative mt-4 text-[16px] leading-relaxed text-[var(--text-primary)]">{diaDeHoy.reflexion}</p>
           <div className="relative mt-5 rounded-[var(--radius-button)] bg-[var(--surface-2)] p-4">
-            <p className="text-[13px] font-semibold text-[var(--text-secondary)]">Oración</p>
+            <p className="text-[13px] font-semibold text-[var(--text-secondary)]">Oración a {novena.santo.nombre}</p>
             <p className="mt-1 text-[15px] italic leading-relaxed text-[var(--text-primary)]">{diaDeHoy.oracion}</p>
           </div>
+          <OracionesDeSiempre />
+
           <div className="relative mt-3 flex items-start gap-3 rounded-[var(--radius-button)] border border-[color-mix(in_oklab,var(--accent)_30%,transparent)] p-4">
             <HandHeart size={20} color="var(--accent-text)" aria-hidden="true" className="mt-0.5 shrink-0" />
             <div>
@@ -380,6 +434,11 @@ function Progreso({
                       className="overflow-hidden"
                     >
                       <div className="space-y-3 px-4 pb-4">
+                        {d.entrada && (
+                          <p className="border-l-2 border-[var(--accent)] pl-3 text-[14px] italic leading-relaxed text-[var(--text-secondary)]">
+                            {d.entrada}
+                          </p>
+                        )}
                         <p className="text-[15px] leading-relaxed text-[var(--text-primary)]">{d.reflexion}</p>
                         <p className="text-[15px] italic leading-relaxed text-[var(--text-secondary)]">{d.oracion}</p>
                         <p className="text-[14px] text-[var(--accent-text)]">

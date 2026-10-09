@@ -16,13 +16,14 @@ interface FilaNovena {
   imagen_alt: string | null;
   imagen_credito: string | null;
   frase_tarjeta: string | null;
+  nombre_tarjeta: string | null;
 }
 
 const COLUMNAS_NOVENA =
-  'id, nombre, santo_nombre, dias_total, por_que, santo_datos, imagen_url, imagen_alt, imagen_credito, frase_tarjeta';
+  'id, nombre, santo_nombre, dias_total, por_que, santo_datos, imagen_url, imagen_alt, imagen_credito, frase_tarjeta, nombre_tarjeta';
 
 const aSanto = (n: FilaNovena): SantoNovena => ({
-  nombre: n.santo_nombre,
+  nombre: n.nombre_tarjeta ?? n.santo_nombre,
   imagenUrl: n.imagen_url,
   imagenAlt: n.imagen_alt,
   imagenCredito: n.imagen_credito,
@@ -65,7 +66,7 @@ export default async function Novena() {
     const n = activaFila.novenas as unknown as FilaNovena;
     const { data: dias } = await supabase
       .from('novena_dias')
-      .select('dia, titulo, reflexion, oracion, proposito')
+      .select('dia, titulo, entrada, reflexion, oracion, proposito')
       .eq('novena_id', activaFila.novena_id)
       .order('dia');
     activa = {
