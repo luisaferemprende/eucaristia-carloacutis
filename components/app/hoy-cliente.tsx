@@ -127,10 +127,12 @@ export function HoyCliente(d: HoyData) {
       </motion.section>
 
       {/* ——— MILAGRO DE HOY: segunda pieza del mecanismo ——— */}
-      <motion.section
+      <motion.a
+        href="/app/milagro"
         variants={item}
-        aria-label="El milagro eucarístico de hoy"
-        className="mt-4 flex items-start gap-3 rounded-[var(--radius-card)] bg-[var(--surface-2)] p-5"
+        whileTap={{ scale: 0.98 }}
+        aria-label="Leer la historia del milagro eucarístico de hoy"
+        className="mt-4 flex items-start gap-3 rounded-[var(--radius-card)] bg-[var(--surface-2)] p-5 [touch-action:manipulation]"
       >
         <span
           aria-hidden="true"
@@ -138,12 +140,14 @@ export function HoyCliente(d: HoyData) {
         >
           <Sparkles size={20} color="var(--accent-2)" aria-hidden="true" />
         </span>
-        <div className="min-w-0">
+        <div className="min-w-0 flex-1">
           <p className="text-[13px] font-semibold text-[var(--text-secondary)]">Milagro eucarístico de hoy</p>
           <p className="mt-0.5 text-[15px] font-medium leading-snug text-[var(--text-primary)]">{d.milagroLugar}</p>
           <p className="mt-1 text-[13px] leading-snug text-[var(--text-secondary)]">{d.milagroResumen}</p>
+          <p className="mt-2 text-[13px] font-semibold text-[var(--accent-text)]">Leer la historia</p>
         </div>
-      </motion.section>
+        <ChevronRight size={20} color="var(--text-tertiary)" aria-hidden="true" className="mt-3 shrink-0" />
+      </motion.a>
 
       {/* ——— NOVENA EN CURSO: teaser con anillo real, lleva a la pestaña Novena ——— */}
       {d.novena ? (
