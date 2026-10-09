@@ -1,15 +1,15 @@
 'use client';
 
 // PARTE INTERACTIVA de la pantalla Hoy — recibe datos YA cargados por el
-// Server Component (app/app/page.tsx) y solo maneja la interacción (el
-// check-in llama al RPC real, no un estado local falso).
+// Server Component (app/app/page.tsx). El botón principal abre la experiencia
+// guiada de 3 minutos (/app/vivir), que es la que registra el día de verdad.
 
 import { useEffect, useState } from 'react';
 import { motion, type Variants } from 'motion/react';
 import { BookHeart, Check, ChevronRight, CircleDot, Flame, Sparkles } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { AnilloProgresoApp, CountUp, saludoPorHora } from '@/components/app/ui';
-import { createClient } from '@/lib/supabase/client';
+import { fechaLocalISO } from '@/lib/contenido-hoy';
 import { CONJUNTOS, conjuntoDeHoy, type ConjuntoId } from '@/lib/rosario';
 
 const lista: Variants = { hidden: {}, visible: { transition: { staggerChildren: 0.07 } } };
@@ -37,7 +37,7 @@ function truncarPalabra(texto: string, maxChars: number): string {
 export interface HoyData {
   nombre: string;
   racha: number;
-  hechoHoy: boolean;
+  fechasHechas: string[];
   santoNombre: string;
   pensamiento: string;
   milagroLugar: string;
@@ -48,8 +48,9 @@ export interface HoyData {
 
 export function HoyCliente(d: HoyData) {
   const router = useRouter();
-  const [hecho, setHecho] = useState(d.hechoHoy);
-  const [enviando, setEnviando] = useState(false);
+  // "Hoy" se decide con la fecha LOCAL del dispositivo (el servidor está en UTC).
+  const [hecho, setHecho] = useState(false);
+  useEffect(() => setHecho(d.fechasHechas.includes(fechaLocalISO())), [d.fechasHechas]);
   // El día de la semana se lee en el dispositivo (el servidor está en otra zona horaria).
   const [conjuntoHoy, setConjuntoHoy] = useState<ConjuntoId | null>(null);
   useEffect(() => setConjuntoHoy(conjuntoDeHoy()), []);
@@ -57,17 +58,7 @@ export function HoyCliente(d: HoyData) {
   const fecha = fechaCorta(ahora);
   const pctNovena = d.novena ? Math.round((d.novena.diaActual / d.novena.diasTotal) * 100) : 0;
 
-  const marcarHoy = async () => {
-    if (hecho || enviando) return;
-    setEnviando(true);
-    const supabase = createClient();
-    const { error } = await supabase.rpc('marcar_hoy_hecho');
-    setEnviando(false);
-    if (!error) {
-      setHecho(true);
-      router.refresh();
-    }
-  };
+  const abrirTresMinutos = () => router.push('/app/vivir');
 
   return (
     <motion.main variants={lista} initial="hidden" animate="visible" className="flex-1 px-4 pt-6 pb-4">
@@ -111,14 +102,12 @@ export function HoyCliente(d: HoyData) {
         <motion.button
           whileTap={{ scale: 0.97 }}
           type="button"
-          onClick={marcarHoy}
-          disabled={enviando}
-          aria-pressed={hecho}
+          onClick={abrirTresMinutos}
           className={`mt-6 flex h-[52px] w-full items-center justify-center gap-2 rounded-[var(--radius-button)] text-[16px] font-semibold transition-colors duration-150 [touch-action:manipulation] ${
             hecho
               ? 'bg-[color-mix(in_oklab,var(--accent-2)_16%,transparent)] text-[var(--accent-2)]'
               : 'bg-[var(--accent)] text-[var(--on-accent-fill)] shadow-[0_10px_28px_color-mix(in_oklab,var(--accent)_30%,transparent)]'
-          } ${enviando ? 'opacity-60' : ''}`}
+          }`}
         >
           {hecho ? (
             <motion.span
@@ -131,8 +120,6 @@ export function HoyCliente(d: HoyData) {
               <Check size={20} strokeWidth={3} aria-hidden="true" />
               Viviste tu Autopista de hoy
             </motion.span>
-          ) : enviando ? (
-            'Guardando…'
           ) : (
             'Vivir mis 3 minutos'
           )}

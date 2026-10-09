@@ -5,10 +5,10 @@
 import { createClient } from '@/lib/supabase/server';
 import { HoyCliente } from '@/components/app/hoy-cliente';
 import { SincronizarOnboarding } from '@/components/app/sincronizar-onboarding';
+import { cargarContenidoDeHoy } from '@/lib/contenido-hoy';
 
-// Contenido de respaldo honesto: la biblioteca de ~365 días todavía no está
-// completa (pendiente en ESTADO.md) — si no hay fila sembrada para hoy, se
-// usa el único día ya verificado en vez de romper la pantalla.
+// Contenido de respaldo honesto: solo si la tabla estuviera vacía (la
+// biblioteca de ~365 días todavía está en construcción — ESTADO.md).
 const CONTENIDO_RESPALDO = {
   santo_nombre: 'Carlo Acutis',
   pensamiento: 'La Eucaristía es mi autopista al cielo.',
@@ -21,13 +21,12 @@ export default async function Hoy() {
   const { data: userData } = await supabase.auth.getUser();
   const userId = userData.user!.id; // garantizado por app/app/layout.tsx
 
-  const hoy = new Date().toISOString().slice(0, 10);
-
-  const [{ data: perfil }, { data: contenidoHoy }, { data: progresoHoy }, { data: participacion }, { data: ultimaEntrada }] =
+  const [{ data: perfil }, contenidoHoy, { data: progresoReciente }, { data: participacion }, { data: ultimaEntrada }] =
     await Promise.all([
       supabase.from('profiles').select('nombre, racha_actual, santo_preferido').eq('id', userId).single(),
-      supabase.from('daily_content').select('*').eq('fecha', hoy).limit(1).maybeSingle(),
-      supabase.from('user_progress').select('fecha').eq('user_id', userId).eq('fecha', hoy).maybeSingle(),
+      cargarContenidoDeHoy(supabase),
+      // Últimos días hechos: el cliente decide cuál es "hoy" con la fecha LOCAL.
+      supabase.from('user_progress').select('fecha').eq('user_id', userId).order('fecha', { ascending: false }).limit(3),
       supabase
         .from('novena_participation')
         .select('dia_actual, novenas(nombre, dias_total)')
@@ -48,7 +47,7 @@ export default async function Hoy() {
       <HoyCliente
         nombre={perfil?.nombre ?? 'Peregrino'}
         racha={perfil?.racha_actual ?? 0}
-        hechoHoy={!!progresoHoy}
+        fechasHechas={(progresoReciente ?? []).map((p) => p.fecha as string)}
         santoNombre={contenido.santo_nombre}
         pensamiento={contenido.pensamiento}
         milagroLugar={contenido.milagro_lugar}
