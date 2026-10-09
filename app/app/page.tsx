@@ -5,7 +5,7 @@
 import { createClient } from '@/lib/supabase/server';
 import { HoyCliente } from '@/components/app/hoy-cliente';
 import { SincronizarOnboarding } from '@/components/app/sincronizar-onboarding';
-import { cargarContenidoDeHoy } from '@/lib/contenido-hoy';
+import { cargarContenidoDeHoy, type ContenidoDiario } from '@/lib/contenido-hoy';
 
 // Contenido de respaldo honesto: solo si la tabla estuviera vacía (la
 // biblioteca de ~365 días todavía está en construcción — ESTADO.md).
@@ -49,6 +49,8 @@ export default async function Hoy() {
         racha={perfil?.racha_actual ?? 0}
         fechasHechas={(progresoReciente ?? []).map((p) => p.fecha as string)}
         santoNombre={contenido.santo_nombre}
+        santoImagenUrl={(contenido as Partial<ContenidoDiario>).santo_imagen_url ?? null}
+        santoImagenAlt={(contenido as Partial<ContenidoDiario>).santo_imagen_alt ?? null}
         pensamiento={contenido.pensamiento}
         milagroLugar={contenido.milagro_lugar}
         milagroResumen={contenido.milagro_resumen}

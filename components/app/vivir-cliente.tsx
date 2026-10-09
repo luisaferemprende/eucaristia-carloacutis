@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import { AnimatePresence, motion } from 'motion/react';
 import { BookHeart, Check, ChevronLeft, Flame, Quote, Sparkles } from 'lucide-react';
 import { CountUp } from '@/components/app/ui';
+import { RetratoSanto } from '@/components/app/emblema-eucaristico';
 import { createClient } from '@/lib/supabase/client';
 import { fechaLocalISO, type ContenidoDiario } from '@/lib/contenido-hoy';
 
@@ -189,9 +190,16 @@ export function VivirCliente({
 
           {paso === 0 && (
             <>
-              <p className="relative text-[13px] font-semibold uppercase tracking-[0.06em] text-[var(--accent-text)]">
-                {contenido.santo_nombre}
-              </p>
+              <div className="relative flex flex-col items-center text-center">
+                <RetratoSanto
+                  url={contenido.santo_imagen_url}
+                  alt={contenido.santo_imagen_alt}
+                  className="h-[160px] w-[136px]"
+                />
+                <p className="mt-4 text-[13px] font-semibold uppercase tracking-[0.06em] text-[var(--accent-text)]">
+                  {contenido.santo_nombre}
+                </p>
+              </div>
               <Quote size={28} color="var(--accent)" aria-hidden="true" className="relative mt-4" />
               <p className="relative mt-2 text-balance text-[24px] font-semibold leading-[1.35] text-[var(--text-primary)] [font-family:var(--font-display)]">
                 {contenido.pensamiento}

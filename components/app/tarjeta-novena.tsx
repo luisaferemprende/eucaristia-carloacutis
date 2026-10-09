@@ -9,6 +9,7 @@
 import { useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { Download, Share2 } from 'lucide-react';
+import { EmblemaEucaristico } from '@/components/app/emblema-eucaristico';
 import { fechaLarga, type SantoNovena } from '@/lib/novena';
 
 interface Props {
@@ -302,28 +303,7 @@ export function TarjetaNovena({ santo, diasTotal, fecha, nombrePersona }: Props)
               />
             ) : (
               <div className="flex aspect-[600/690] w-full items-center justify-center overflow-hidden rounded-t-full border-2 border-[var(--accent)] bg-gradient-to-b from-[var(--surface)] to-[var(--bg)]">
-                <svg viewBox="-170 -170 340 340" className="mt-[-12%] w-[88%]" role="img" aria-label="Eucaristía">
-                  {Array.from({ length: 32 }, (_, i) => {
-                    const a = (i / 32) * Math.PI * 2;
-                    const largo = i % 2 === 0 ? 150 : 112;
-                    return (
-                      <line
-                        key={i}
-                        x1={Number((Math.cos(a) * 82).toFixed(2))}
-                        y1={Number((Math.sin(a) * 82).toFixed(2))}
-                        x2={Number((Math.cos(a) * largo).toFixed(2))}
-                        y2={Number((Math.sin(a) * largo).toFixed(2))}
-                        strokeLinecap="round"
-                        style={{ stroke: 'var(--accent)', opacity: i % 2 === 0 ? 0.9 : 0.55 }}
-                        strokeWidth={i % 2 === 0 ? 5 : 3}
-                      />
-                    );
-                  })}
-                  <circle r="66" style={{ fill: 'var(--text-primary)' }} />
-                  <circle r="74" fill="none" strokeWidth="4" style={{ stroke: 'var(--accent)' }} />
-                  <rect x="-5" y="-34" width="10" height="68" style={{ fill: 'var(--bg)' }} />
-                  <rect x="-22" y="-16" width="44" height="10" style={{ fill: 'var(--bg)' }} />
-                </svg>
+                <EmblemaEucaristico className="mt-[-12%] w-[88%]" />
               </div>
             )}
           </div>

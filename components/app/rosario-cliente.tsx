@@ -92,17 +92,21 @@ export function RosarioCliente() {
             Misterio {paso + 1} de 5
           </p>
 
-          {misterio.imagen && (
-            <figure className="mt-4">
+          <figure className="mt-4">
+            {/* Fondo del mismo cuadro, difuminado: las pinturas verticales no se recortan */}
+            <div className="relative flex h-56 items-center justify-center overflow-hidden rounded-[var(--radius-button)] bg-[var(--surface-2)]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={misterio.imagen.src}
-                alt={misterio.imagen.alt}
-                className="aspect-[4/3] w-full rounded-[var(--radius-button)] object-cover"
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-0 size-full scale-110 object-cover opacity-40 blur-xl"
               />
-              <figcaption className="mt-1 text-[11px] text-[var(--text-tertiary)]">{misterio.imagen.credito}</figcaption>
-            </figure>
-          )}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={misterio.imagen.src} alt={misterio.imagen.alt} className="relative h-full w-auto max-w-full object-contain" />
+            </div>
+            <figcaption className="mt-1 text-[11px] text-[var(--text-tertiary)]">{misterio.imagen.credito}</figcaption>
+          </figure>
 
           <h2 className="mt-3 text-balance text-[24px] font-semibold leading-[1.25] text-[var(--text-primary)] [font-family:var(--font-display)]">
             {misterio.nombre}
@@ -112,19 +116,17 @@ export function RosarioCliente() {
             {misterio.cita}
           </p>
 
-          {misterio.meditacion ? (
-            <p className="mt-4 text-[16px] leading-relaxed text-[var(--text-primary)]">{misterio.meditacion}</p>
-          ) : (
-            <p className="mt-4 text-[15px] leading-relaxed text-[var(--text-secondary)]">
-              Lee el pasaje y medita este misterio. La meditación guiada de este misterio llega muy pronto.
-            </p>
-          )}
+          <p className="mt-4 text-[15px] leading-relaxed text-[var(--text-secondary)]">{misterio.escena}</p>
 
-          {misterio.santo && (
-            <p className="mt-4 border-l-2 border-[var(--accent)] pl-3 text-[14px] italic leading-relaxed text-[var(--text-secondary)]">
-              {misterio.santo}
-            </p>
-          )}
+          <div className="mt-4 rounded-[var(--radius-button)] bg-[var(--surface-2)] p-4">
+            <p className="text-[13px] font-semibold text-[var(--text-secondary)]">Para meditar</p>
+            <p className="mt-1 text-[16px] leading-relaxed text-[var(--text-primary)]">{misterio.meditacion}</p>
+          </div>
+
+          <p className="mt-3 border-l-2 border-[var(--accent)] pl-3 text-[14px] leading-relaxed text-[var(--text-secondary)]">
+            <span className="font-semibold text-[var(--accent-text)]">Puedes pedir: </span>
+            {misterio.pide}
+          </p>
 
           <p className="mt-auto pt-6 text-[13px] text-[var(--text-tertiary)]">
             Padre Nuestro · 10 Ave Marías · Gloria

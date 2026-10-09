@@ -9,6 +9,7 @@ import { motion, type Variants } from 'motion/react';
 import { BookHeart, Check, ChevronRight, CircleDot, Flame, Sparkles } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { AnilloProgresoApp, CountUp, saludoPorHora } from '@/components/app/ui';
+import { RetratoSanto } from '@/components/app/emblema-eucaristico';
 import { fechaLocalISO } from '@/lib/contenido-hoy';
 import { CONJUNTOS, conjuntoDeHoy, type ConjuntoId } from '@/lib/rosario';
 
@@ -39,6 +40,8 @@ export interface HoyData {
   racha: number;
   fechasHechas: string[];
   santoNombre: string;
+  santoImagenUrl: string | null;
+  santoImagenAlt: string | null;
   pensamiento: string;
   milagroLugar: string;
   milagroResumen: string;
@@ -93,10 +96,18 @@ export function HoyCliente(d: HoyData) {
           className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full"
           style={{ background: 'radial-gradient(circle, color-mix(in oklab, var(--accent) 12%, transparent) 0%, transparent 70%)' }}
         />
-        <p className="text-[13px] font-semibold uppercase tracking-[0.06em] text-[var(--accent-text)]">
-          El pensamiento de hoy · {d.santoNombre}
-        </p>
-        <p className="mt-3 text-balance text-[22px] font-semibold leading-[1.35] text-[var(--text-primary)] [font-family:var(--font-display)]">
+        <div className="relative flex items-start justify-between gap-4">
+          <div className="min-w-0 pt-1">
+            <p className="text-[13px] font-semibold uppercase tracking-[0.06em] text-[var(--accent-text)]">
+              El pensamiento de hoy
+            </p>
+            <p className="mt-1 text-[17px] font-semibold leading-tight text-[var(--text-primary)] [font-family:var(--font-display)]">
+              {d.santoNombre}
+            </p>
+          </div>
+          <RetratoSanto url={d.santoImagenUrl} alt={d.santoImagenAlt} />
+        </div>
+        <p className="mt-4 text-balance text-[22px] font-semibold leading-[1.35] text-[var(--text-primary)] [font-family:var(--font-display)]">
           &ldquo;{d.pensamiento}&rdquo;
         </p>
         <motion.button
