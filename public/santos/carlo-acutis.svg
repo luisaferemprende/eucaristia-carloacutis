@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="750" viewBox="0 0 600 750">
+  <defs>
+    <radialGradient id="fondo" cx="50%" cy="38%" r="75%">
+      <stop offset="0" stop-color="#2A3560"/>
+      <stop offset="1" stop-color="#11162A"/>
+    </radialGradient>
+    <radialGradient id="nimbo" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#D4AF37" stop-opacity="0.38"/>
+      <stop offset="0.72" stop-color="#D4AF37" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#D4AF37" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sudadera" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#14877D"/>
+      <stop offset="1" stop-color="#0B5A53"/>
+    </linearGradient>
+    <linearGradient id="piel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0C4A4"/>
+      <stop offset="1" stop-color="#DDA783"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="750" fill="url(#fondo)"/>
+
+  <!-- Rayos de custodia detrás del santo -->
+  <g stroke="#D4AF37" stroke-linecap="round" fill="none">
+    <g transform="translate(300 300)">
+      <line x1="0" y1="-190" x2="0" y2="-290" stroke-width="7" opacity="0.85"/>
+      <line x1="0" y1="-190" x2="0" y2="-290" stroke-width="7" opacity="0.85" transform="rotate(30)"/>
+      <line x1="0" y1="-190" x2="0" y2="-290" stroke-width="7" opacity="0.85" transform="rotate(60)"/>
+      <line x1="0" y1="-190" x2="0" y2="-290" stroke-width="7" opacity="0.85" transform="rotate(90)"/>
+      <line x1="0" y1="-190" x2="0" y2="-290" stroke-width="7" opacity="0.85" transform="rotate(-30)"/>
+      <line x1="0" y1="-190" x2="0" y2="-290" stroke-width="7" opacity="0.85" transform="rotate(-60)"/>
+      <line x1="0" y1="-190" x2="0" y2="-290" stroke-width="7" opacity="0.85" transform="rotate(-90)"/>
+      <line x1="0" y1="-190" x2="0" y2="-250" stroke-width="4" opacity="0.5" transform="rotate(15)"/>
+      <line x1="0" y1="-190" x2="0" y2="-250" stroke-width="4" opacity="0.5" transform="rotate(45)"/>
+      <line x1="0" y1="-190" x2="0" y2="-250" stroke-width="4" opacity="0.5" transform="rotate(75)"/>
+      <line x1="0" y1="-190" x2="0" y2="-250" stroke-width="4" opacity="0.5" transform="rotate(-15)"/>
+      <line x1="0" y1="-190" x2="0" y2="-250" stroke-width="4" opacity="0.5" transform="rotate(-45)"/>
+      <line x1="0" y1="-190" x2="0" y2="-250" stroke-width="4" opacity="0.5" transform="rotate(-75)"/>
+    </g>
+  </g>
+
+  <!-- Nimbo -->
+  <circle cx="300" cy="300" r="190" fill="url(#nimbo)"/>
+  <circle cx="300" cy="300" r="158" fill="none" stroke="#D4AF37" stroke-width="6" opacity="0.9"/>
+  <circle cx="300" cy="300" r="170" fill="none" stroke="#D4AF37" stroke-width="2" opacity="0.5"/>
+
+  <!-- Sudadera con capucha -->
+  <path d="M60 750 C 60 600 140 505 255 472 L 345 472 C 460 505 540 600 540 750 Z" fill="url(#sudadera)"/>
+  <path d="M232 478 C 232 540 368 540 368 478 C 340 466 260 466 232 478 Z" fill="#0B5A53"/>
+  <path d="M255 505 C 262 560 266 600 262 640" fill="none" stroke="#F3EBDD" stroke-width="6" stroke-linecap="round"/>
+  <path d="M345 505 C 338 560 334 600 338 640" fill="none" stroke="#F3EBDD" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="262" cy="644" r="7" fill="#F3EBDD"/>
+  <circle cx="338" cy="644" r="7" fill="#F3EBDD"/>
+
+  <!-- Cuello -->
+  <path d="M262 400 L 262 478 C 275 498 325 498 338 478 L 338 400 Z" fill="#D49A78"/>
+
+  <!-- Orejas -->
+  <ellipse cx="206" cy="318" rx="14" ry="26" fill="url(#piel)"/>
+  <ellipse cx="394" cy="318" rx="14" ry="26" fill="url(#piel)"/>
+
+  <!-- Cabeza -->
+  <ellipse cx="300" cy="305" rx="98" ry="120" fill="url(#piel)"/>
+
+  <!-- Cabello corto -->
+  <path d="M200 312 C 190 214 252 168 312 170 C 376 172 414 222 402 312 C 392 262 356 236 304 238 C 250 240 214 264 200 312 Z" fill="#3A2A20"/>
+  <path d="M232 214 C 262 196 322 192 366 214" fill="none" stroke="#54392B" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- Rostro: cejas, ojos, nariz, sonrisa -->
+  <path d="M243 290 Q262 278 282 288" fill="none" stroke="#3A2A20" stroke-width="6" stroke-linecap="round"/>
+  <path d="M318 288 Q338 278 357 290" fill="none" stroke="#3A2A20" stroke-width="6" stroke-linecap="round"/>
+  <ellipse cx="263" cy="322" rx="9" ry="11" fill="#2A1D16"/>
+  <ellipse cx="337" cy="322" rx="9" ry="11" fill="#2A1D16"/>
+  <circle cx="266" cy="318" r="3" fill="#FFFFFF"/>
+  <circle cx="340" cy="318" r="3" fill="#FFFFFF"/>
+  <path d="M300 332 C 296 352 292 364 300 368 C 306 369 310 366 312 362" fill="none" stroke="#B9785A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M266 386 Q300 418 334 386" fill="none" stroke="#9B5A43" stroke-width="6" stroke-linecap="round"/>
+  <ellipse cx="240" cy="372" rx="16" ry="9" fill="#E59A8C" opacity="0.35"/>
+  <ellipse cx="360" cy="372" rx="16" ry="9" fill="#E59A8C" opacity="0.35"/>
+
+  <!-- Hostia luminosa al pecho -->
+  <circle cx="300" cy="640" r="62" fill="#D4AF37" opacity="0.22"/>
+  <circle cx="300" cy="640" r="44" fill="#F8F9FA" stroke="#D4AF37" stroke-width="4"/>
+  <rect x="296" y="618" width="8" height="44" fill="#11162A"/>
+  <rect x="284" y="630" width="32" height="8" fill="#11162A"/>
+</svg>
