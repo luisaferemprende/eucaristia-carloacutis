@@ -24,6 +24,18 @@ correo dueño de la cuenta, suficiente para probar); luego Hotmart (webhook con 
 `subscriptions` con service_role) + dominio propio + desactivar la protección SSO de Vercel antes de
 lanzar. Considerar login con código de 6 dígitos para evitar el prefetch de Gmail (otp_expired).
 
+**ACTUALIZACIÓN 2026-10-08 (feedback de la usuaria ya dentro de la app):** el login ya funcionó.
+Plan en 5 bloques aprobado ("en etapas"): (1) 3 minutos guiados — HECHO y publicado (`/app/vivir`,
+`components/app/vivir-cliente.tsx`, `lib/contenido-hoy.ts`; el RPC `marcar_hoy_hecho(p_fecha)` tenía un
+error de tipos que lo hacía fallar en silencio — reescrito y probado con rollback; ahora usa la fecha
+LOCAL); columnas nuevas en `daily_content` (pregunta_dia, milagro_historia/fuente, preparacion,
+santo_imagen_*); texto de Lanciano y preparación PENDIENTES de revisión doctrinal. (2) milagro con
+página propia, (3) novena San Pío (+ "por qué" + 9 días + botón terminar día + TARJETA-PREMIO
+coleccionable al día 9, idea de la usuaria), (4) 19 meditaciones del Rosario + imágenes, (5) imagen del
+santo en el pensamiento de hoy. Imágenes: solo con licencia verificada (Wikimedia Commons) + crédito.
+Gate visual de `/app/vivir` y Hoy: capturado a 375px con datos reales en navegador de pruebas, SIN
+revisor-visual todavía (pantalla secundaria nueva; Hoy sigue con gate PENDIENTE).
+
 ## Qué es esta app (3 líneas máximo)
 Reto diario de 3 minutos centrado en la Eucaristía: el pensamiento de un santo (Carlo Acutis y otros grandes devotos eucarísticos) + la historia de un milagro eucarístico + una micro-preparación para la comunión, respaldado por un diario espiritual privado y retos de novenas en grupo. Para católicas practicantes ocupadas (avatar: Carmen Rosa) que sienten que van a misa por inercia y quieren constancia sin pagar precios abusivos. Monetización: $3.99/mes o $29.99/año, 7 días de prueba gratis.
 
