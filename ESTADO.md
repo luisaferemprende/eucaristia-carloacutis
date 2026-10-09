@@ -183,6 +183,8 @@ Reto diario de 3 minutos centrado en la Eucaristía: el pensamiento de un santo 
 - **Rosario (Sesión 6):** 19 de 20 meditaciones sin escribir (requieren fuentes verificadas y revisión doctrinal); imágenes de misterios sin licencia verificada; traducción bíblica por definir (Torres Amat, dominio público).
 - **Login por correo:** límite de envíos del correo integrado de Supabase (429) — solución definitiva = SMTP propio con Resend. URL Configuration de Supabase sin configurar.
 
+- **Novenas — REGLA DE LA USUARIA (2026-10-08): las novenas NO se inventan; deben salir de una página católica verificable.** Los 9 días de San Pío hoy en la base de datos los escribí YO (texto propio) → hay que REEMPLAZARLOS. Fuentes halladas: ACI Prensa tiene la novena día por día de San Pío (aciprensa.com/recursos/822/novena-a-san-pio-de-pietrelcina), Santa Teresita (EWTN y ACI Prensa recurso 844-851) y Santo Tomás (aciprensa.com/recursos/1034); Carlo Acutis: no hay versión en español verificada (novenaprayer.com en inglés; Shalom/Messaggero en italiano). Esos textos tienen derechos de autor y no se halló permiso de reproducción → NO copiar sin autorización escrita; decisión de la usuaria pendiente (pedir permiso vs enlazar vs oraciones de dominio público).
+
 ## Pendientes del usuario (acciones que el usuario debe hacer)
 - [ ] Supabase → Authentication → URL Configuration: Site URL `https://eucaristia-carloacutis.vercel.app` + Redirect URL `https://eucaristia-carloacutis.vercel.app/**`.
 - [ ] Crear cuenta gratis en Resend para conectar el correo de acceso.
