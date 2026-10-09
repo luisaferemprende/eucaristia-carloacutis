@@ -33,7 +33,15 @@ santo_imagen_*); texto de Lanciano y preparación PENDIENTES de revisión doctri
 página propia, (3) novena San Pío (+ "por qué" + 9 días + botón terminar día + TARJETA-PREMIO
 coleccionable al día 9, idea de la usuaria), (4) 19 meditaciones del Rosario + imágenes, (5) imagen del
 santo en el pensamiento de hoy. Imágenes: solo con licencia verificada (Wikimedia Commons) + crédito.
-Gate visual de `/app/vivir` y Hoy: capturado a 375px con datos reales en navegador de pruebas, SIN
+Bloque 2 HECHO (`/app/milagro`). Bloque 3 HECHO: tablas `novena_dias` + columnas nuevas en `novenas`
+(por_que, santo_datos, imagen_*, frase_tarjeta) y `novena_participation` (dias_hechos, ultimo_dia_marcado);
+RPC `marcar_dia_novena(p_fecha)` (un día por día, probado con rollback); `components/app/novena-cliente.tsx`
++ `tarjeta-novena.tsx` (tarjeta-premio al día 9, descargable/compartible vía canvas, colección en "Elegir").
+Solo San Pío tiene los 9 días escritos; las otras 3 novenas salen "Próximamente". Retrato:
+`public/santos/san-pio.jpg` (dominio público, Wikimedia Commons "Padre Pio portraitFXD.jpg"). Riesgo
+conocido: la política `update_own` de `novena_participation` deja al usuario editar sus propias filas
+(solo se perjudica a sí mismo; endurecer antes de lanzar si el premio tuviera valor). Textos de los 9
+días PENDIENTES de revisión doctrinal. Gate visual de `/app/vivir` y Hoy: capturado a 375px con datos reales en navegador de pruebas, SIN
 revisor-visual todavía (pantalla secundaria nueva; Hoy sigue con gate PENDIENTE).
 
 ## Qué es esta app (3 líneas máximo)
