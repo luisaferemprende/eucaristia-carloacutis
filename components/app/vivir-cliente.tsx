@@ -199,6 +199,9 @@ export function VivirCliente({
                 <p className="mt-4 text-[13px] font-semibold uppercase tracking-[0.06em] text-[var(--accent-text)]">
                   {contenido.santo_nombre}
                 </p>
+                {contenido.santo_imagen_url && contenido.santo_imagen_credito && (
+                  <p className="mt-1 text-[11px] text-[var(--text-tertiary)]">{contenido.santo_imagen_credito}</p>
+                )}
               </div>
               <Quote size={28} color="var(--accent)" aria-hidden="true" className="relative mt-4" />
               <p className="relative mt-2 text-balance text-[24px] font-semibold leading-[1.35] text-[var(--text-primary)] [font-family:var(--font-display)]">

@@ -237,12 +237,18 @@ export function TarjetaNovena({ santo, diasTotal, fecha, nombrePersona }: Props)
 
     ctx.fillStyle = v('--text-secondary');
     ctx.font = `500 30px ${fuenteCuerpo}`;
-    ctx.fillText([nombrePersona, fechaLarga(fecha)].filter(Boolean).join('  ·  '), W / 2, 1248);
+    ctx.fillText([nombrePersona, fechaLarga(fecha)].filter(Boolean).join('  ·  '), W / 2, 1222);
     ctx.fillStyle = oro;
     ctx.font = `700 28px ${fuenteCuerpo}`;
     ctx.letterSpacing = '3px';
-    ctx.fillText('EUCARISTÍAVIVA', W / 2, 1292);
+    ctx.fillText('EUCARISTÍAVIVA', W / 2, 1256);
     ctx.letterSpacing = '0px';
+    // Crédito de la imagen (también viaja dentro de la tarjeta compartida)
+    if (santo.imagenCredito) {
+      ctx.fillStyle = v('--text-tertiary');
+      ctx.font = `400 19px ${fuenteCuerpo}`;
+      ctx.fillText(santo.imagenCredito, W / 2, 1282);
+    }
 
     return new Promise((resolve, reject) => canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('sin imagen'))), 'image/png'));
   };
