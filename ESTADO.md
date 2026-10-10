@@ -199,6 +199,38 @@ Reto diario de 3 minutos centrado en la Eucaristía: el pensamiento de un santo 
 - **DECISIÓN 2026-10-08 (la usuaria eligió):** novenas ORIGINALES escritas por el asistente con la estructura tradicional (oración de entrada · reflexión · oración al santo · propósito + Padre Nuestro/Ave María/Gloria), con hechos documentados de la vida de cada santo, SIN enlazar a ACI Prensa. Las 4 novenas (Carlo Acutis, Santa Teresita, Santo Tomás, San Pío) × 9 días están en `novena_dias`. **REQUISITO ANTES DE COBRAR: revisión de un sacerdote/teólogo de las 36 reflexiones/oraciones, de los 20 misterios del Rosario (`lib/rosario.ts`), de la historia de Lanciano y de la preparación para comulgar.** Rosario (bloque 4) HECHO: 20 misterios con escena (del pasaje bíblico), meditación propia, "puedes pedir" y pintura de dominio público (`public/rosario/*.jpg`, créditos en `lib/rosario.ts`). Bloque 5 HECHO: `RetratoSanto`/`EmblemaEucaristico` (`components/app/emblema-eucaristico.tsx`) en Hoy y en el paso 1 de `/app/vivir`. **IMAGEN DE CARLO ACUTIS: NO existe foto libre** (la de Wikipedia es "uso justo"; Commons solo tiene reliquias/tumba/estatuas) → hoy se usa el emblema eucarístico; pendiente pedir permiso a la Causa/Asociación oficial de Carlo Acutis (carloacutis.com) o encargar una ilustración; al llegar basta poner `imagen_url` en `novenas` y `santo_imagen_url` en `daily_content`. Retratos libres en `public/santos/`: San Pío, Santa Teresita (Céline Martin 1895), Santo Tomás (Crivelli 1476).
 - (Histórico, ya resuelto arriba) Regla de la usuaria: las novenas no se inventan. Fuentes halladas entonces: ACI Prensa tiene la novena día por día de San Pío (aciprensa.com/recursos/822/novena-a-san-pio-de-pietrelcina), Santa Teresita (EWTN y ACI Prensa recurso 844-851) y Santo Tomás (aciprensa.com/recursos/1034); Carlo Acutis: no hay versión en español verificada (novenaprayer.com en inglés; Shalom/Messaggero en italiano). Esos textos tienen derechos de autor y no se halló permiso de reproducción → NO copiar sin autorización escrita; decisión de la usuaria pendiente (pedir permiso vs enlazar vs oraciones de dominio público).
 
+## Pulido grande 2026-10-10 (sesión larga, varios pedidos seguidos de la usuaria)
+- **Dirección de arte:** `--bg` día pasó de #F8F9FA a #FDFBF7 (marfil cálido), `--surface-2` a
+  #F2EDE1, sombras con tinte dorado (día y noche). Menú inferior ahora es una CÁPSULA flotante
+  (`components/app/ui.tsx`) con el destino activo elevado en una burbuja dorada.
+- **3 minutos:** sin crédito de imagen en la oración (se movió a Perfil); milagro con ícono
+  litúrgico propio (`EmblemaEucaristico`, reutilizable con color) y datos clave resaltados en teal
+  vía `**marcador**` (`components/app/texto-destacado.tsx` — convención: al escribir un nuevo día,
+  envolver el hallazgo científico/histórico en doble asterisco); celebración final de 2s que
+  redirige sola (antes pedía 2 clics).
+- **Rosario:** pinturas con `object-cover` limpio (sin barras difuminadas); **Corona de Rosas**
+  real (tabla `rosario_dias`, RLS propia) — anillo de 7 días en `/app/rosario` y badge "X/7" en
+  Hoy; celebración al terminar con la corona actualizada.
+- **Novena:** recuadro del Propósito con fondo marfil y borde dorado; indicador de presencia REAL
+  ("N personas haciendo esta novena" — de la vista `novena_popularidad`, corregida: tenía
+  `security_invoker=true` y por eso SIEMPRE devolvía 0 o 1, nunca el total real — bug preexistente,
+  ya arreglado); botón "Encender mi vela" con contador REAL (tabla `velas_encendidas` + vista
+  `velas_hoy`, agregada, sin exponer filas); tarjeta + modal para "Proponer una novena"
+  (`novena_sugerencias`, solo INSERT — la usuaria las revisa en el panel de Supabase).
+- **Diario:** historial ordenado por fecha (ya existía), "Leer completa/menos" en entradas largas,
+  editar y borrar con confirmación.
+- **Perfil:** estadísticas reales (racha actual, rosarios rezados, novenas completadas); "Mi plan"
+  abre un modal con beneficios — SIN botón de pago falso (Hotmart no está conectado todavía: dice
+  "Muy pronto podrás activar tu plan directo desde aquí", nunca simula un cobro).
+- **DECIDIDO CON LA USUARIA — NO construir (por ahora):** (1) selector manual de tema
+  claro/oscuro con una paleta nueva (#12161A...) — se mantiene el cambio automático por hora con
+  la paleta YA aprobada; (2) soporte multi-idioma / inglés — la app sigue mono-idioma español.
+  Ambos pedidos llegaron pasteados con specs completas; se le explicó el conflicto con decisiones
+  ya tomadas (cosa juzgada) y ella confirmó dejarlo como está.
+- **RECHAZADO por fabricar datos:** se pidió un contador "128 peregrinos rezando" / "1,240 velas"
+  como números fijos de ejemplo — se construyó la MISMA idea con conteos REALES (ver arriba),
+  nunca con cifras inventadas (regla dura del SO: honestidad de contenido).
+
 ## Pendientes del usuario (acciones que el usuario debe hacer)
 - [ ] Supabase → Authentication → URL Configuration: Site URL `https://eucaristia-carloacutis.vercel.app` + Redirect URL `https://eucaristia-carloacutis.vercel.app/**`.
 - [ ] Crear cuenta gratis en Resend para conectar el correo de acceso.
