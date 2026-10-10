@@ -6,7 +6,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, type Variants } from 'motion/react';
-import { Bell, ChevronRight, CreditCard, LogOut, ShieldCheck } from 'lucide-react';
+import { Bell, ChevronRight, CreditCard, Image as ImageIcon, LogOut, ShieldCheck } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 
 const lista: Variants = { hidden: {}, visible: { transition: { staggerChildren: 0.05 } } };
@@ -28,6 +28,7 @@ export interface PerfilData {
   rachaMejor: number;
   momentoDia: string;
   plan: { nombre: string; estado: string } | null;
+  creditosImagenes: { nombre: string; credito: string }[];
 }
 
 export function PerfilCliente(d: PerfilData) {
@@ -94,6 +95,22 @@ export function PerfilCliente(d: PerfilData) {
           </a>
         </li>
       </motion.ul>
+
+      {d.creditosImagenes.length > 0 && (
+        <motion.section variants={item} className="mt-6">
+          <h2 className="mb-2 flex items-center gap-1.5 text-[13px] font-semibold text-[var(--text-secondary)]">
+            <ImageIcon size={14} aria-hidden="true" />
+            Créditos de imágenes
+          </h2>
+          <ul className="flex flex-col gap-1.5 rounded-[var(--radius-card)] border border-[color-mix(in_oklab,var(--text-tertiary)_20%,transparent)] bg-[var(--surface)] p-4">
+            {d.creditosImagenes.map((c) => (
+              <li key={c.nombre} className="text-[12px] leading-relaxed text-[var(--text-tertiary)]">
+                <span className="font-medium text-[var(--text-secondary)]">{c.nombre}:</span> {c.credito}
+              </li>
+            ))}
+          </ul>
+        </motion.section>
+      )}
 
       <motion.button
         variants={item}

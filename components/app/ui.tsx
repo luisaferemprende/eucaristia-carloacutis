@@ -15,39 +15,42 @@ const NAV = [
   { href: '/app/perfil', label: 'Perfil', icono: User },
 ] as const;
 
+// Cápsula flotante (no pegada al borde): el destino activo se eleva en una
+// burbuja dorada por encima de la barra — un solo dispositivo hace de
+// indicador, nada de línea + ícono coloreado a la vez.
 export function BottomNav() {
   const pathname = usePathname();
   const router = useRouter();
   return (
-    <nav
-      aria-label="Navegación principal"
-      className="sticky bottom-0 border-t border-[color-mix(in_oklab,var(--text-tertiary)_22%,transparent)] bg-[var(--surface)] pb-[env(safe-area-inset-bottom)]"
-    >
-      <div className="mx-auto flex h-16 max-w-md items-stretch justify-around px-2">
+    <div className="sticky bottom-0 bg-[var(--bg)] px-4 pb-[max(14px,env(safe-area-inset-bottom))] pt-3">
+      <nav
+        aria-label="Navegación principal"
+        className="mx-auto flex h-16 max-w-md items-stretch justify-around rounded-full border border-[color-mix(in_oklab,var(--text-tertiary)_14%,transparent)] bg-[var(--surface)] px-2 shadow-[var(--shadow-2)]"
+      >
         {NAV.map(({ href, label, icono: Icono }) => {
           const activo = href === '/app' ? pathname === '/app' : pathname.startsWith(href);
           return (
             <motion.button
               key={href}
-              whileTap={{ scale: 0.97 }}
+              whileTap={{ scale: 0.96 }}
               type="button"
               onClick={() => router.push(href)}
               aria-current={activo ? 'page' : undefined}
-              className="relative flex min-w-16 flex-col items-center justify-center gap-1 [touch-action:manipulation]"
+              className="relative flex flex-1 flex-col items-center justify-end gap-1 pb-2 [touch-action:manipulation]"
             >
-              {activo && (
-                <motion.span
-                  layoutId="tab-activa-app"
-                  aria-hidden="true"
-                  className="absolute top-0 h-0.5 w-8 rounded-full bg-[var(--accent)]"
-                />
-              )}
-              <Icono
-                size={24}
-                aria-hidden="true"
-                color={activo ? 'var(--accent-text)' : 'var(--text-tertiary)'}
-                strokeWidth={activo ? 2.4 : 2}
-              />
+              <span className="relative flex h-6 w-11 items-center justify-center">
+                {activo && (
+                  <motion.span
+                    layoutId="nav-burbuja"
+                    transition={{ type: 'spring', stiffness: 380, damping: 28 }}
+                    aria-hidden="true"
+                    className="absolute -top-7 flex size-12 items-center justify-center rounded-full bg-[var(--accent)] shadow-[0_8px_18px_color-mix(in_oklab,var(--accent)_35%,transparent)]"
+                  >
+                    <Icono size={22} color="var(--on-accent-fill)" strokeWidth={2.4} />
+                  </motion.span>
+                )}
+                {!activo && <Icono size={22} aria-hidden="true" color="var(--text-tertiary)" strokeWidth={2} />}
+              </span>
               <span
                 className={`text-[11px] font-medium ${activo ? 'text-[var(--accent-text)]' : 'text-[var(--text-tertiary)]'}`}
               >
@@ -56,8 +59,8 @@ export function BottomNav() {
             </motion.button>
           );
         })}
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 }
 

@@ -316,12 +316,12 @@ function Progreso({
           </div>
           <OracionesDeSiempre />
 
-          <div className="relative mt-3 flex items-start gap-3 rounded-[var(--radius-button)] border border-[color-mix(in_oklab,var(--accent)_30%,transparent)] p-4">
+          <div className="relative mt-3 flex items-start gap-3 rounded-[var(--radius-button)] border border-[var(--accent)] bg-[var(--bg)] p-4">
             <HandHeart size={20} color="var(--accent-text)" aria-hidden="true" className="mt-0.5 shrink-0" />
-            <div>
-              <p className="text-[13px] font-semibold text-[var(--accent-text)]">Tu propósito de hoy</p>
-              <p className="mt-0.5 text-[15px] leading-snug text-[var(--text-primary)]">{diaDeHoy.proposito}</p>
-            </div>
+            <p className="text-[15px] leading-snug text-[var(--text-primary)]">
+              <span className="font-semibold text-[var(--accent-text)]">Propósito de hoy: </span>
+              {diaDeHoy.proposito}
+            </p>
           </div>
           {error && (
             <p role="alert" className="relative mt-3 text-[13px] text-[var(--danger)]">
@@ -441,10 +441,12 @@ function Progreso({
                         )}
                         <p className="text-[15px] leading-relaxed text-[var(--text-primary)]">{d.reflexion}</p>
                         <p className="text-[15px] italic leading-relaxed text-[var(--text-secondary)]">{d.oracion}</p>
-                        <p className="text-[14px] text-[var(--accent-text)]">
-                          <span className="font-semibold">Propósito: </span>
-                          {d.proposito}
-                        </p>
+                        <div className="rounded-[var(--radius-button)] border border-[var(--accent)] bg-[var(--bg)] p-3">
+                          <p className="text-[14px] leading-snug text-[var(--text-primary)]">
+                            <span className="font-semibold text-[var(--accent-text)]">Propósito de hoy: </span>
+                            {d.proposito}
+                          </p>
+                        </div>
                       </div>
                     </motion.div>
                   )}

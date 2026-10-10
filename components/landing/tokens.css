@@ -17,10 +17,13 @@
    ============================================================================ */
 
 :root {
-  /* ── SUPERFICIES (3 niveles: base / elevada / hundida) — modo día del contrato del usuario ── */
-  --bg: #f8f9fa;
+  /* ── SUPERFICIES (3 niveles: base / elevada / hundida) — modo día del contrato del usuario ──
+     Pulido 2026-10-10 (pedido de la usuaria): papel/marfil cálido en vez de gris frío — misal,
+     no app de notas. --surface sigue blanco puro (ya lo pedía el contrato) para que las tarjetas
+     SÍ floten sobre el fondo marfil, en vez de dos tonos casi iguales sin contraste. */
+  --bg: #fdfbf7;
   --surface: #ffffff;
-  --surface-2: #edeef0;
+  --surface-2: #f2ede1;
 
   /* ── TEXTO (casi-negro CON tinte, familia única de neutros) ── */
   --text-primary: #111827;
@@ -49,9 +52,13 @@
   --font-display: 'Zodiak', Georgia, serif;
   --font-body: 'Segoe UI', sans-serif;
 
-  /* ── SOMBRAS con el TINTE del neutro de marca (49 Parte 2c — nunca negro puro) ── */
-  --shadow-1: 0 1px 2px rgb(17 24 39 / 0.06);
-  --shadow-2: 0 12px 32px -12px rgb(17 24 39 / 0.16);
+  /* ── SOMBRAS con el TINTE del neutro de marca (49 Parte 2c — nunca negro puro) ──
+     Pulido 2026-10-10: tinte cálido dorado (antes gris-azulado frío). Dos capas:
+     una dorada muy tenue (la "luz" que pidió la usuaria) + una café oscura casi
+     imperceptible que sostiene la sensación de elevación (el oro solo, a esta
+     opacidad, no se ve como si la tarjeta estuviera realmente levantada). */
+  --shadow-1: 0 1px 3px rgb(120 72 20 / 0.07);
+  --shadow-2: 0 14px 32px -14px rgb(212 175 55 / 0.28), 0 4px 10px -6px rgb(69 45 10 / 0.12);
 
   /* ── DERIVADOS (no se tocan: se recalculan solos desde --accent) ── */
   --chip-bg: color-mix(in oklab, var(--accent) 10%, transparent);

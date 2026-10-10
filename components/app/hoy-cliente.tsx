@@ -64,7 +64,16 @@ export function HoyCliente(d: HoyData) {
   const abrirTresMinutos = () => router.push('/app/vivir');
 
   return (
-    <motion.main variants={lista} initial="hidden" animate="visible" className="flex-1 px-4 pt-6 pb-4">
+    <motion.main variants={lista} initial="hidden" animate="visible" className="relative flex-1 px-4 pt-6 pb-4">
+      {/* Halo dorado detrás de la cabecera — calidez desde el primer segundo, sin tocar el texto */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-56"
+        style={{
+          background:
+            'radial-gradient(560px 280px at 50% 0%, color-mix(in oklab, var(--accent) 6%, transparent) 0%, transparent 72%)',
+        }}
+      />
       {/* ——— HEADER: fecha real + saludo + racha (badge, no el héroe) ——— */}
       <motion.header variants={item} className="mb-6 flex items-end justify-between gap-4">
         <div className="min-w-0">

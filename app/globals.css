@@ -22,8 +22,10 @@
   --accent-2: #0f766e;
   --accent-text: var(--accent); /* oro puro ya contrasta bien sobre este fondo oscuro */
   --danger: #f87171; /* rojo aclarado — el tono día falla contraste sobre este fondo oscuro */
+  /* Pulido 2026-10-10: un dejo de luz dorada en el borde de la sombra (coherente
+     con el tinte cálido del modo día), sin perder la profundidad oscura real. */
   --shadow-1: 0 1px 2px rgb(3 4 10 / 0.5);
-  --shadow-2: 0 12px 32px -12px rgb(3 4 10 / 0.65);
+  --shadow-2: 0 12px 32px -12px rgb(3 4 10 / 0.65), 0 1px 0 rgb(212 175 55 / 0.08);
 }
 
 @theme inline {

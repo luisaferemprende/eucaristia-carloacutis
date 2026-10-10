@@ -5,12 +5,13 @@
 // registra el día de verdad (RPC `marcar_hoy_hecho` con la fecha LOCAL) y se
 // celebra con la racha. Nada se registra antes de llegar al final.
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { AnimatePresence, motion } from 'motion/react';
-import { BookHeart, Check, ChevronLeft, Flame, Quote, Sparkles } from 'lucide-react';
+import { Check, ChevronLeft, Flame, Quote, Sparkles } from 'lucide-react';
 import { CountUp } from '@/components/app/ui';
-import { RetratoSanto } from '@/components/app/emblema-eucaristico';
+import { EmblemaEucaristico, RetratoSanto } from '@/components/app/emblema-eucaristico';
+import { TextoConDestacados } from '@/components/app/texto-destacado';
 import { createClient } from '@/lib/supabase/client';
 import { fechaLocalISO, type ContenidoDiario } from '@/lib/contenido-hoy';
 
@@ -37,6 +38,15 @@ export function VivirCliente({
   const [yaHecho] = useState(() => fechasHechas.includes(fechaLocalISO()));
 
   const volver = () => router.push('/app');
+
+  // La celebración es breve (2s) y después redirige sola — si la persona no
+  // quiere esperar, tocar la pantalla la lleva a Hoy de inmediato.
+  useEffect(() => {
+    if (fase !== 'celebracion') return;
+    const t = setTimeout(volver, 2000);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fase]);
 
   const terminar = async () => {
     if (yaHecho) return volver();
@@ -72,11 +82,16 @@ export function VivirCliente({
 
   if (fase === 'celebracion') {
     return (
-      <main className="relative flex flex-1 flex-col items-center justify-center overflow-hidden px-6 text-center">
+      <main
+        role="status"
+        aria-live="polite"
+        onClick={volver}
+        className="relative flex flex-1 flex-col items-center justify-center overflow-hidden px-6 text-center [touch-action:manipulation]"
+      >
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-1/4 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full"
-          style={{ background: 'radial-gradient(circle, color-mix(in oklab, var(--accent) 22%, transparent) 0%, transparent 70%)' }}
+          className="pointer-events-none absolute left-1/2 top-1/3 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full"
+          style={{ background: 'radial-gradient(circle, color-mix(in oklab, var(--accent) 24%, transparent) 0%, transparent 70%)' }}
         />
         <motion.span
           initial={{ scale: 0.4, opacity: 0 }}
@@ -92,7 +107,7 @@ export function VivirCliente({
           transition={{ delay: 0.25, duration: 0.35, ease: EASE }}
           className="relative mt-8 text-balance text-[28px] font-bold leading-[1.15] text-[var(--text-primary)] [font-family:var(--font-display)]"
         >
-          Viviste tu Autopista de hoy
+          ¡Completaste tu Autopista de hoy!
         </motion.h1>
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -103,35 +118,9 @@ export function VivirCliente({
         >
           <Flame size={20} color="var(--accent)" aria-hidden="true" />
           <span className="text-[18px] font-bold text-[var(--accent-text)]">
-            <CountUp value={racha} /> {racha === 1 ? 'día seguido' : 'días seguidos'}
+            Racha: <CountUp value={racha} /> {racha === 1 ? 'día' : 'días'}
           </span>
         </motion.div>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.55 }}
-          className="relative mt-4 max-w-xs text-[15px] leading-relaxed text-[var(--text-secondary)]"
-        >
-          Lleva contigo lo de hoy. Si quieres, escríbelo en tu diario antes de que se te olvide.
-        </motion.p>
-        <div className="relative mt-8 flex w-full flex-col gap-3">
-          <motion.button
-            whileTap={{ scale: 0.97 }}
-            type="button"
-            onClick={() => router.push('/app/diario')}
-            className="flex h-14 items-center justify-center gap-2 rounded-[var(--radius-button)] bg-[var(--accent)] text-[16px] font-semibold text-[var(--on-accent-fill)] shadow-[0_10px_28px_color-mix(in_oklab,var(--accent)_30%,transparent)] [touch-action:manipulation]"
-          >
-            <BookHeart size={20} aria-hidden="true" />
-            Escribir en mi diario
-          </motion.button>
-          <button
-            type="button"
-            onClick={volver}
-            className="h-14 rounded-[var(--radius-button)] border border-[color-mix(in_oklab,var(--text-tertiary)_28%,transparent)] text-[15px] font-medium text-[var(--text-secondary)] [touch-action:manipulation]"
-          >
-            Volver a Hoy
-          </button>
-        </div>
       </main>
     );
   }
@@ -199,9 +188,8 @@ export function VivirCliente({
                 <p className="mt-4 text-[13px] font-semibold uppercase tracking-[0.06em] text-[var(--accent-text)]">
                   {contenido.santo_nombre}
                 </p>
-                {contenido.santo_imagen_url && contenido.santo_imagen_credito && (
-                  <p className="mt-1 text-[11px] text-[var(--text-tertiary)]">{contenido.santo_imagen_credito}</p>
-                )}
+                {/* El crédito de la imagen (p. ej. "creada con IA") vive en Perfil, no aquí:
+                    esta pantalla es de oración y pide inmersión, no una nota al pie. */}
               </div>
               <Quote size={28} color="var(--accent)" aria-hidden="true" className="relative mt-4" />
               <p className="relative mt-2 text-balance text-[24px] font-semibold leading-[1.35] text-[var(--text-primary)] [font-family:var(--font-display)]">
@@ -218,15 +206,20 @@ export function VivirCliente({
 
           {paso === 1 && (
             <>
-              <p className="relative inline-flex w-fit items-center gap-1.5 rounded-full bg-[var(--chip-bg)] px-3 py-1 text-[13px] font-medium text-[var(--accent-text)]">
+              {/* Ícono litúrgico elegante — nunca una foto/estampa con derechos dudosos */}
+              <span
+                aria-hidden="true"
+                className="relative mx-auto flex size-14 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_oklab,var(--accent-2)_14%,transparent)]"
+              >
+                <EmblemaEucaristico className="h-9 w-9" color="var(--accent-2)" />
+              </span>
+              <p className="relative mx-auto mt-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-[var(--chip-bg)] px-3 py-1 text-[13px] font-medium text-[var(--accent-text)]">
                 <Sparkles size={14} aria-hidden="true" />
                 {contenido.milagro_lugar}
               </p>
-              <div className="relative mt-4 space-y-4">
+              <div className="relative mt-5 space-y-5">
                 {parrafosMilagro.map((p, i) => (
-                  <p key={i} className="text-[16px] leading-relaxed text-[var(--text-primary)]">
-                    {p}
-                  </p>
+                  <TextoConDestacados key={i} texto={p} className="text-[16px] leading-relaxed text-[var(--text-primary)]" />
                 ))}
               </div>
               {contenido.milagro_fuente && (

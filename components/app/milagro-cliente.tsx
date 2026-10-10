@@ -5,7 +5,9 @@
 
 import { useRouter } from 'next/navigation';
 import { motion, type Variants } from 'motion/react';
-import { BookOpenCheck, ChevronLeft, MapPin, Sparkles } from 'lucide-react';
+import { BookOpenCheck, ChevronLeft, MapPin } from 'lucide-react';
+import { EmblemaEucaristico } from '@/components/app/emblema-eucaristico';
+import { TextoConDestacados } from '@/components/app/texto-destacado';
 import type { ContenidoDiario } from '@/lib/contenido-hoy';
 
 const lista: Variants = { hidden: {}, visible: { transition: { staggerChildren: 0.07 } } };
@@ -72,7 +74,7 @@ export function MilagroCliente({ contenido }: { contenido: ContenidoDiario | nul
             aria-hidden="true"
             className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_oklab,var(--accent-2)_14%,transparent)]"
           >
-            <Sparkles size={20} color="var(--accent-2)" />
+            <EmblemaEucaristico className="h-7 w-7" color="var(--accent-2)" />
           </span>
           <p className="inline-flex items-center gap-1.5 rounded-full bg-[var(--chip-bg)] px-3 py-1 text-[13px] font-medium text-[var(--accent-text)]">
             <MapPin size={14} aria-hidden="true" />
@@ -84,11 +86,9 @@ export function MilagroCliente({ contenido }: { contenido: ContenidoDiario | nul
         </p>
       </motion.section>
 
-      <motion.section variants={item} aria-label="La historia" className="mt-6 space-y-4 px-1">
+      <motion.section variants={item} aria-label="La historia" className="mt-6 space-y-5 px-1">
         {relato.map((p, i) => (
-          <p key={i} className="text-[16px] leading-relaxed text-[var(--text-primary)]">
-            {p}
-          </p>
+          <TextoConDestacados key={i} texto={p} className="text-[16px] leading-relaxed text-[var(--text-primary)]" />
         ))}
       </motion.section>
 

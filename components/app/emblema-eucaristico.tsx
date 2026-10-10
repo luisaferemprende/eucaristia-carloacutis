@@ -15,7 +15,14 @@ const RAYOS = Array.from({ length: 32 }, (_, i) => {
   };
 });
 
-export function EmblemaEucaristico({ className = '' }: { className?: string }) {
+export function EmblemaEucaristico({
+  className = '',
+  color = 'var(--accent)',
+}: {
+  className?: string;
+  /** Color de los rayos y el aro — oro (--accent) por defecto; teal (--accent-2) para contextos de milagro. */
+  color?: string;
+}) {
   return (
     <svg viewBox="-170 -170 340 340" className={className} role="img" aria-label="Eucaristía">
       {RAYOS.map((r, i) => (
@@ -27,11 +34,11 @@ export function EmblemaEucaristico({ className = '' }: { className?: string }) {
           y2={r.y2}
           strokeLinecap="round"
           strokeWidth={r.larga ? 5 : 3}
-          style={{ stroke: 'var(--accent)', opacity: r.larga ? 0.9 : 0.55 }}
+          style={{ stroke: color, opacity: r.larga ? 0.9 : 0.55 }}
         />
       ))}
       <circle r="66" style={{ fill: 'var(--text-primary)' }} />
-      <circle r="74" fill="none" strokeWidth="4" style={{ stroke: 'var(--accent)' }} />
+      <circle r="74" fill="none" strokeWidth="4" style={{ stroke: color }} />
       <rect x="-5" y="-34" width="10" height="68" style={{ fill: 'var(--bg)' }} />
       <rect x="-22" y="-16" width="44" height="10" style={{ fill: 'var(--bg)' }} />
     </svg>
