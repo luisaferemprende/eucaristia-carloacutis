@@ -46,17 +46,28 @@ export function SincronizarOnboarding({ tieneNovenaActiva }: { tieneNovenaActiva
             .eq('id', userData.user.id);
         }
 
-        if (!tieneNovenaActiva && respuestas.santo && respuestas.santo !== 'sorpresa') {
-          const { data: novena } = await supabase
-            .from('novenas')
-            .select('id')
-            .eq('santo_nombre', respuestas.santo)
-            .limit(1)
-            .maybeSingle();
-          if (novena) {
+        if (!tieneNovenaActiva && respuestas.santo) {
+          let novenaId: string | null = null;
+          if (respuestas.santo !== 'sorpresa') {
+            const { data: novena } = await supabase
+              .from('novenas')
+              .select('id')
+              .eq('santo_nombre', respuestas.santo)
+              .limit(1)
+              .maybeSingle();
+            novenaId = novena?.id ?? null;
+          } else {
+            // "Sorpréndeme cada día": en vez de dejarla sin novena (una pantalla
+            // vacía que contradice la palabra "sorpresa"), le asignamos una al azar.
+            const { data: novenas } = await supabase.from('novenas').select('id');
+            if (novenas && novenas.length > 0) {
+              novenaId = novenas[Math.floor(Math.random() * novenas.length)].id;
+            }
+          }
+          if (novenaId) {
             await supabase
               .from('novena_participation')
-              .insert({ user_id: userData.user.id, novena_id: novena.id });
+              .insert({ user_id: userData.user.id, novena_id: novenaId });
           }
         }
 

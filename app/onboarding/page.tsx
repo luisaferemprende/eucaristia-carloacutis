@@ -69,7 +69,9 @@ export default function Onboarding() {
     setPaso((p) => Math.max(p - 1, 1));
   };
 
-  const santoElegido = respuestas.santo ?? 'Carlo Acutis';
+  // "sorpresa" nunca se muestra tal cual en pantalla (quedaba literal: "con sorpresa").
+  const santoElegido =
+    respuestas.santo && respuestas.santo !== 'sorpresa' ? respuestas.santo : 'un santo distinto cada día';
   const momentoElegido = MOMENTOS[respuestas.momento ?? 'despertar'];
 
   return (
