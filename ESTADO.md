@@ -1,5 +1,18 @@
 # ESTADO — EucaristíaViva
-Última actualización: 2026-10-07 | Sesión actual: 6
+Última actualización: 2026-10-10 | Sesión actual: 6
+
+⏸️ CHECKPOINT (2026-10-10): foto REAL de San Carlo Acutis (creada con IA por la usuaria, elegida por
+ella) ya puesta en `public/santos/carlo-acutis.jpg`, conectada en `novenas` y `daily_content`, con el
+crédito "Imagen creada con inteligencia artificial" visible en la novena, la tarjeta-premio (también
+dentro de la imagen descargable) y el paso 1 de `/app/vivir`. Bug real corregido: elegir "Sorpréndeme
+cada día" en el onboarding mostraba la palabra literal "sorpresa" en 3 pantallas (recap, loading,
+paywall) — ahora dice "un santo distinto cada día" (`app/onboarding/page.tsx`). Decisión de producto
+tomada con la usuaria: a esa persona ya NO se la deja sin novena — se le asigna una al azar entre las
+4 (`components/app/sincronizar-onboarding.tsx`), porque la pantalla "Hoy" es un calendario COMPARTIDO
+por fecha (no personalizado por santo_preferido todavía) y dejarla sin novena contradecía la palabra
+"sorpréndeme". Pendiente a futuro (no bloqueante): si se quiere que el "pensamiento de hoy" también
+varíe por usuario según su santo elegido, eso exige repensar `daily_content` (hoy es 1 fila global por
+fecha, igual para todos) — anotado aquí para no perderlo, no se construyó todavía.
 
 ⏸️ CHECKPOINT — Última acción completada (2026-10-07): producción en Vercel
 (`https://eucaristia-carloacutis.vercel.app`, repo `luisaferemprende/eucaristia-carloacutis`, rama
