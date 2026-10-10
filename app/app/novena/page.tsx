@@ -62,13 +62,20 @@ export default async function Novena() {
   });
 
   let activa: NovenaActiva | null = null;
+  let personasActivas = 0;
+  let velasHoy = 0;
   if (activaFila) {
     const n = activaFila.novenas as unknown as FilaNovena;
-    const { data: dias } = await supabase
-      .from('novena_dias')
-      .select('dia, titulo, entrada, reflexion, oracion, proposito')
-      .eq('novena_id', activaFila.novena_id)
-      .order('dia');
+    const [{ data: dias }, { data: popularidad }, { data: velas }] = await Promise.all([
+      supabase
+        .from('novena_dias')
+        .select('dia, titulo, entrada, reflexion, oracion, proposito')
+        .eq('novena_id', activaFila.novena_id)
+        .order('dia'),
+      // Dato REAL (nunca inventado): cuántas personas tienen esta misma novena activa hoy.
+      supabase.from('novena_popularidad').select('personas_activas').eq('novena_id', activaFila.novena_id).maybeSingle(),
+      supabase.from('velas_hoy').select('total').maybeSingle(),
+    ]);
     activa = {
       nombre: n.nombre,
       santo: aSanto(n),
@@ -80,6 +87,8 @@ export default async function Novena() {
       datos: n.santo_datos ?? [],
       dias: (dias ?? []) as DiaNovena[],
     };
+    personasActivas = popularidad?.personas_activas ?? 0;
+    velasHoy = velas?.total ?? 0;
   }
 
   const idsConContenido = new Set((conDias ?? []).map((d) => d.novena_id as string));
@@ -96,6 +105,8 @@ export default async function Novena() {
       activa={activa}
       completadas={completadas}
       disponibles={disponibles}
+      personasActivas={personasActivas}
+      velasHoyInicial={velasHoy}
     />
   );
 }

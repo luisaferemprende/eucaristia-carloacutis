@@ -1,24 +1,88 @@
 'use client';
 
-// Rosario guiado: un misterio por pantalla (cita bíblica + meditación + santo).
+// Rosario guiado: un misterio por pantalla (cita bíblica + meditación).
 // Opcional y aparte de la Autopista de 3 Minutos — nunca bloquea el ritual diario.
+// Al terminar, se gana una rosa REAL en la Corona (tabla `rosario_dias`).
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { AnimatePresence, motion } from 'motion/react';
-import { BookOpen, ChevronLeft } from 'lucide-react';
+import { BookOpen, ChevronLeft, Flower2 } from 'lucide-react';
+import { CoronaDeRosas } from '@/components/app/corona-de-rosas';
+import { createClient } from '@/lib/supabase/client';
+import { fechaLocalISO } from '@/lib/contenido-hoy';
 import { CONJUNTOS, conjuntoDeHoy, type ConjuntoId } from '@/lib/rosario';
 
 const ORDEN: ConjuntoId[] = ['gozosos', 'dolorosos', 'gloriosos', 'luminosos'];
 
-export function RosarioCliente() {
+export function RosarioCliente({ diasRezados }: { diasRezados: string[] }) {
   const router = useRouter();
   const [conjunto, setConjunto] = useState<ConjuntoId | null>(null);
   const [paso, setPaso] = useState(0);
+  const [celebrando, setCelebrando] = useState(false);
+  const [diasConHoy, setDiasConHoy] = useState(diasRezados);
 
   useEffect(() => {
     setConjunto(conjuntoDeHoy());
   }, []);
+
+  const volver = () => router.push('/app');
+
+  useEffect(() => {
+    if (!celebrando) return;
+    const t = setTimeout(volver, 2200);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [celebrando]);
+
+  if (celebrando) {
+    return (
+      <main
+        role="status"
+        aria-live="polite"
+        onClick={volver}
+        className="relative flex flex-1 flex-col items-center justify-center overflow-hidden px-6 text-center [touch-action:manipulation]"
+      >
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-1/3 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full"
+          style={{ background: 'radial-gradient(circle, color-mix(in oklab, var(--accent) 24%, transparent) 0%, transparent 70%)' }}
+        />
+        <motion.span
+          initial={{ scale: 0.3, rotate: -20, opacity: 0 }}
+          animate={{ scale: 1, rotate: 0, opacity: 1 }}
+          transition={{ type: 'spring', bounce: 0.5, duration: 0.7 }}
+          className="relative flex size-24 items-center justify-center rounded-full bg-[var(--accent)] text-[var(--on-accent-fill)] shadow-[0_16px_40px_color-mix(in_oklab,var(--accent)_35%,transparent)]"
+        >
+          <Flower2 size={44} strokeWidth={2.2} aria-hidden="true" />
+        </motion.span>
+        <motion.h1
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.25, duration: 0.35 }}
+          className="relative mt-8 text-balance text-[26px] font-bold leading-[1.2] text-[var(--text-primary)] [font-family:var(--font-display)]"
+        >
+          Le entregaste tu rosa de hoy a María
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.3 }}
+          className="relative mt-2 text-[15px] text-[var(--text-secondary)]"
+        >
+          Tu Corona sigue floreciendo.
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.3 }}
+          className="relative mt-6"
+        >
+          <CoronaDeRosas diasRezados={diasConHoy} size={180} />
+        </motion.div>
+      </main>
+    );
+  }
 
   if (!conjunto) return <main className="flex-1" />;
 
@@ -31,13 +95,26 @@ export function RosarioCliente() {
     setPaso(0);
   };
 
+  const terminarRosario = async () => {
+    const hoy = fechaLocalISO();
+    if (!diasConHoy.includes(hoy)) {
+      const supabase = createClient();
+      const { data: userData } = await supabase.auth.getUser();
+      if (userData.user) {
+        await supabase.from('rosario_dias').upsert({ user_id: userData.user.id, fecha: hoy }, { onConflict: 'user_id,fecha' });
+      }
+      setDiasConHoy((d) => [...d, hoy]);
+    }
+    setCelebrando(true);
+  };
+
   return (
     <main className="flex flex-1 flex-col px-4 pt-4 pb-4">
       <header className="mb-4 flex items-center gap-2">
         <button
           type="button"
           aria-label="Volver a Hoy"
-          onClick={() => router.push('/app')}
+          onClick={volver}
           className="flex size-11 shrink-0 items-center justify-center text-[var(--text-secondary)] [touch-action:manipulation]"
         >
           <ChevronLeft size={22} aria-hidden="true" />
@@ -86,24 +163,17 @@ export function RosarioCliente() {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -16 }}
           transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-1 flex-col rounded-[var(--radius-card)] border border-[color-mix(in_oklab,var(--accent)_20%,transparent)] bg-[var(--surface)] p-6 shadow-[var(--shadow-2)]"
+          className="flex flex-1 flex-col overflow-hidden rounded-[var(--radius-card)] border border-[color-mix(in_oklab,var(--accent)_20%,transparent)] bg-[var(--surface)] p-6 shadow-[var(--shadow-2)]"
         >
           <p className="text-[13px] font-semibold uppercase tracking-[0.06em] text-[var(--accent-text)]">
             Misterio {paso + 1} de 5
           </p>
 
+          {/* Encuadre limpio y completo — sin barras difuminadas a los lados */}
           <figure className="mt-4">
-            {/* Fondo del mismo cuadro, difuminado: las pinturas verticales no se recortan */}
-            <div className="relative flex h-56 items-center justify-center overflow-hidden rounded-[var(--radius-button)] bg-[var(--surface-2)]">
+            <div className="overflow-hidden rounded-[var(--radius-button)]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={misterio.imagen.src}
-                alt=""
-                aria-hidden="true"
-                className="absolute inset-0 size-full scale-110 object-cover opacity-40 blur-xl"
-              />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={misterio.imagen.src} alt={misterio.imagen.alt} className="relative h-full w-auto max-w-full object-contain" />
+              <img src={misterio.imagen.src} alt={misterio.imagen.alt} className="aspect-[4/5] w-full object-cover" />
             </div>
             <figcaption className="mt-1 text-[11px] text-[var(--text-tertiary)]">{misterio.imagen.credito}</figcaption>
           </figure>
@@ -147,7 +217,7 @@ export function RosarioCliente() {
         <motion.button
           whileTap={{ scale: 0.97 }}
           type="button"
-          onClick={() => (ultimo ? router.push('/app') : setPaso(paso + 1))}
+          onClick={() => (ultimo ? terminarRosario() : setPaso(paso + 1))}
           className="h-14 flex-1 rounded-[var(--radius-button)] bg-[var(--accent)] text-[16px] font-semibold text-[var(--on-accent-fill)] shadow-[0_10px_28px_color-mix(in_oklab,var(--accent)_30%,transparent)] [touch-action:manipulation]"
         >
           {ultimo ? 'Terminé mi rosario' : 'Siguiente misterio'}

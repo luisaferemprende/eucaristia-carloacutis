@@ -137,10 +137,14 @@ function VistaPremio({
 function Progreso({
   novena,
   nombrePersona,
+  personasActivas,
+  velasHoyInicial,
   onCompletada,
 }: {
   novena: NovenaActiva;
   nombrePersona: string;
+  personasActivas: number;
+  velasHoyInicial: number;
   onCompletada: (p: PremioVisible) => void;
 }) {
   const router = useRouter();
@@ -150,6 +154,24 @@ function Progreso({
   const [abierto, setAbierto] = useState<number | null>(null);
   const [porQueAbierto, setPorQueAbierto] = useState(novena.diasHechos === 0);
   const [recienHecho, setRecienHecho] = useState<number | null>(null);
+  const [velaEncendida, setVelaEncendida] = useState(false);
+  const [velasHoy, setVelasHoy] = useState(velasHoyInicial);
+  const [encendiendo, setEncendiendo] = useState(false);
+
+  const encenderVela = async () => {
+    if (encendiendo || velaEncendida) return;
+    setEncendiendo(true);
+    const supabase = createClient();
+    const { data: userData } = await supabase.auth.getUser();
+    if (userData.user) {
+      const { error: errVela } = await supabase.from('velas_encendidas').insert({ user_id: userData.user.id });
+      if (!errVela) {
+        setVelaEncendida(true);
+        setVelasHoy((v) => v + 1); // dato real: la que acabamos de guardar
+      }
+    }
+    setEncendiendo(false);
+  };
 
   useEffect(() => setHechoHoy(novena.ultimoDiaMarcado === fechaLocalISO()), [novena.ultimoDiaMarcado]);
 
@@ -212,6 +234,20 @@ function Progreso({
           </p>
         </div>
       </motion.section>
+
+      {/* Presencia real (dato de verdad, nunca inventado): cuántas personas tienen
+          esta misma novena activa — no se oculta aunque el número sea chico. */}
+      {personasActivas > 0 && (
+        <motion.p variants={item} className="mt-3 flex items-center gap-1.5 px-1 text-[13px] text-[var(--text-secondary)]">
+          <span className="relative flex size-2 shrink-0">
+            <span className="absolute inline-flex size-full animate-ping rounded-full bg-[var(--accent)] opacity-60" />
+            <span className="relative inline-flex size-2 rounded-full bg-[var(--accent)]" />
+          </span>
+          {personasActivas === 1
+            ? 'Otra persona está haciendo esta novena contigo'
+            : `${personasActivas} personas están haciendo esta novena contigo`}
+        </motion.p>
+      )}
 
       {/* ——— Por qué esta novena ——— */}
       {novena.porQue && (
@@ -369,6 +405,27 @@ function Progreso({
         </motion.section>
       )}
 
+      {/* Cierre comunitario: un gesto más, sin obligar — número real, nunca inventado */}
+      {hechoHoy && (
+        <motion.button
+          variants={item}
+          whileTap={{ scale: 0.97 }}
+          type="button"
+          onClick={encenderVela}
+          disabled={encendiendo || velaEncendida}
+          className={`mt-3 flex h-12 w-full items-center justify-center gap-2 rounded-[var(--radius-button)] border text-[14px] font-medium [touch-action:manipulation] disabled:opacity-100 ${
+            velaEncendida
+              ? 'border-[var(--accent)] bg-[color-mix(in_oklab,var(--accent)_10%,transparent)] text-[var(--accent-text)]'
+              : 'border-[color-mix(in_oklab,var(--text-tertiary)_28%,transparent)] text-[var(--text-secondary)]'
+          }`}
+        >
+          <Flame size={16} aria-hidden="true" color={velaEncendida ? 'var(--accent)' : 'currentColor'} />
+          {velaEncendida
+            ? `Vela encendida · ${velasHoy} ${velasHoy === 1 ? 'vela' : 'velas'} hoy en la comunidad`
+            : 'Encender mi vela por esta intención'}
+        </motion.button>
+      )}
+
       {/* ——— Recorrido ——— */}
       <motion.section variants={item} className="mt-6" aria-label="Días de la novena">
         <h2 className="mb-3 text-[17px] font-semibold text-[var(--text-primary)]">Tu recorrido</h2>
@@ -480,6 +537,7 @@ function Elegir({
   const router = useRouter();
   const [eligiendo, setEligiendo] = useState<string | null>(null);
   const [error, setError] = useState(false);
+  const [sugerenciaAbierta, setSugerenciaAbierta] = useState(false);
   const hechasIds = new Set(completadas.map((c) => c.nombre));
 
   const elegir = async (novenaId: string) => {
@@ -576,7 +634,139 @@ function Elegir({
           No pudimos empezar la novena. Revisa tu conexión y vuelve a intentarlo.
         </p>
       )}
+
+      <motion.div
+        variants={item}
+        className="mt-5 rounded-[var(--radius-card)] border border-[color-mix(in_oklab,var(--text-tertiary)_20%,transparent)] bg-[var(--bg)] p-5 text-center"
+      >
+        <p className="text-[15px] font-semibold text-[var(--text-primary)]">¿No encuentras la novena que buscas?</p>
+        <p className="mt-1 text-[13px] leading-snug text-[var(--text-secondary)]">
+          Dinos qué santo o devoción te gustaría rezar y la sumaremos a EucaristíaViva.
+        </p>
+        <button
+          type="button"
+          onClick={() => setSugerenciaAbierta(true)}
+          className="mt-3 h-11 rounded-full border border-[var(--accent)] px-5 text-[14px] font-semibold text-[var(--accent-text)] [touch-action:manipulation]"
+        >
+          Proponer una novena
+        </button>
+      </motion.div>
+      {sugerenciaAbierta && <ModalSugerencia onCerrar={() => setSugerenciaAbierta(false)} />}
     </motion.main>
+  );
+}
+
+/* ───────────────────────── Proponer una novena (modal) ───────────────────────── */
+function ModalSugerencia({ onCerrar }: { onCerrar: () => void }) {
+  const [nombreSanto, setNombreSanto] = useState('');
+  const [motivo, setMotivo] = useState('');
+  const [enviando, setEnviando] = useState(false);
+  const [enviado, setEnviado] = useState(false);
+  const [error, setError] = useState(false);
+
+  const enviar = async () => {
+    if (!nombreSanto.trim() || enviando) return;
+    setEnviando(true);
+    setError(false);
+    const supabase = createClient();
+    const { data: userData } = await supabase.auth.getUser();
+    if (!userData.user) {
+      setError(true);
+      setEnviando(false);
+      return;
+    }
+    const { error: err } = await supabase
+      .from('novena_sugerencias')
+      .insert({ user_id: userData.user.id, nombre_santo: nombreSanto.trim(), motivo: motivo.trim() || null });
+    setEnviando(false);
+    if (err) {
+      setError(true);
+      return;
+    }
+    setEnviado(true);
+  };
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Proponer una novena"
+      className="fixed inset-0 z-50 flex items-end justify-center bg-[color-mix(in_oklab,var(--text-primary)_40%,transparent)] px-4 pb-4 sm:items-center"
+      onClick={onCerrar}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+        onClick={(e) => e.stopPropagation()}
+        className="w-full max-w-sm rounded-[var(--radius-card)] border border-[color-mix(in_oklab,var(--accent)_25%,transparent)] bg-[var(--surface)] p-6 shadow-[var(--shadow-2)]"
+      >
+        {enviado ? (
+          <div className="py-2 text-center">
+            <p className="text-[16px] font-semibold text-[var(--text-primary)]">
+              ¡Gracias! Hemos recibido tu petición.
+            </p>
+            <p className="mt-2 text-[14px] leading-relaxed text-[var(--text-secondary)]">
+              Trabajaremos para sumarla pronto a la comunidad.
+            </p>
+            <button
+              type="button"
+              onClick={onCerrar}
+              className="mt-5 h-12 w-full rounded-[var(--radius-button)] bg-[var(--accent)] text-[15px] font-semibold text-[var(--on-accent-fill)] [touch-action:manipulation]"
+            >
+              Cerrar
+            </button>
+          </div>
+        ) : (
+          <>
+            <h2 className="text-[18px] font-semibold text-[var(--text-primary)] [font-family:var(--font-display)]">
+              Proponer una novena
+            </h2>
+            <label className="mt-4 block">
+              <span className="text-[13px] font-medium text-[var(--text-secondary)]">Nombre del santo o novena</span>
+              <input
+                type="text"
+                value={nombreSanto}
+                onChange={(e) => setNombreSanto(e.target.value)}
+                placeholder="Ej. San Juan Pablo II"
+                className="mt-1 h-12 w-full rounded-[var(--radius-button)] border border-[color-mix(in_oklab,var(--text-tertiary)_28%,transparent)] bg-[var(--bg)] px-3 text-[15px] text-[var(--text-primary)] outline-none focus:border-[var(--accent)]"
+              />
+            </label>
+            <label className="mt-3 block">
+              <span className="text-[13px] font-medium text-[var(--text-secondary)]">¿Por qué es especial para ti? (opcional)</span>
+              <textarea
+                value={motivo}
+                onChange={(e) => setMotivo(e.target.value)}
+                rows={3}
+                className="mt-1 w-full resize-none rounded-[var(--radius-button)] border border-[color-mix(in_oklab,var(--text-tertiary)_28%,transparent)] bg-[var(--bg)] px-3 py-2 text-[14px] leading-relaxed text-[var(--text-primary)] outline-none focus:border-[var(--accent)]"
+              />
+            </label>
+            {error && (
+              <p role="alert" className="mt-2 text-[13px] text-[var(--danger)]">
+                No pudimos enviar tu petición. Inténtalo de nuevo.
+              </p>
+            )}
+            <div className="mt-5 flex gap-3">
+              <button
+                type="button"
+                onClick={onCerrar}
+                className="h-12 rounded-[var(--radius-button)] border border-[color-mix(in_oklab,var(--text-tertiary)_28%,transparent)] px-4 text-[14px] font-medium text-[var(--text-secondary)] [touch-action:manipulation]"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                onClick={enviar}
+                disabled={!nombreSanto.trim() || enviando}
+                className="h-12 flex-1 rounded-[var(--radius-button)] bg-[var(--accent)] text-[14px] font-semibold text-[var(--on-accent-fill)] [touch-action:manipulation] disabled:opacity-60"
+              >
+                {enviando ? 'Enviando…' : 'Enviar petición'}
+              </button>
+            </div>
+          </>
+        )}
+      </motion.div>
+    </div>
   );
 }
 
@@ -586,11 +776,15 @@ export function NovenaCliente({
   activa,
   completadas,
   disponibles,
+  personasActivas,
+  velasHoyInicial,
 }: {
   nombrePersona: string;
   activa: NovenaActiva | null;
   completadas: NovenaCompletada[];
   disponibles: NovenaDisponible[];
+  personasActivas: number;
+  velasHoyInicial: number;
 }) {
   const [premio, setPremio] = useState<PremioVisible | null>(null);
   const [celebrando, setCelebrando] = useState(false);
@@ -614,6 +808,8 @@ export function NovenaCliente({
       <Progreso
         novena={activa}
         nombrePersona={nombrePersona}
+        personasActivas={personasActivas}
+        velasHoyInicial={velasHoyInicial}
         onCompletada={(p) => {
           setCelebrando(true);
           setPremio(p);

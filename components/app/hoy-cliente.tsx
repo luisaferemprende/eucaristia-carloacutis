@@ -6,7 +6,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion, type Variants } from 'motion/react';
-import { BookHeart, Check, ChevronRight, CircleDot, Flame, Sparkles } from 'lucide-react';
+import { BookHeart, Check, ChevronRight, Flame, Flower2, Sparkles } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { AnilloProgresoApp, CountUp, saludoPorHora } from '@/components/app/ui';
 import { RetratoSanto } from '@/components/app/emblema-eucaristico';
@@ -47,6 +47,8 @@ export interface HoyData {
   milagroResumen: string;
   novena: { nombre: string; diasHechos: number; diasTotal: number } | null;
   ultimaEntradaDiario: string | null;
+  /** Días reales (de los últimos 7) con el Rosario rezado — Corona de Rosas. */
+  rosasEstaSemana: number;
 }
 
 export function HoyCliente(d: HoyData) {
@@ -220,7 +222,7 @@ export function HoyCliente(d: HoyData) {
             aria-hidden="true"
             className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[var(--chip-bg)]"
           >
-            <CircleDot size={20} color="var(--accent)" aria-hidden="true" />
+            <Flower2 size={20} color="var(--accent)" aria-hidden="true" />
           </span>
           <div className="min-w-0 flex-1">
             <p className="text-[15px] font-semibold text-[var(--text-primary)]">Rosario de hoy</p>
@@ -228,6 +230,13 @@ export function HoyCliente(d: HoyData) {
               {CONJUNTOS[conjuntoHoy].titulo} · 5 meditaciones
             </p>
           </div>
+          <span
+            aria-label={`${d.rosasEstaSemana} de 7 rosas esta semana`}
+            className="flex shrink-0 items-center gap-1 rounded-full bg-[color-mix(in_oklab,var(--accent)_12%,transparent)] px-2 py-1 text-[12px] font-semibold text-[var(--accent-text)]"
+          >
+            <Flower2 size={12} aria-hidden="true" />
+            {d.rosasEstaSemana}/7
+          </span>
           <ChevronRight size={20} color="var(--text-tertiary)" aria-hidden="true" className="shrink-0" />
         </motion.a>
       )}

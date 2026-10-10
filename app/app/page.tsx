@@ -21,7 +21,10 @@ export default async function Hoy() {
   const { data: userData } = await supabase.auth.getUser();
   const userId = userData.user!.id; // garantizado por app/app/layout.tsx
 
-  const [{ data: perfil }, contenidoHoy, { data: progresoReciente }, { data: participacion }, { data: ultimaEntrada }] =
+  const hace7Dias = new Date();
+  hace7Dias.setDate(hace7Dias.getDate() - 6);
+
+  const [{ data: perfil }, contenidoHoy, { data: progresoReciente }, { data: participacion }, { data: ultimaEntrada }, { data: rosarioDias }] =
     await Promise.all([
       supabase.from('profiles').select('nombre, racha_actual, santo_preferido').eq('id', userId).single(),
       cargarContenidoDeHoy(supabase),
@@ -36,6 +39,7 @@ export default async function Hoy() {
         .limit(1)
         .maybeSingle(),
       supabase.from('diary_entries').select('texto').eq('user_id', userId).order('created_at', { ascending: false }).limit(1).maybeSingle(),
+      supabase.from('rosario_dias').select('fecha').eq('user_id', userId).gte('fecha', hace7Dias.toISOString().slice(0, 10)),
     ]);
 
   const contenido = contenidoHoy ?? CONTENIDO_RESPALDO;
@@ -60,6 +64,7 @@ export default async function Hoy() {
             : null
         }
         ultimaEntradaDiario={ultimaEntrada?.texto ?? null}
+        rosasEstaSemana={(rosarioDias ?? []).length}
       />
     </>
   );
