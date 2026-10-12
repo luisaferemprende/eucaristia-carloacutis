@@ -98,11 +98,10 @@ export function RosarioCliente({ diasRezados }: { diasRezados: string[] }) {
   const terminarRosario = async () => {
     const hoy = fechaLocalISO();
     if (!diasConHoy.includes(hoy)) {
+      // Por el RPC (no INSERT directo): valida la fecha y es la única puerta
+      // real a la Corona — así nadie puede "regalarse" rosas de otros días.
       const supabase = createClient();
-      const { data: userData } = await supabase.auth.getUser();
-      if (userData.user) {
-        await supabase.from('rosario_dias').upsert({ user_id: userData.user.id, fecha: hoy }, { onConflict: 'user_id,fecha' });
-      }
+      await supabase.rpc('marcar_rosario_hecho', { p_fecha: hoy });
       setDiasConHoy((d) => [...d, hoy]);
     }
     setCelebrando(true);

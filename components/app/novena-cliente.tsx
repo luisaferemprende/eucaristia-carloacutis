@@ -169,6 +169,10 @@ function Progreso({
       if (!errVela) {
         setVelaEncendida(true);
         setVelasHoy((v) => v + 1); // dato real: la que acabamos de guardar
+      } else if (errVela.code === '23505') {
+        // Ya había una vela de hoy (ej. recargó la página) — no es un error,
+        // solo reflejamos que ya está encendida. Una vela real por día.
+        setVelaEncendida(true);
       }
     }
     setEncendiendo(false);
