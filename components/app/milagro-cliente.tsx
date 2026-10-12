@@ -72,7 +72,7 @@ export function MilagroCliente({ contenido }: { contenido: ContenidoDiario | nul
         <div className="relative flex items-center gap-3">
           <span
             aria-hidden="true"
-            className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_oklab,var(--accent-2)_14%,transparent)]"
+            className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_oklab,var(--accent-2)_14%,transparent)] shadow-[var(--shadow-chip)]"
           >
             <EmblemaEucaristico className="h-7 w-7" color="var(--accent-2)" />
           </span>

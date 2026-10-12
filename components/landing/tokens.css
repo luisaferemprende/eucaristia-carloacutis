@@ -59,6 +59,14 @@
      opacidad, no se ve como si la tarjeta estuviera realmente levantada). */
   --shadow-1: 0 1px 3px rgb(120 72 20 / 0.07);
   --shadow-2: 0 14px 32px -14px rgb(212 175 55 / 0.28), 0 4px 10px -6px rgb(69 45 10 / 0.12);
+  /* Pulido 2026-10-12: "efecto 3D" en botones y chips de ícono — un filo claro
+     arriba (inset) + una sombra de contacto abajo (inset), para que se sientan
+     elevados/tocables en vez de un color plano. Nada de brillo plástico: el
+     realce es sutil (DESIGN-CORE §2, nunca glass/neón). */
+  --shadow-cta: 0 14px 28px -10px rgb(212 175 55 / 0.38), 0 3px 8px -3px rgb(69 45 10 / 0.2),
+    inset 0 1px 0 rgb(255 255 255 / 0.55), inset 0 -2px 3px rgb(120 72 20 / 0.14);
+  --shadow-chip: 0 3px 8px -2px rgb(120 72 20 / 0.18), inset 0 1px 0 rgb(255 255 255 / 0.6),
+    inset 0 -1px 2px rgb(120 72 20 / 0.12);
 
   /* ── DERIVADOS (no se tocan: se recalculan solos desde --accent) ── */
   --chip-bg: color-mix(in oklab, var(--accent) 10%, transparent);

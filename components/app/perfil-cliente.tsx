@@ -155,7 +155,7 @@ export function PerfilCliente(d: PerfilData) {
       <motion.header variants={item} className="mb-6 flex items-center gap-4">
         <span
           aria-hidden="true"
-          className="flex size-14 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_oklab,var(--accent)_16%,transparent)] text-[20px] font-bold text-[var(--accent-text)] [font-family:var(--font-display)]"
+          className="flex size-14 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_oklab,var(--accent)_16%,transparent)] text-[20px] font-bold text-[var(--accent-text)] [font-family:var(--font-display)] shadow-[var(--shadow-chip)]"
         >
           {d.nombre.charAt(0).toUpperCase()}
         </span>
@@ -199,7 +199,7 @@ export function PerfilCliente(d: PerfilData) {
             onClick={() => setPlanAbierto(true)}
             className="flex w-full items-center gap-3 rounded-[var(--radius-card)] border border-[color-mix(in_oklab,var(--text-tertiary)_20%,transparent)] bg-[var(--surface)] p-4 text-left [touch-action:manipulation]"
           >
-            <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[var(--chip-bg)]">
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[var(--chip-bg)] shadow-[var(--shadow-chip)]">
               <CreditCard size={18} color="var(--accent)" aria-hidden="true" />
             </span>
             <span className="min-w-0 flex-1">
@@ -212,7 +212,7 @@ export function PerfilCliente(d: PerfilData) {
           </button>
         </li>
         <li className="flex items-center gap-3 rounded-[var(--radius-card)] border border-[color-mix(in_oklab,var(--text-tertiary)_20%,transparent)] bg-[var(--surface)] p-4">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[var(--chip-bg)]">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[var(--chip-bg)] shadow-[var(--shadow-chip)]">
             <Bell size={18} color="var(--accent)" aria-hidden="true" />
           </span>
           <span className="min-w-0 flex-1">
@@ -227,7 +227,7 @@ export function PerfilCliente(d: PerfilData) {
             href="/privacidad"
             className="flex items-center gap-3 rounded-[var(--radius-card)] border border-[color-mix(in_oklab,var(--text-tertiary)_20%,transparent)] bg-[var(--surface)] p-4 [touch-action:manipulation]"
           >
-            <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[var(--chip-bg)]">
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[var(--chip-bg)] shadow-[var(--shadow-chip)]">
               <ShieldCheck size={18} color="var(--accent)" aria-hidden="true" />
             </span>
             <span className="min-w-0 flex-1 text-[15px] font-medium text-[var(--text-primary)]">Privacidad y datos</span>

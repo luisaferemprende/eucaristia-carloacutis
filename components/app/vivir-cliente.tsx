@@ -209,7 +209,7 @@ export function VivirCliente({
               {/* Ícono litúrgico elegante — nunca una foto/estampa con derechos dudosos */}
               <span
                 aria-hidden="true"
-                className="relative mx-auto flex size-14 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_oklab,var(--accent-2)_14%,transparent)]"
+                className="relative mx-auto flex size-14 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_oklab,var(--accent-2)_14%,transparent)] shadow-[var(--shadow-chip)]"
               >
                 <EmblemaEucaristico className="h-9 w-9" color="var(--accent-2)" />
               </span>
@@ -238,7 +238,7 @@ export function VivirCliente({
               <ol className="relative mt-5 space-y-4">
                 {pasosPreparacion.map((texto, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_oklab,var(--accent)_16%,transparent)] text-[14px] font-bold text-[var(--accent-text)]">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_oklab,var(--accent)_16%,transparent)] text-[14px] font-bold text-[var(--accent-text)] shadow-[var(--shadow-chip)]">
                       {i + 1}
                     </span>
                     <p className="pt-0.5 text-[16px] leading-relaxed text-[var(--text-primary)]">{texto}</p>
@@ -272,7 +272,7 @@ export function VivirCliente({
           type="button"
           disabled={fase === 'guardando'}
           onClick={() => (ultimo ? terminar() : setPaso(paso + 1))}
-          className={`h-14 flex-1 rounded-[var(--radius-button)] bg-[var(--accent)] text-[16px] font-semibold text-[var(--on-accent-fill)] shadow-[0_10px_28px_color-mix(in_oklab,var(--accent)_30%,transparent)] transition-opacity [touch-action:manipulation] ${
+          className={`h-14 flex-1 rounded-[var(--radius-button)] bg-[var(--accent)] text-[16px] font-semibold text-[var(--on-accent-fill)] shadow-[var(--shadow-cta)] transition-opacity [touch-action:manipulation] ${
             fase === 'guardando' ? 'opacity-60' : ''
           }`}
         >

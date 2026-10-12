@@ -6,10 +6,10 @@
 
 import { useEffect, useState } from 'react';
 import { motion, type Variants } from 'motion/react';
-import { BookHeart, Check, ChevronRight, Flame, Flower2, Sparkles } from 'lucide-react';
+import { BookHeart, Check, ChevronRight, Flame, Flower2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { AnilloProgresoApp, CountUp, saludoPorHora } from '@/components/app/ui';
-import { RetratoSanto } from '@/components/app/emblema-eucaristico';
+import { IconoCalizHostia, RetratoSanto } from '@/components/app/emblema-eucaristico';
 import { fechaLocalISO } from '@/lib/contenido-hoy';
 import { CONJUNTOS, conjuntoDeHoy, type ConjuntoId } from '@/lib/rosario';
 
@@ -128,7 +128,7 @@ export function HoyCliente(d: HoyData) {
           className={`mt-6 flex h-[52px] w-full items-center justify-center gap-2 rounded-[var(--radius-button)] text-[16px] font-semibold transition-colors duration-150 [touch-action:manipulation] ${
             hecho
               ? 'bg-[color-mix(in_oklab,var(--accent-2)_16%,transparent)] text-[var(--accent-2)]'
-              : 'bg-[var(--accent)] text-[var(--on-accent-fill)] shadow-[0_10px_28px_color-mix(in_oklab,var(--accent)_30%,transparent)]'
+              : 'bg-[var(--accent)] text-[var(--on-accent-fill)] shadow-[var(--shadow-cta)]'
           }`}
         >
           {hecho ? (
@@ -158,9 +158,9 @@ export function HoyCliente(d: HoyData) {
       >
         <span
           aria-hidden="true"
-          className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_oklab,var(--accent-2)_14%,transparent)]"
+          className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_oklab,var(--accent-2)_14%,transparent)] shadow-[var(--shadow-chip)]"
         >
-          <Sparkles size={20} color="var(--accent-2)" aria-hidden="true" />
+          <IconoCalizHostia size={20} />
         </span>
         <div className="min-w-0 flex-1">
           <p className="text-[13px] font-semibold text-[var(--text-secondary)]">Milagro eucarístico de hoy</p>
@@ -197,7 +197,7 @@ export function HoyCliente(d: HoyData) {
           whileTap={{ scale: 0.98 }}
           className="mt-4 flex items-center gap-4 rounded-[var(--radius-card)] border border-dashed border-[color-mix(in_oklab,var(--text-tertiary)_35%,transparent)] bg-[var(--surface)] p-5 [touch-action:manipulation]"
         >
-          <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[var(--chip-bg)]">
+          <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[var(--chip-bg)] shadow-[var(--shadow-chip)]">
             <Flame size={20} color="var(--accent)" aria-hidden="true" />
           </span>
           <div className="min-w-0 flex-1">
@@ -220,7 +220,7 @@ export function HoyCliente(d: HoyData) {
         >
           <span
             aria-hidden="true"
-            className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[var(--chip-bg)]"
+            className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[var(--chip-bg)] shadow-[var(--shadow-chip)]"
           >
             <Flower2 size={20} color="var(--accent)" aria-hidden="true" />
           </span>
@@ -250,7 +250,7 @@ export function HoyCliente(d: HoyData) {
       >
         <span
           aria-hidden="true"
-          className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[var(--chip-bg)]"
+          className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[var(--chip-bg)] shadow-[var(--shadow-chip)]"
         >
           <BookHeart size={20} color="var(--accent)" aria-hidden="true" />
         </span>

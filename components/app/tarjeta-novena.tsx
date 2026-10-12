@@ -352,7 +352,7 @@ export function TarjetaNovena({ santo, diasTotal, fecha, nombrePersona }: Props)
         type="button"
         onClick={guardar}
         disabled={generando}
-        className="mt-4 flex h-14 w-full items-center justify-center gap-2 rounded-[var(--radius-button)] bg-[var(--accent)] text-[16px] font-semibold text-[var(--on-accent-fill)] shadow-[0_10px_28px_color-mix(in_oklab,var(--accent)_30%,transparent)] [touch-action:manipulation] disabled:opacity-60"
+        className="mt-4 flex h-14 w-full items-center justify-center gap-2 rounded-[var(--radius-button)] bg-[var(--accent)] text-[16px] font-semibold text-[var(--on-accent-fill)] shadow-[var(--shadow-cta)] [touch-action:manipulation] disabled:opacity-60"
       >
         {puedeCompartir ? <Share2 size={20} aria-hidden="true" /> : <Download size={20} aria-hidden="true" />}
         {generando ? 'Preparando tu tarjeta…' : puedeCompartir ? 'Compartir mi tarjeta' : 'Descargar mi tarjeta'}

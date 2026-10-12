@@ -45,6 +45,25 @@ export function EmblemaEucaristico({
   );
 }
 
+// Cáliz con la hostia (cruz dentro del círculo) — reemplaza íconos genéricos
+// (ej. una estrella) en tarjetas relacionadas con el milagro eucarístico.
+// Monocromo, como el resto de íconos dentro de un chip de color.
+export function IconoCalizHostia({ size = 20, color = 'var(--accent-2)' }: { size?: number; color?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" role="img" aria-hidden="true">
+      <circle cx="12" cy="5" r="3.1" stroke={color} strokeWidth="1.6" />
+      <path d="M12 3.6 L12 6.4 M10.7 5 L13.3 5" stroke={color} strokeWidth="1.3" strokeLinecap="round" />
+      <path
+        d="M7 9 L17 9 M7.5 9 C7.5 12.4 9.7 14.2 12 14.2 C14.3 14.2 16.5 12.4 16.5 9 M12 14.2 L12 17.2 M9.3 17.2 C9.3 18.4 10.4 18.8 12 18.8 C13.6 18.8 14.7 18.4 14.7 17.2 M8.6 20 L15.4 20"
+        stroke={color}
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function RetratoSanto({
   url,
   alt,

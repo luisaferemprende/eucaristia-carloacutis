@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import { AnimatePresence, motion, type Variants } from 'motion/react';
 import { Check, ChevronDown, ChevronLeft, Flame, HandHeart, Lock, Sparkles } from 'lucide-react';
 import { AnilloProgresoApp } from '@/components/app/ui';
+import { IconoVela } from '@/components/app/vela-icono';
 import { TarjetaNovena } from '@/components/app/tarjeta-novena';
 import { createClient } from '@/lib/supabase/client';
 import { fechaLocalISO } from '@/lib/contenido-hoy';
@@ -269,7 +270,7 @@ function Progreso({
                 className="size-12 shrink-0 rounded-full object-cover object-[50%_20%]"
               />
             ) : (
-              <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[var(--chip-bg)]">
+              <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[var(--chip-bg)] shadow-[var(--shadow-chip)]">
                 <Sparkles size={20} color="var(--accent)" aria-hidden="true" />
               </span>
             )}
@@ -369,7 +370,7 @@ function Progreso({
             type="button"
             onClick={terminarDia}
             disabled={guardando}
-            className="relative mt-5 flex h-14 w-full items-center justify-center gap-2 rounded-[var(--radius-button)] bg-[var(--accent)] text-[16px] font-semibold text-[var(--on-accent-fill)] shadow-[0_10px_28px_color-mix(in_oklab,var(--accent)_30%,transparent)] [touch-action:manipulation] disabled:opacity-60"
+            className="relative mt-5 flex h-14 w-full items-center justify-center gap-2 rounded-[var(--radius-button)] bg-[var(--accent)] text-[16px] font-semibold text-[var(--on-accent-fill)] shadow-[var(--shadow-cta)] [touch-action:manipulation] disabled:opacity-60"
           >
             <Check size={20} strokeWidth={3} aria-hidden="true" />
             {guardando
@@ -390,7 +391,7 @@ function Progreso({
             initial={{ scale: 0.6, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: 'spring', bounce: 0.45, duration: 0.4 }}
-            className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[var(--accent-2)] text-[var(--surface)]"
+            className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[var(--accent-2)] text-[var(--surface)] shadow-[var(--shadow-chip)]"
           >
             <Check size={22} strokeWidth={3} aria-hidden="true" />
           </motion.span>
@@ -419,7 +420,7 @@ function Progreso({
               : 'border-[color-mix(in_oklab,var(--text-tertiary)_28%,transparent)] text-[var(--text-secondary)]'
           }`}
         >
-          <Flame size={16} aria-hidden="true" color={velaEncendida ? 'var(--accent)' : 'currentColor'} />
+          <IconoVela size={22} encendida={velaEncendida} />
           {velaEncendida
             ? `Vela encendida · ${velasHoy} ${velasHoy === 1 ? 'vela' : 'velas'} hoy en la comunidad`
             : 'Encender mi vela por esta intención'}

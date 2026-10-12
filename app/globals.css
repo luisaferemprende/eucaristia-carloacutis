@@ -26,6 +26,10 @@
      con el tinte cálido del modo día), sin perder la profundidad oscura real. */
   --shadow-1: 0 1px 2px rgb(3 4 10 / 0.5);
   --shadow-2: 0 12px 32px -12px rgb(3 4 10 / 0.65), 0 1px 0 rgb(212 175 55 / 0.08);
+  --shadow-cta: 0 14px 28px -10px rgb(0 0 0 / 0.55), 0 3px 8px -3px rgb(0 0 0 / 0.35),
+    inset 0 1px 0 rgb(255 240 190 / 0.4), inset 0 -2px 3px rgb(0 0 0 / 0.28);
+  --shadow-chip: 0 3px 8px -2px rgb(0 0 0 / 0.4), inset 0 1px 0 rgb(255 255 255 / 0.14),
+    inset 0 -1px 2px rgb(0 0 0 / 0.3);
 }
 
 @theme inline {

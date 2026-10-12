@@ -111,7 +111,7 @@ export function CtaFunnel({
   href?: string;
   type?: 'button' | 'submit';
 }) {
-  const clases = `flex h-14 w-full items-center justify-center rounded-[var(--radius-button)] bg-[var(--accent)] text-[16px] font-semibold text-[var(--on-accent-fill)] shadow-[0_10px_28px_color-mix(in_oklab,var(--accent)_30%,transparent)] transition-opacity duration-150 [touch-action:manipulation] ${
+  const clases = `flex h-14 w-full items-center justify-center rounded-[var(--radius-button)] bg-[var(--accent)] text-[16px] font-semibold text-[var(--on-accent-fill)] shadow-[var(--shadow-cta)] transition-opacity duration-150 [touch-action:manipulation] ${
     disabled ? 'opacity-50' : ''
   }`;
   if (href) {

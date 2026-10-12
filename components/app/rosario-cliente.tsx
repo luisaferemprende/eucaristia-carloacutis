@@ -218,7 +218,7 @@ export function RosarioCliente({ diasRezados }: { diasRezados: string[] }) {
           whileTap={{ scale: 0.97 }}
           type="button"
           onClick={() => (ultimo ? terminarRosario() : setPaso(paso + 1))}
-          className="h-14 flex-1 rounded-[var(--radius-button)] bg-[var(--accent)] text-[16px] font-semibold text-[var(--on-accent-fill)] shadow-[0_10px_28px_color-mix(in_oklab,var(--accent)_30%,transparent)] [touch-action:manipulation]"
+          className="h-14 flex-1 rounded-[var(--radius-button)] bg-[var(--accent)] text-[16px] font-semibold text-[var(--on-accent-fill)] shadow-[var(--shadow-cta)] [touch-action:manipulation]"
         >
           {ultimo ? 'Terminé mi rosario' : 'Siguiente misterio'}
         </motion.button>
