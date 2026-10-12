@@ -4,7 +4,7 @@
 // (antes "Cerrar sesión" no hacía nada — hallazgo real, regla UX 11).
 // Estadísticas con datos REALES (racha, rosarios, novenas) — nunca inventados.
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, type Variants } from 'motion/react';
 import {
@@ -23,6 +23,7 @@ import {
 import { CountUp } from '@/components/app/ui';
 import { EmblemaEucaristico } from '@/components/app/emblema-eucaristico';
 import { createClient } from '@/lib/supabase/client';
+import { activarNotificaciones, desactivarNotificaciones, pushSoportado, suscripcionActual } from '@/lib/push';
 
 const lista: Variants = { hidden: {}, visible: { transition: { staggerChildren: 0.05 } } };
 const item: Variants = {
@@ -138,10 +139,39 @@ function ModalPlan({ plan, onCerrar }: { plan: PerfilData['plan']; onCerrar: () 
   );
 }
 
+type EstadoAviso = 'revisando' | 'inactivo' | 'activando' | 'activo' | 'no-soportado';
+
 export function PerfilCliente(d: PerfilData) {
   const router = useRouter();
   const [saliendo, setSaliendo] = useState(false);
   const [planAbierto, setPlanAbierto] = useState(false);
+  const [estadoAviso, setEstadoAviso] = useState<EstadoAviso>('revisando');
+  const [errorAviso, setErrorAviso] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!pushSoportado()) {
+      setEstadoAviso('no-soportado');
+      return;
+    }
+    suscripcionActual().then((s) => setEstadoAviso(s ? 'activo' : 'inactivo'));
+  }, []);
+
+  const alternarAviso = async () => {
+    setErrorAviso(null);
+    if (estadoAviso === 'activo') {
+      await desactivarNotificaciones();
+      setEstadoAviso('inactivo');
+      return;
+    }
+    setEstadoAviso('activando');
+    const resultado = await activarNotificaciones();
+    if (resultado.ok) {
+      setEstadoAviso('activo');
+    } else {
+      setEstadoAviso('inactivo');
+      setErrorAviso(resultado.motivo ?? 'No pudimos activar tus avisos.');
+    }
+  };
 
   const cerrarSesion = async () => {
     setSaliendo(true);
@@ -219,8 +249,26 @@ export function PerfilCliente(d: PerfilData) {
             <span className="block text-[15px] font-medium text-[var(--text-primary)]">Recordatorio diario</span>
             <span className="mt-0.5 block text-[13px] text-[var(--text-secondary)]">
               {MOMENTOS[d.momentoDia] ?? 'Al despertar'}
+              {estadoAviso === 'activo' && ' · avisos activados'}
             </span>
+            {estadoAviso !== 'activo' && errorAviso && (
+              <span className="mt-1 block text-[12px] text-[var(--danger)]">{errorAviso}</span>
+            )}
           </span>
+          {estadoAviso === 'no-soportado' ? null : (
+            <button
+              type="button"
+              onClick={alternarAviso}
+              disabled={estadoAviso === 'activando'}
+              className={`shrink-0 rounded-full px-3 py-1.5 text-[12px] font-semibold [touch-action:manipulation] disabled:opacity-60 ${
+                estadoAviso === 'activo'
+                  ? 'bg-[color-mix(in_oklab,var(--accent-2)_14%,transparent)] text-[var(--accent-2)]'
+                  : 'border border-[var(--accent)] text-[var(--accent-text)]'
+              }`}
+            >
+              {estadoAviso === 'activando' ? 'Activando…' : estadoAviso === 'activo' ? 'Activado' : 'Activar'}
+            </button>
+          )}
         </li>
         <li>
           <a
