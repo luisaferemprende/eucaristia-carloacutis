@@ -1,6 +1,30 @@
 # ESTADO — EucaristíaViva
 Última actualización: 2026-10-13 | Sesión actual: 6
 
+⏸️ CHECKPOINT (2026-10-13): **Catálogo de milagros ampliado a 8 + buscador en El Mapa Sacro.**
+Se sumaron 4 más (Sokółka 2008 con Carlo Acutis; Buenos Aires 1992-1996 con Santa Teresa de
+Calcuta; Tixtla 2006 con San Juan María Vianney; Santarém siglo XIII con San Juan Pablo II) a los
+4 que ya había (Lanciano, Bolsena-Orvieto, Siena, Legnica) — los 8 con la misma
+fuente verificada y el mismo formato de 3 bloques. **Decisión técnica (no se le preguntó al
+usuario, es implementación pura):** el catálogo sigue viviendo en la tabla `daily_content` de
+Supabase (ya pública, ya rota por día del año, ya alimenta el Mapa Sacro) — NO se creó un archivo
+JSON aparte, porque hubiera duplicado la misma información en dos lugares sin necesidad; la tabla
+YA es la "estructura escalable" que se pidió, solo le faltaban más filas. Cuando se quiera sumar
+cada uno de los ~100+ milagros restantes del catálogo de Carlo Acutis, basta escribirlo con la
+misma fuente verificada y sembrar la fila — ESO es lo que toma tiempo real (cada relato necesita
+una fuente seria, no se pueden inventar los 100 de un tirón sin arriesgar un dato falso).
+El Mapa Sacro ahora tiene un buscador por país/lugar (arriba, funciona en mapa y en lista).
+**Bug real corregido:** con más de 1 milagro se notó que tocar cualquier punto o tarjeta siempre
+abría la ficha de HOY (nunca la del milagro elegido) — `/app/milagro` ahora acepta
+`?lugar=...` para abrir uno puntual; el enlace de "Hoy" sigue sin parámetro, así que ese sigue
+rotando normal. Verificado: `tsc` ✓, `build` ✓, probado en vivo (buscar "polonia" deja solo
+Legnica+Sokółka; tocar Legnica y pedir la ficha completa pidió de verdad
+`/app/milagro?lugar=Legnica, Polonia`). Pendiente: imagen propia por milagro (el usuario la pidió
+como parte de la estructura, pero no hay ninguna con licencia verificada todavía para ninguno de
+los 8 — mismo caso que la foto de Carlo Acutis, que tardó varias sesiones en resolverse; no se
+agregó la columna todavía porque estaría vacía en los 8). Los 4 relatos nuevos entran al mismo
+requisito YA anotado: revisión doctrinal de un sacerdote/teólogo antes de cobrar.
+
 ⏸️ CHECKPOINT (2026-10-13): **El pensamiento y el milagro de hoy ya rotan de verdad.** Antes
 siempre mostraban lo mismo (Carlo Acutis / Lanciano, la única fila que existía en `daily_content`).
 Se sembraron 3 días más, cada uno con su santo + milagro de fuente verificada: Bolsena-Orvieto 1263
