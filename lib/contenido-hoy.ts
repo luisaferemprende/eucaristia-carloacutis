@@ -5,9 +5,15 @@ export interface ContenidoDiario {
   pensamiento: string;
   pregunta_dia: string | null;
   milagro_lugar: string;
+  milagro_epoca: string | null;
   milagro_resumen: string;
   milagro_historia: string | null;
+  milagro_contexto: string | null;
+  milagro_hecho: string | null;
+  milagro_iglesia: string | null;
   milagro_fuente: string | null;
+  milagro_lat: number | null;
+  milagro_lng: number | null;
   preparacion: string | null;
   santo_imagen_url: string | null;
   santo_imagen_alt: string | null;
@@ -15,7 +21,7 @@ export interface ContenidoDiario {
 }
 
 const COLUMNAS =
-  'santo_nombre, pensamiento, pregunta_dia, milagro_lugar, milagro_resumen, milagro_historia, milagro_fuente, preparacion, santo_imagen_url, santo_imagen_alt, santo_imagen_credito';
+  'santo_nombre, pensamiento, pregunta_dia, milagro_lugar, milagro_epoca, milagro_resumen, milagro_historia, milagro_contexto, milagro_hecho, milagro_iglesia, milagro_fuente, milagro_lat, milagro_lng, preparacion, santo_imagen_url, santo_imagen_alt, santo_imagen_credito';
 
 // El contenido de hoy; si todavía no hay uno sembrado para la fecha, el más
 // reciente (la biblioteca de ~365 días aún está en construcción — ESTADO.md).

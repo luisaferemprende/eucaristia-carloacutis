@@ -7,6 +7,19 @@ import { MilagroCliente } from '@/components/app/milagro-cliente';
 
 export default async function Milagro() {
   const supabase = await createClient();
+  const { data: userData } = await supabase.auth.getUser();
   const contenido = await cargarContenidoDeHoy(supabase);
-  return <MilagroCliente contenido={contenido} />;
+
+  let guardado = false;
+  if (contenido && userData.user) {
+    const { data } = await supabase
+      .from('reflexiones_guardadas')
+      .select('id')
+      .eq('user_id', userData.user.id)
+      .eq('milagro_lugar', contenido.milagro_lugar)
+      .maybeSingle();
+    guardado = !!data;
+  }
+
+  return <MilagroCliente contenido={contenido} guardadoInicial={guardado} />;
 }
