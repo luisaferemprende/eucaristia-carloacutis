@@ -1,5 +1,23 @@
 # ESTADO — EucaristíaViva
-Última actualización: 2026-10-10 | Sesión actual: 6
+Última actualización: 2026-10-13 | Sesión actual: 6
+
+⏸️ CHECKPOINT (2026-10-13): **El Mapa Sacro construido y commiteado** (`app/app/mapa/page.tsx`,
+`components/app/mapa-sacro.tsx` + `mapa-sacro-cliente.tsx`, `lib/milagros.ts`) — pantalla nueva con
+mapa mundial (Leaflet + tiles de OpenStreetMap sin llave, con un filtro CSS marfil/sepia) y vista en
+lista como alternativa; al tocar un punto se abre un panel inferior con lo esencial + botón a la
+ficha completa. La ficha del milagro del día (`milagro-cliente.tsx`) ahora tiene 3 bloques (contexto,
+hecho milagroso, ciencia/Iglesia) en vez de un solo relato largo, con botón de guardar en reflexiones
+propias (`reflexiones_guardadas`) y botón "Ver en el mapa". **Bug real resuelto (no trivial):** el
+panel inferior no se pintaba sobre el mapa pese a tener TODO su CSS calculado correcto (posición,
+z-index, opacidad, hit-testing) — causa raíz: Leaflet promueve sus paneles internos a capas de GPU
+(sus controles llegan a z-index 1000) y eso descolocaba el orden de pintado del panel aunque
+estuviera geométricamente fuera del área del mapa. Se resolvió forzando al panel su propia capa de
+composición (`will-change:transform` + `translateZ(0)`) con z-index por encima de 1000 — confirmado
+visualmente tras el fix. Verificado: `tsc` ✓, `build` ✓, captura real a 375px mostrando el panel
+abierto correctamente. Pendiente (no bloqueante, anotado para la próxima sesión): no se relanzó el
+revisor-visual sobre esta pantalla (es secundaria — no es de las 4 que deciden el dinero); falta
+también construir la ROTACIÓN DIARIA de "el pensamiento de hoy" y "el milagro de hoy" (hoy están
+fijos siempre en Lanciano/Carlo Acutis) — pedido explícito de la usuaria, siguiente tarea.
 
 ⏸️ CHECKPOINT (2026-10-10): foto REAL de San Carlo Acutis (creada con IA por la usuaria, elegida por
 ella) ya puesta en `public/santos/carlo-acutis.jpg`, conectada en `novenas` y `daily_content`, con el
