@@ -6,7 +6,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion, type Variants } from 'motion/react';
-import { BookHeart, Check, ChevronRight, Flame, Flower2 } from 'lucide-react';
+import { BookHeart, Check, ChevronRight, Flame, Flower2, Map } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { AnilloProgresoApp, CountUp, saludoPorHora } from '@/components/app/ui';
 import { IconoCalizHostia, RetratoSanto } from '@/components/app/emblema-eucaristico';
@@ -169,6 +169,27 @@ export function HoyCliente(d: HoyData) {
           <p className="mt-2 text-[13px] font-semibold text-[var(--accent-text)]">Leer la historia</p>
         </div>
         <ChevronRight size={20} color="var(--text-tertiary)" aria-hidden="true" className="mt-3 shrink-0" />
+      </motion.a>
+
+      {/* ——— EL MAPA SACRO: explorar TODO el catálogo de milagros ——— */}
+      <motion.a
+        href="/app/mapa"
+        variants={item}
+        whileTap={{ scale: 0.98 }}
+        aria-label="Explorar El Mapa Sacro con todos los milagros eucarísticos"
+        className="mt-4 flex items-center gap-3 rounded-[var(--radius-card)] border border-[color-mix(in_oklab,var(--text-tertiary)_20%,transparent)] bg-[var(--surface)] p-5 [touch-action:manipulation]"
+      >
+        <span
+          aria-hidden="true"
+          className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[var(--chip-bg)] shadow-[var(--shadow-chip)]"
+        >
+          <Map size={20} color="var(--accent)" aria-hidden="true" />
+        </span>
+        <div className="min-w-0 flex-1">
+          <p className="text-[15px] font-semibold text-[var(--text-primary)]">El Mapa Sacro</p>
+          <p className="mt-0.5 text-[13px] text-[var(--text-secondary)]">Explora todos los milagros eucarísticos del mundo</p>
+        </div>
+        <ChevronRight size={20} color="var(--text-tertiary)" aria-hidden="true" className="shrink-0" />
       </motion.a>
 
       {/* ——— NOVENA EN CURSO: teaser con anillo real, lleva a la pestaña Novena ——— */}
