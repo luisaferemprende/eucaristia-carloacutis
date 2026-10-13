@@ -1,6 +1,32 @@
 # ESTADO — EucaristíaViva
 Última actualización: 2026-10-13 | Sesión actual: 6
 
+⏸️ CHECKPOINT (2026-10-13): **Catálogo ampliado a 12 — con criterio editorial, no copia y pega.**
+La usuaria pasó una tanda de 10 milagros con sus datos "para no frenar el desarrollo". Se revisó
+uno por uno (no se insertó a ciegas) y el resultado fue:
+- **4 ya estaban** en el catálogo (Santarém, Sokółka, Tixtla, Buenos Aires) — no se duplicaron. Para
+  Tixtla y Buenos Aires la usuaria trajo detalles más específicos y categóricos que los que ya
+  tenía la app (tipo de sangre AB, "tejido vivo", "confirmado por patólogos" como hecho cerrado) —
+  se mantuvo la versión más cautelosa que ya estaba escrita, porque esos detalles puntuales no se
+  pudieron verificar con la misma seguridad que el resto.
+- **4 se agregaron** con fuente razonablemente verificable (mismo estándar que los 8 anteriores):
+  Daroca 1239 (San Francisco de Asís), Macerata 1356 (San Alfonso María de Ligorio), Faverney 1608
+  (San Agustín), Alatri 1228 (San Juan María Vianney, con la versión del niño que juega a decir
+  misa — NO la de "intento de profanación" que mandó la usuaria, por ser menos segura y parecerse
+  a un tipo de relato medieval que históricamente se usó para acusar a grupos religiosos, algo que
+  hay que evitar aunque la fuente original no tuviera esa intención).
+- **2 NO se agregaron:** "Cascia/Casia 1330" (el detalle del rostro en el breviario no se pudo
+  confirmar con suficiente solidez) y **"Dubna, Polonia 1867"** (no se encontró registro confiable
+  de ese lugar/hecho — el patrón de "rostro visible en la Hostia durante la adoración" se parece a
+  los que suelen circular sin verificación en redes, no a un milagro documentado por una diócesis).
+  **Esto se le debe explicar a la usuaria en el próximo mensaje** si no se le explicó ya — no es un
+  "no" definitivo, es "con esta fuente no, hace falta una mejor".
+Catálogo ahora: 12 filas en `daily_content`, todas sin `milagro_lugar` repetido (ya verificado).
+No se tocó código (la rotación por día del año y el buscador del Mapa Sacro ya leen todo lo que
+haya en la tabla, sin cambios). Sigue pendiente: imagen propia por milagro, y la revisión
+doctrinal de un sacerdote/teólogo de TODO el catálogo antes de cobrar (mismo pendiente de siempre,
+ahora cubre 12 relatos en vez de 8).
+
 ⏸️ CHECKPOINT (2026-10-13): **Catálogo de milagros ampliado a 8 + buscador en El Mapa Sacro.**
 Se sumaron 4 más (Sokółka 2008 con Carlo Acutis; Buenos Aires 1992-1996 con Santa Teresa de
 Calcuta; Tixtla 2006 con San Juan María Vianney; Santarém siglo XIII con San Juan Pablo II) a los
