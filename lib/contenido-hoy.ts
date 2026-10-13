@@ -37,6 +37,13 @@ export async function cargarContenidoDeHoy(supabase: SupabaseClient): Promise<Co
   return filas[diaDelAño % filas.length];
 }
 
+// Un milagro puntual (desde El Mapa Sacro, al elegir uno del catálogo en vez
+// de dejar que rote el de hoy).
+export async function cargarMilagroPorLugar(supabase: SupabaseClient, lugar: string): Promise<ContenidoDiario | null> {
+  const { data } = await supabase.from('daily_content').select(COLUMNAS).eq('milagro_lugar', lugar).limit(1).maybeSingle();
+  return (data as ContenidoDiario | null) ?? null;
+}
+
 // Fecha LOCAL de la persona (YYYY-MM-DD): el servidor corre en UTC y de noche
 // en LATAM su "hoy" ya es mañana.
 export function fechaLocalISO(d: Date = new Date()): string {

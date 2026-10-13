@@ -2,13 +2,14 @@
 // contenido del día; la presentación animada vive en el componente cliente.
 
 import { createClient } from '@/lib/supabase/server';
-import { cargarContenidoDeHoy } from '@/lib/contenido-hoy';
+import { cargarContenidoDeHoy, cargarMilagroPorLugar } from '@/lib/contenido-hoy';
 import { MilagroCliente } from '@/components/app/milagro-cliente';
 
-export default async function Milagro() {
+export default async function Milagro({ searchParams }: { searchParams: Promise<{ lugar?: string }> }) {
+  const { lugar } = await searchParams;
   const supabase = await createClient();
   const { data: userData } = await supabase.auth.getUser();
-  const contenido = await cargarContenidoDeHoy(supabase);
+  const contenido = lugar ? await cargarMilagroPorLugar(supabase, lugar) : await cargarContenidoDeHoy(supabase);
 
   let guardado = false;
   if (contenido && userData.user) {
