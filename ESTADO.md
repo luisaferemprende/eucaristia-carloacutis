@@ -1,6 +1,19 @@
 # ESTADO — EucaristíaViva
 Última actualización: 2026-10-13 | Sesión actual: 6
 
+⏸️ CHECKPOINT (2026-10-13): **El pensamiento y el milagro de hoy ya rotan de verdad.** Antes
+siempre mostraban lo mismo (Carlo Acutis / Lanciano, la única fila que existía en `daily_content`).
+Se sembraron 3 días más, cada uno con su santo + milagro de fuente verificada: Bolsena-Orvieto 1263
+(Santo Tomás de Aquino, origen de la fiesta del Corpus Christi), Siena 1730 (San Pío de Pietrelcina,
+las hostias incorruptas) y Legnica 2013 (San Agustín, examen histopatológico de la diócesis).
+`cargarContenidoDeHoy()` (`lib/contenido-hoy.ts`) ya no busca la fecha exacta ni cae al "más
+reciente" — ahora trae TODAS las filas y rota según el día del año (`día_del_año % total_de_filas`),
+así que sembrar un día más alcanza para sumarlo a la rotación, sin tocar código. Esto también hace
+que El Mapa Sacro (abajo) ya muestre 4 puntos reales en vez de 1. Verificado en vivo: hoy 13-oct
+mostró correctamente Siena/San Pío (el índice que le toca). **Pendiente igual que Lanciano:** estos
+3 relatos nuevos necesitan la misma revisión doctrinal de un sacerdote/teólogo antes de cobrar — se
+suman al mismo requisito ya anotado abajo, no es un requisito nuevo.
+
 ⏸️ CHECKPOINT (2026-10-13): **El Mapa Sacro construido y commiteado** (`app/app/mapa/page.tsx`,
 `components/app/mapa-sacro.tsx` + `mapa-sacro-cliente.tsx`, `lib/milagros.ts`) — pantalla nueva con
 mapa mundial (Leaflet + tiles de OpenStreetMap sin llave, con un filtro CSS marfil/sepia) y vista en
