@@ -14,6 +14,7 @@ import { EmblemaEucaristico, RetratoSanto } from '@/components/app/emblema-eucar
 import { TextoConDestacados } from '@/components/app/texto-destacado';
 import { createClient } from '@/lib/supabase/client';
 import { fechaLocalISO, type ContenidoDiario } from '@/lib/contenido-hoy';
+import { PREPARACION_POR_DEFECTO, preparacionDeHoy } from '@/lib/preparacion';
 
 type Fase = 'leyendo' | 'guardando' | 'error' | 'celebracion';
 
@@ -36,6 +37,11 @@ export function VivirCliente({
   const [racha, setRacha] = useState(rachaActual);
   // El día "hecho" se decide con la fecha LOCAL (el servidor corre en UTC).
   const [yaHecho] = useState(() => fechasHechas.includes(fechaLocalISO()));
+  // La preparación rota por día del año LOCAL del dispositivo — empieza con un
+  // valor real (nunca vacío) y se corrige en el cliente para evitar que el
+  // servidor (en UTC) calcule un día distinto al del dispositivo.
+  const [preparacion, setPreparacion] = useState(PREPARACION_POR_DEFECTO);
+  useEffect(() => setPreparacion(preparacionDeHoy()), []);
 
   const volver = () => router.push('/app');
 
@@ -127,7 +133,6 @@ export function VivirCliente({
 
   const ultimo = paso === TITULOS.length - 1;
   const parrafosMilagro = (contenido.milagro_historia ?? contenido.milagro_resumen).split('\n\n').filter(Boolean);
-  const pasosPreparacion = (contenido.preparacion ?? '').split('\n').filter(Boolean);
 
   return (
     <main className="flex flex-1 flex-col px-4 pt-4 pb-4">
@@ -168,6 +173,7 @@ export function VivirCliente({
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -16 }}
           transition={{ duration: 0.25, ease: EASE }}
+          style={{ willChange: 'transform' }}
           className="relative flex flex-1 flex-col overflow-hidden rounded-[var(--radius-card)] border border-[color-mix(in_oklab,var(--accent)_20%,transparent)] bg-[var(--surface)] p-6 shadow-[var(--shadow-2)]"
         >
           {/* Dispositivo ownable: halo de custodia */}
@@ -233,18 +239,15 @@ export function VivirCliente({
           {paso === 2 && (
             <>
               <p className="relative text-[16px] leading-relaxed text-[var(--text-secondary)]">
-                Un minuto antes de comulgar cambia cómo la recibes. Hazlo despacio:
+                Antes de comulgar, haz tuya esta oración. Repítela despacio, sin prisa:
               </p>
-              <ol className="relative mt-5 space-y-4">
-                {pasosPreparacion.map((texto, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_oklab,var(--accent)_16%,transparent)] text-[14px] font-bold text-[var(--accent-text)] shadow-[var(--shadow-chip)]">
-                      {i + 1}
-                    </span>
-                    <p className="pt-0.5 text-[16px] leading-relaxed text-[var(--text-primary)]">{texto}</p>
-                  </li>
-                ))}
-              </ol>
+              <Quote size={28} color="var(--accent)" aria-hidden="true" className="relative mt-6" />
+              <p className="relative mt-3 text-balance text-[22px] font-semibold leading-[1.45] text-[var(--text-primary)] [font-family:var(--font-display)]">
+                {preparacion.texto}
+              </p>
+              <p className="relative mt-4 text-[13px] font-semibold uppercase tracking-[0.06em] text-[var(--accent-text)]">
+                {preparacion.autor}
+              </p>
             </>
           )}
         </motion.section>
