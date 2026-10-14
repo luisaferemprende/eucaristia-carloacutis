@@ -1,6 +1,28 @@
 # ESTADO — EucaristíaViva
 Última actualización: 2026-10-13 | Sesión actual: 6
 
+⏸️ CHECKPOINT (2026-10-13): **Bug real corregido: el Paso 3 ("Prepárate para comulgar") salía
+vacío.** Causa: dependía de `daily_content.preparacion`, una columna que quedó NULL en las 12 filas
+sembradas esta sesión — nunca se le puso contenido. Se reemplazó por un catálogo propio
+(`lib/preparacion.ts`, 10 jaculatorias/oraciones breves: Misal Romano, Actos de Fe/Esperanza/
+Humildad/Amor, Santo Tomás de Aquino, San Agustín, San Pío de Pietrelcina, Santa Teresa de Calcuta)
+que rota por día del año — calculado en el DISPOSITIVO del usuario, no en el servidor, para que de
+verdad cambie a la medianoche local de cada quien — y que NUNCA puede salir vacío porque no
+depende de ninguna fila de base de datos. También faltaba el acceso a **El Mapa Sacro** desde la
+navegación normal (solo se llegaba desde dentro de una ficha, y no siempre) — se agregó una tarjeta
+en Hoy, justo debajo del milagro del día.
+**Bug de pintado repetido (ya van dos veces esta sesión):** la tarjeta animada del Paso 3 quedaba
+con el DOM y CSS perfectamente correctos pero invisible en pantalla justo después de terminar su
+animación de entrada — mismo patrón que el panel de El Mapa Sacro. Mismo arreglo: forzar su propia
+capa de composición con `will-change:transform`. **Anotado como patrón a vigilar:** si aparece un
+tercer caso de "contenido con CSS correcto que no se pinta", revisar directo si el elemento viene de
+una animación de Framer Motion que ya terminó — parece ser la causa común.
+**PENDIENTE CRÍTICO descubierto hoy:** los últimos 7 commits de esta sesión (incluido TODO El Mapa
+Sacro) nunca se subieron a GitHub — quedaron solo en esta computadora. Por eso la usuaria no veía
+el mapa en el link publicado: Vercel seguía desplegando la versión vieja. Hace falta pedirle
+autorización a la usuaria antes de hacer `git push` (publica en producción), y luego confirmar que
+el despliegue en Vercel se vea bien.
+
 ⏸️ CHECKPOINT (2026-10-13): **Catálogo ampliado a 12 — con criterio editorial, no copia y pega.**
 La usuaria pasó una tanda de 10 milagros con sus datos "para no frenar el desarrollo". Se revisó
 uno por uno (no se insertó a ciegas) y el resultado fue:
