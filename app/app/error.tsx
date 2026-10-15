@@ -8,11 +8,16 @@
 import { useEffect } from 'react';
 import { RefreshCw } from 'lucide-react';
 import { EmblemaEucaristico } from '@/components/app/emblema-eucaristico';
+import { createClient } from '@/lib/supabase/client';
+import { registrarError } from '@/lib/eventos';
 
 export default function ErrorApp({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   useEffect(() => {
     // Queda en la consola del navegador para poder diagnosticar — nunca se le muestra a la usuaria.
     console.error('Error en /app:', error);
+    createClient()
+      .auth.getUser()
+      .then(({ data }) => registrarError(error, 'app', data.user?.id));
   }, [error]);
 
   return (

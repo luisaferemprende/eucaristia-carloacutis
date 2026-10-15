@@ -21,6 +21,7 @@ export default async function Vivir() {
       contenido={contenido}
       rachaActual={perfil?.racha_actual ?? 0}
       fechasHechas={(progreso ?? []).map((p) => p.fecha as string)}
+      userId={userId}
     />
   );
 }

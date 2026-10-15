@@ -49,6 +49,7 @@ export default async function Hoy() {
     <>
       <SincronizarOnboarding tieneNovenaActiva={!!participacion} />
       <HoyCliente
+        userId={userId}
         nombre={perfil?.nombre ?? 'Peregrino'}
         racha={perfil?.racha_actual ?? 0}
         fechasHechas={(progresoReciente ?? []).map((p) => p.fecha as string)}

@@ -12,6 +12,7 @@ import { AnilloProgresoApp, CountUp, saludoPorHora } from '@/components/app/ui';
 import { IconoCalizHostia, RetratoSanto } from '@/components/app/emblema-eucaristico';
 import { fechaLocalISO } from '@/lib/contenido-hoy';
 import { CONJUNTOS, conjuntoDeHoy, type ConjuntoId } from '@/lib/rosario';
+import { registrarSesionDiaria } from '@/lib/eventos';
 
 const lista: Variants = { hidden: {}, visible: { transition: { staggerChildren: 0.07 } } };
 const item: Variants = {
@@ -36,6 +37,7 @@ function truncarPalabra(texto: string, maxChars: number): string {
 }
 
 export interface HoyData {
+  userId: string;
   nombre: string;
   racha: number;
   fechasHechas: string[];
@@ -59,6 +61,10 @@ export function HoyCliente(d: HoyData) {
   // El día de la semana se lee en el dispositivo (el servidor está en otra zona horaria).
   const [conjuntoHoy, setConjuntoHoy] = useState<ConjuntoId | null>(null);
   useEffect(() => setConjuntoHoy(conjuntoDeHoy()), []);
+  // Uso real para el panel de administración: una vez por día activo.
+  useEffect(() => {
+    void registrarSesionDiaria(d.userId);
+  }, [d.userId]);
   const ahora = new Date();
   const fecha = fechaCorta(ahora);
   const pctNovena = d.novena ? Math.round((d.novena.diasHechos / d.novena.diasTotal) * 100) : 0;

@@ -15,6 +15,7 @@ import { TextoConDestacados } from '@/components/app/texto-destacado';
 import { createClient } from '@/lib/supabase/client';
 import { fechaLocalISO, type ContenidoDiario } from '@/lib/contenido-hoy';
 import { PREPARACION_POR_DEFECTO, preparacionDeHoy } from '@/lib/preparacion';
+import { registrarEvento } from '@/lib/eventos';
 
 type Fase = 'leyendo' | 'guardando' | 'error' | 'celebracion';
 
@@ -26,10 +27,12 @@ export function VivirCliente({
   contenido,
   rachaActual,
   fechasHechas,
+  userId,
 }: {
   contenido: ContenidoDiario | null;
   rachaActual: number;
   fechasHechas: string[];
+  userId: string;
 }) {
   const router = useRouter();
   const [paso, setPaso] = useState(0);
@@ -66,6 +69,7 @@ export function VivirCliente({
     }
     setRacha((data as { racha_actual: number } | null)?.racha_actual ?? rachaActual + 1);
     setFase('celebracion');
+    void registrarEvento('accion_core', userId, { accion: 'tres_minutos' });
   };
 
   if (!contenido) {
