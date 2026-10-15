@@ -1,5 +1,41 @@
 # ESTADO — EucaristíaViva
-Última actualización: 2026-10-13 | Sesión actual: 6
+Última actualización: 2026-10-14 | Sesión actual: 6
+
+⏸️ CHECKPOINT (2026-10-14): **Panel de administración construido (`/admin`).** Protegido con un rol
+`admin` en `profiles`, verificado EN EL SERVIDOR en cada página y en cada ruta de API (nunca solo
+escondiendo el link) + RLS con `is_admin()` (SECURITY DEFINER, evita recursión al preguntarle a
+`profiles` desde una política de `profiles`). Tu cuenta (`luisafer.emprende@gmail.com`) ya tiene
+`role='admin'`. 5 secciones: Resumen (avisos + métricas), Usuarios (lista real + buscador + agregar
+a mano con correo+nombre vía invitación real de Supabase Auth + dar/quitar acceso manual a la
+suscripción), Ventas y negocio (conectado a `subscriptions`/`acquisition_spend`, honestamente "Sin
+datos" donde Hotmart no está conectado todavía), Uso (activación real + gráfico de sesiones 14 días,
+retención D1/D7 marcada "Sin datos" hasta tener ≥10 usuarios), Salud (errores reales agrupados por
+frecuencia). Tablas nuevas: `event_log`, `error_log`, `acquisition_spend` (RLS: insertar lo propio,
+leer solo admin). `profiles` sumó `role` y `email` (este último copiado de `auth.users` para poder
+buscar por correo); el trigger que ya protegía `racha_actual`/`racha_mejor` contra auto-edición
+ahora también protege `role`/`email` — un usuario normal no puede autoascenderse a admin por un
+PATCH directo. Se instrumentaron 2 eventos reales para que Uso deje de estar vacío desde hoy:
+`sesion_iniciada` (Hoy, una vez por día local) y `accion_core` (al terminar los 3 minutos); el Error
+Boundary de `/app` ahora también escribe en `error_log`. Verificado: `tsc` ✓, `build` ✓ (24 rutas),
+revisión visual propia a 1280px (sin pasar por el revisor-visual del subagente — es una pantalla de
+herramienta interna para un solo usuario, no una de las 4 que deciden el dinero; anotado como
+"sin revisor" según permite la Regla 7 para pantallas secundarias).
+**PENDIENTES REALES para que funcione al 100%:**
+1. Falta pegar la `SUPABASE_SERVICE_ROLE_KEY` real en `.env.local` y en Vercel — sin ella, "Agregar
+   usuario" y "Dar/quitar acceso manual" fallan con un mensaje honesto en vez de hacer nada raro,
+   pero no funcionan de verdad todavía.
+2. **Diferencia de vocabulario sin resolver:** la tabla `subscriptions` hoy solo acepta
+   `estado IN ('trial','activa','cancelada','vencida')` y `plan IN ('mensual','anual')` — en
+   español. Pero `18-VENTA-HOTMART.md` documenta la máquina de estados del futuro webhook en
+   INGLÉS (`active`, `trialing`, `past_due`, `refunded`...). Hay que decidir y migrar ANTES de
+   conectar Hotmart: o se traduce el webhook al vocabulario español ya existente, o se migra la
+   tabla al vocabulario en inglés del 18. No se decidió hoy — es de la próxima sesión de Hotmart.
+3. `profiles.source` (de dónde vino cada cliente) todavía no existe — no se agregó porque hoy no
+   hay ningún tráfico/checkout que lo llene (habría quedado una columna muerta); se suma junto con
+   la conexión de Hotmart/UTM (36-ANALITICA).
+No se instaló PostHog ni se agregó el costo de IA al panel: esta app no genera nada con IA en
+producción (biblioteca curada, no generación en vivo), así que esa sección de 21-BACKOFFICE no
+aplica aquí.
 
 ⏸️ CHECKPOINT (2026-10-13): **Bug real corregido: el Paso 3 ("Prepárate para comulgar") salía
 vacío.** Causa: dependía de `daily_content.preparacion`, una columna que quedó NULL en las 12 filas
