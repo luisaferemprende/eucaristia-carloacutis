@@ -27,23 +27,14 @@ export function SincronizarOnboarding({ tieneNovenaActiva }: { tieneNovenaActiva
       try {
         const respuestas = JSON.parse(crudo!) as {
           motivo?: string;
-          momento?: string;
           santo?: string;
         };
         const supabase = createClient();
         const { data: userData } = await supabase.auth.getUser();
         if (!userData.user) return;
 
-        if (respuestas.momento || respuestas.santo) {
-          await supabase
-            .from('profiles')
-            .update({
-              ...(respuestas.momento ? { momento_dia: respuestas.momento } : {}),
-              ...(respuestas.santo && respuestas.santo !== 'sorpresa'
-                ? { santo_preferido: respuestas.santo }
-                : {}),
-            })
-            .eq('id', userData.user.id);
+        if (respuestas.santo && respuestas.santo !== 'sorpresa') {
+          await supabase.from('profiles').update({ santo_preferido: respuestas.santo }).eq('id', userData.user.id);
         }
 
         if (!tieneNovenaActiva && respuestas.santo) {

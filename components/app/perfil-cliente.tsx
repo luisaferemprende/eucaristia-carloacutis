@@ -31,13 +31,6 @@ const item: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] } },
 };
 
-const MOMENTOS: Record<string, string> = {
-  despertar: 'Al despertar',
-  misa: 'Antes de misa',
-  dormir: 'Antes de dormir',
-  cuando_pueda: 'Cuando puedas',
-};
-
 export interface PerfilData {
   nombre: string;
   correo: string;
@@ -45,7 +38,6 @@ export interface PerfilData {
   rachaMejor: number;
   rosariosRezados: number;
   novenasCompletadas: number;
-  momentoDia: string;
   plan: { nombre: string; estado: string } | null;
   creditosImagenes: { nombre: string; credito: string }[];
 }
@@ -248,7 +240,7 @@ export function PerfilCliente(d: PerfilData) {
           <span className="min-w-0 flex-1">
             <span className="block text-[15px] font-medium text-[var(--text-primary)]">Recordatorio diario</span>
             <span className="mt-0.5 block text-[13px] text-[var(--text-secondary)]">
-              {MOMENTOS[d.momentoDia] ?? 'Al despertar'}
+              Una vez al día
               {estadoAviso === 'activo' && ' · avisos activados'}
             </span>
             {estadoAviso !== 'activo' && errorAviso && (

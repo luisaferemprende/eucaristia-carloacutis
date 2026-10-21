@@ -1,14 +1,18 @@
 'use client';
 
 // SESIÓN 4 — Onboarding + Paywall (Modelo 2, variante anónima: 02C/ESTADO.md).
-// 6 pasos de personalización (02B: 4-8 para bienestar/hábito) + loading +
+// 5 pasos de personalización (02B: 4-8 para bienestar/hábito) + loading +
 // paywall de SECUENCIA (3 pantallas, C0 de 50: +37% vs 1 sola página) + salida
 // a /entrar (login). Copy derivado de FICHA-AVATAR.md — cada pregunta ecoa un
 // dolor/deseo real, nunca fricción decorativa (02B).
+// Se quitó la pregunta "¿en qué momento del día...?" (2026-10-20): el
+// recordatorio push ya no puede llegar a una hora elegida por cada quien (el
+// plan gratis de Vercel solo permite revisarlo una vez al día para todos —
+// ver vercel.json), así que preguntarlo ya no cambiaba nada real.
 
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { AnimatePresence, motion, type Variants } from 'motion/react';
-import { Calendar, Check, Clock, HeartHandshake, Sparkles, X } from 'lucide-react';
+import { Calendar, Check, HeartHandshake, Sparkles, X } from 'lucide-react';
 import {
   AnilloProgreso,
   BarraProgreso,
@@ -21,21 +25,13 @@ import {
 type Respuestas = {
   motivo?: string;
   frecuencia?: string;
-  momento?: string;
   santo?: string;
-};
-
-const MOMENTOS: Record<string, string> = {
-  despertar: 'al despertar',
-  misa: 'antes de misa',
-  dormir: 'antes de dormir',
-  cuando_pueda: 'cuando puedas',
 };
 
 const SANTOS = ['Carlo Acutis', 'San Pío de Pietrelcina', 'Santo Tomás de Aquino', 'Santa Teresita'];
 
-// PASOS 1-6 = preguntas/reconocimiento · 7 = loading · 8-10 = paywall (secuencia C0)
-const TOTAL_PASOS = 10;
+// PASOS 1-5 = preguntas/reconocimiento · 6 = loading · 7-9 = paywall (secuencia C0)
+const TOTAL_PASOS = 9;
 
 export default function Onboarding() {
   const [paso, setPaso] = useState(1);
@@ -50,10 +46,10 @@ export default function Onboarding() {
     setDireccion(1);
     setPaso((p) => {
       const nuevo = Math.min(p + 1, TOTAL_PASOS);
-      // Al llegar al loading (paso 7) ya están las 4 respuestas — se guardan para
+      // Al llegar al loading (paso 6) ya están las 3 respuestas — se guardan para
       // aplicarlas al perfil real en cuanto la persona inicie sesión (/app las lee
       // una sola vez y limpia la clave: la cuenta todavía no existe en este punto).
-      if (nuevo === 7) {
+      if (nuevo === 6) {
         try {
           window.localStorage.setItem('ev_onboarding_respuestas', JSON.stringify(siguientes));
         } catch {
@@ -72,11 +68,10 @@ export default function Onboarding() {
   // "sorpresa" nunca se muestra tal cual en pantalla (quedaba literal: "con sorpresa").
   const santoElegido =
     respuestas.santo && respuestas.santo !== 'sorpresa' ? respuestas.santo : 'un santo distinto cada día';
-  const momentoElegido = MOMENTOS[respuestas.momento ?? 'despertar'];
 
   return (
     <main className="min-h-dvh bg-[var(--bg)] [font-family:var(--font-body)]">
-      {paso <= 6 && (
+      {paso <= 5 && (
         <div className="relative mx-auto flex min-h-dvh max-w-[480px] flex-col overflow-hidden px-5 pb-10 pt-4">
           {/* Profundidad: mesh sutil arriba — nunca fondo plano (DESIGN-CORE §2) */}
           <div
@@ -89,7 +84,7 @@ export default function Onboarding() {
           />
           <div className="flex items-center gap-2">
             {paso > 1 && <BotonAtras onClick={retroceder} />}
-            <BarraProgreso paso={paso} total={6} />
+            <BarraProgreso paso={paso} total={5} />
             <a
               href="/"
               aria-label="Salir del recorrido de inicio"
@@ -133,29 +128,21 @@ export default function Onboarding() {
               )}
               {paso === 4 && (
                 <PasoAnimado key="p4" clave="p4" direccion={direccion}>
-                  <PreguntaMomento
-                    valor={respuestas.momento}
-                    onElegir={(v) => avanzar({ momento: v })}
-                  />
-                </PasoAnimado>
-              )}
-              {paso === 5 && (
-                <PasoAnimado key="p5" clave="p5" direccion={direccion}>
                   <PreguntaSanto
                     valor={respuestas.santo}
                     onElegir={(v) => avanzar({ santo: v })}
                   />
                 </PasoAnimado>
               )}
-              {paso === 6 && (
-                <PasoAnimado key="p6" clave="p6" direccion={direccion}>
+              {paso === 5 && (
+                <PasoAnimado key="p5" clave="p5" direccion={direccion}>
                   <Reconocimiento
                     icono={<Check size={28} className="text-[var(--accent)]" />}
                     titulo="Tus respuestas te describen"
-                    texto={`Eres alguien que no se conforma con ir por inercia — por eso hoy elegiste algo distinto. Tu Autopista de 3 Minutos ya está lista con ${santoElegido}, ${momentoElegido}.`}
+                    texto={`Eres alguien que no se conforma con ir por inercia — por eso hoy elegiste algo distinto. Tu Autopista de 3 Minutos ya está lista con ${santoElegido}.`}
                     onContinuar={() => avanzar()}
                     cta="Ver mi Autopista de 3 Minutos"
-                   
+
                   />
                 </PasoAnimado>
               )}
@@ -164,9 +151,9 @@ export default function Onboarding() {
         </div>
       )}
 
-      {paso === 7 && <PantallaLoading santo={santoElegido} onListo={() => avanzar()} />}
+      {paso === 6 && <PantallaLoading santo={santoElegido} onListo={() => avanzar()} />}
 
-      {paso === 8 && (
+      {paso === 7 && (
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
@@ -176,7 +163,7 @@ export default function Onboarding() {
           <PaywallRecap santo={santoElegido} onContinuar={() => avanzar()} />
         </motion.div>
       )}
-      {paso === 9 && (
+      {paso === 8 && (
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
@@ -186,7 +173,7 @@ export default function Onboarding() {
           <PaywallTimeline onContinuar={() => avanzar()} onAtras={retroceder} />
         </motion.div>
       )}
-      {paso === 10 && (
+      {paso === 9 && (
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
@@ -318,24 +305,6 @@ function PreguntaFrecuencia({ valor, onElegir }: { valor?: string; onElegir: (v:
   );
 }
 
-function PreguntaMomento({ valor, onElegir }: { valor?: string; onElegir: (v: string) => void }) {
-  return (
-    <PreguntaOpciones
-      icono={<Clock size={22} className="text-[var(--accent)]" />}
-      titulo="¿En qué momento del día quieres tus 3 minutos?"
-      subtitulo="Así te avisamos justo a esa hora."
-      opciones={[
-        { v: 'despertar', t: 'Al despertar' },
-        { v: 'misa', t: 'Antes de misa' },
-        { v: 'dormir', t: 'Antes de dormir' },
-        { v: 'cuando_pueda', t: 'Cuando pueda' },
-      ]}
-      valor={valor}
-      onElegir={onElegir}
-    />
-  );
-}
-
 function PreguntaSanto({ valor, onElegir }: { valor?: string; onElegir: (v: string) => void }) {
   return (
     <PreguntaOpciones
@@ -403,7 +372,7 @@ function PantallaLoading({ santo, onListo }: { santo: string; onListo: () => voi
     () => [
       `Preparando el pensamiento de ${santo}`,
       'Elegimos tu milagro eucarístico de hoy',
-      'Ajustando tu recordatorio a tu horario',
+      'Activando tu recordatorio diario',
       'Guardando tu primera intención',
     ],
     [santo]
@@ -481,7 +450,7 @@ function PaywallRecap({ santo, onContinuar }: { santo: string; onContinuar: () =
       <h1 className="text-balance text-[28px] font-bold leading-[1.15] [font-family:var(--font-display)]">
         Tu Autopista de 3 Minutos con {santo} está lista
       </h1>
-      <p className="mt-2 text-[14px] text-[var(--text-secondary)]">Hecha con tus 5 respuestas.</p>
+      <p className="mt-2 text-[14px] text-[var(--text-secondary)]">Hecha con tus respuestas.</p>
       <div className="mt-8 flex flex-col gap-4 rounded-[var(--radius-card)] border border-[color-mix(in_oklab,var(--text-tertiary)_22%,transparent)] bg-[var(--surface)] p-5">
         {[
           'El pensamiento diario de los santos y un milagro eucarístico',
