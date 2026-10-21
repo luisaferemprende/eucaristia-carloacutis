@@ -1,27 +1,15 @@
-// Envía el recordatorio diario REAL por Web Push. Vercel lo llama cada 15
-// minutos (vercel.json). Protegido con CRON_SECRET: sin el secreto correcto,
-// responde 401 — nadie más puede disparar avisos a los usuarios.
+// Envía el recordatorio diario REAL por Web Push. Vercel lo llama UNA vez al
+// día (vercel.json) — el plan gratis (Hobby) no permite tareas más seguidas
+// que esa; antes corría cada 15 minutos para acertar la hora exacta de cada
+// quien, pero eso hacía FALLAR TODO EL DESPLIEGUE en Hobby (descubierto
+// 2026-10-20: ningún cambio se publicaba desde hacía días por esto). Mientras
+// no se contrate el plan Pro, el aviso ya no llega a la hora elegida por cada
+// persona — llega una vez al día, a la misma hora para todos (ver ESTADO.md).
 import { NextResponse } from 'next/server';
 import webpush from 'web-push';
 import { createClient } from '@supabase/supabase-js';
 
 export const dynamic = 'force-dynamic';
-
-// Hora LOCAL objetivo (en el huso horario de cada persona) para cada momento
-// elegido en el onboarding/Perfil. "cuando_pueda" recibe un único empujón
-// suave a media tarde, en vez de nada.
-const HORA_OBJETIVO: Record<string, number> = { despertar: 7, misa: 11, dormir: 21, cuando_pueda: 18 };
-
-function horaLocal(zonaHoraria: string): number {
-  try {
-    const partes = new Intl.DateTimeFormat('en-US', { timeZone: zonaHoraria, hour: 'numeric', hourCycle: 'h23' }).formatToParts(
-      new Date(),
-    );
-    return Number(partes.find((p) => p.type === 'hour')?.value ?? -1);
-  } catch {
-    return -1; // zona horaria inválida guardada: no se le envía nada (fail-safe, no falla el cron)
-  }
-}
 
 function fechaLocalISO(zonaHoraria: string): string | null {
   try {
@@ -51,16 +39,12 @@ export async function GET(request: Request) {
 
   const { data: suscripciones, error } = await supabase
     .from('push_subscriptions')
-    .select('id, endpoint, p256dh, auth_key, zona_horaria, profiles:user_id(momento_dia)');
+    .select('id, endpoint, p256dh, auth_key, zona_horaria');
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
   let enviados = 0;
   let descartados = 0;
   for (const s of suscripciones ?? []) {
-    const momento = (s.profiles as unknown as { momento_dia: string } | null)?.momento_dia ?? 'despertar';
-    const horaObjetivo = HORA_OBJETIVO[momento] ?? HORA_OBJETIVO.despertar;
-    if (horaLocal(s.zona_horaria) !== horaObjetivo) continue;
-
     const hoy = fechaLocalISO(s.zona_horaria);
     if (!hoy) continue;
     const { data: yaEnviado } = await supabase
