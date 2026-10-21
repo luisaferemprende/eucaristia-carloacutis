@@ -1,5 +1,34 @@
 # ESTADO — EucaristíaViva
-Última actualización: 2026-10-14 | Sesión actual: 6
+Última actualización: 2026-10-20 | Sesión actual: 6
+
+⏸️ CHECKPOINT (2026-10-20): **CAUSA RAÍZ encontrada y corregida: la app llevaba DÍAS sin publicar
+nada nuevo.** El commit `af57577` (10-oct) fue el último que Vercel desplegó bien; todos los
+siguientes (incluido todo el trabajo de esta sesión: Mapa Sacro, catálogo ampliado, Paso 3, panel
+de administración) quedaban guardados en GitHub pero Vercel los rechazaba — confirmado en GitHub
+con "❌ Vercel - Deployment failed" en cada uno. Causa real: `vercel.json` pedía correr el
+recordatorio push cada 15 minutos, pero el plan gratis (Hobby) de Vercel SOLO permite tareas una
+vez al día — Vercel bloqueaba el despliegue COMPLETO por esto, sin que tuviera nada que ver con el
+código de cada commit. Se encontró recorriendo con la usuaria, paso a paso, Vercel → GitHub →
+Webhooks → GitHub Apps → Build and Deployment, hasta dar con el check rojo real en
+`github.com/.../commits/main`.
+**Arreglado:** `vercel.json` ahora corre una vez al día (`0 14 * * *`); `app/api/cron/recordatorios/route.ts`
+ya no filtra por hora exacta (no tiene sentido con una sola corrida/día) — envía a quien no haya
+recibido el aviso hoy. Confirmado con el MCP de Vercel: el despliegue del fix (`4886687`) terminó
+`READY` en Producción — ya se publica normal otra vez.
+**Efecto real en el producto (decisión YA tomada con la usuaria, no pendiente):** el recordatorio
+diario ya NO llega a la hora elegida por cada persona (despertar/misa/dormir/cuando pueda) — llega
+una vez al día, a la misma hora para todas. Como esa pregunta del onboarding ya no movía nada real,
+se QUITÓ (onboarding pasó de 6 a 5 pasos de personalización) y la etiqueta de Perfil pasó de
+"Al despertar" a "Una vez al día" (commit `3801187`) — nunca dejar una pregunta o etiqueta
+prometiendo algo que el código ya no hace. **Pendiente real (decisión de la usuaria, no tomada):**
+si más adelante quiere recuperar la precisión por hora/persona, necesita pasar al plan Pro de
+Vercel (tiene costo mensual) y volver a poner el cron en `*/15 * * * *` + restaurar el filtro de
+hora en el route. La columna `profiles.momento_dia` se quedó igual en la base de datos (no se
+migró nada), simplemente ya no la lee ni la escribe ningún camino real del código.
+**Nota para la próxima vez que algo "no se vea" en el link publicado:** el primer chequeo debe ser
+`github.com/<repo>/commits/main` — si el commit más reciente tiene una ❌ roja en vez de nada, ESO
+es la pista (Vercel sí lo intentó y falló), y el detalle del error real vive ahí mismo (clic en
+"Details" del check de Vercel), no en los logs de build de un despliegue viejo.
 
 ⏸️ CHECKPOINT (2026-10-14): **Panel de administración construido (`/admin`).** Protegido con un rol
 `admin` en `profiles`, verificado EN EL SERVIDOR en cada página y en cada ruta de API (nunca solo
